@@ -1,23 +1,25 @@
 {
-  "name": "project-delilah-resto",
-  "version": "1.0.0",
-  "description": "Proyecto tercera unidad",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yaneth-hernandez/project-delilah-resto.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yaneth-hernandez/project-delilah-resto/issues"
-  },
-  "homepage": "https://github.com/yaneth-hernandez/project-delilah-resto#readme",
-  "dependencies": {
-    "express.js": "^1.0.0",
-    "nodemon": "^2.0.4"
-  }
+    "name": "project-delilah-resto",
+    "version": "1.0.0",
+    "description": "Proyecto tercera unidad",
+    "main": "app.js",
+    "scripts": {
+        "dev": "nodemon backend/fuentes/main.js, backend/fuentes/database.js "
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yaneth-hernandez/project-delilah-resto.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/yaneth-hernandez/project-delilah-resto/issues"
+    },
+    "homepage": "https://github.com/yaneth-hernandez/project-delilah-resto#readme",
+    "dependencies": {
+        "express.js": "^1.0.0",
+        "morgan": "^1.10.0",
+        "mysql": "^2.18.1",
+        "nodemon": "^2.0.4"
+    }
 }
