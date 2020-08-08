@@ -4,11 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delilah-Restó</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Delilah-Restó-registro</title>
 </head>
 
 <body>
+    <main class="contenedor-principal">
+        <header class="contendor-cabecera">
+            <h1 class="titulo-cabecera">Delilah Restó</h1>
+        </header>
+        <form class="formulario-registro" action="">
+            <div class="content-label">
+                <span class="texto-label">Usuario</span>
+                <input type="text" class="input-datos" id="usuario-id" size="35" placeholder="Ingrese usuario" required>
+            </div>
+            <div class="content-label">
+                <span class="texto-label">Nombre y apellido</span>
+                <input type="text" class="input-datos" id="nombre-apellido-id" size="35" placeholder="Ingrese nombre y apellido" required>
+            </div>
+            <div class="content-label">
+                <span class="texto-label">Correo electrónico</span>
+                <input type="email" class="input-datos" id="email-id" size="35" placeholder="Ingrese correo electrónico" required>
+            </div>
+            <div class="content-label">
+                <span class="texto-label">Teléfono</span>
+                <input type="tel" class="input-datos" id="numero-id" size="35" placeholder="Ingrese número de teléfono" required>
+            </div>
+            <div class="content-label">
+                <span class="texto-label">Direcciín de envío</span>
+                <input type="text" class="input-datos" id="direccion-id" size="35" placeholder="Dirección de envío" required>
+            </div>
+            <div class="content-label">
+                <span for="" class="texto-label">Contraseña</span>
+                <input type="password" class="input-datos" id="password-id" size="35" placeholder="Dirección de envío" required>
+            </div>
+            <div class="contenedor-iniciar-crear">
+                <button type="submit" class="crear-cta" id="crear-cta-id">CREAR CUENTA</button>
+                <a class="iniciar-sesion" href="http://127.0.0.1:5500/frontend/login.html?" target="_lblank">INICIAR SESIÓN</a>
+            </div>
 
+
+        </form>
+
+    </main>
+    <footer>
+        <div></div>
+        <div></div>
+        <div></div>
+    </footer>
 </body>
 
 </html>

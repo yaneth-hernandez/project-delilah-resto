@@ -14,4 +14,4 @@ PRIMARY KEY (id_cliente)
 );
 DESCRIBE clientes;
 
-SELECT * FROM clientes;
+SELECT * FROM clientes;clientes

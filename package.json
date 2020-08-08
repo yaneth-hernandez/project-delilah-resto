@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/yaneth-hernandez/project-delilah-resto#readme",
     "dependencies": {
+        "dotenv": "^8.2.0",
         "express.js": "^1.0.0",
         "morgan": "^1.10.0",
         "mysql": "^2.18.1",
