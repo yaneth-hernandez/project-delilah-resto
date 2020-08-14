@@ -13,21 +13,19 @@
         <header class="contendor-cabecera">
             <h1 class="titulo-cabecera">Delilah Restó</h1>
         </header>
-        <form class="formulario-registro" action="">
+        <form class="formulario-registro">
             <div class="content-label">
-                <span class="texto-label">Usuario o correo electrónico</span>
-                <input type="email" class="input-datos" id="email-id" size="35" placeholder="Ingrese correo electrónico" required>
+                <legend class="texto-label">Usuario o correo electrónico</legend>
+                <input type="email" class="input-datos" id="email-id" size="35" placeholder="Ingrese correo electrónico" name="usuario" required>
             </div>
             <div class="content-label">
-                <span class="texto-label">Contraseña</span>
-                <input type="password" class="input-datos" id="password-id" size="35" placeholder="Dirección de envío" required>
+                <legend class="texto-label">Contraseña</legend>
+                <input type="password" class="input-datos" id="password-id" size="35" placeholder="Contraseña" required>
             </div>
             <div class="contenedor-iniciar-crear">
-                <button type="submit" class="crear-cta" id="crear-cta-id">CREAR CUENTA</button>
+                <input type="submit" class="crear-cta" id="crear-cta-id" value="CREAR CUENTA">
                 <a class="iniciar-sesion" href="http://">INICIAR SESIÓN</a>
             </div>
-
-
         </form>
 
     </main>
@@ -36,6 +34,8 @@
         <div></div>
         <div></div>
     </footer>
+
+    <script src="javascript/login.js"></script>
 </body>
 
 </html>

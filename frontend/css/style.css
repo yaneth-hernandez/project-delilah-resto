@@ -282,3 +282,43 @@ label::before {
     margin-left: 0.75em;
     border: 0;
 }
+
+
+/*Estado*/
+
+.text-radio {
+    width: 90%;
+    height: 2em;
+    font-size: 40%;
+    font-family: var(--letra-titulo);
+    color: var(--color-fuente-form);
+    margin-left: 0.10em;
+    border: 0;
+}
+
+.btn-radio {
+    font-size: 40%;
+    font-family: var(--letra-titulo);
+    color: var(--color-fuente-form);
+    margin-left: 0.75em;
+}
+
+.estdo-pedido {
+    margin-bottom: 0.85em;
+}
+
+
+/*fin pedido*/
+
+.envio-pedido {
+    margin-top: 0.75em;
+}
+
+.imagen-envio {
+    width: 100%;
+    margin-bottom: 0.85em;
+}
+
+.imagen {
+    width: 100%;
+}

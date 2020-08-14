@@ -13,34 +13,45 @@
         <header class="contendor-cabecera">
             <h1 class="titulo-cabecera">Delilah Restó</h1>
         </header>
+        <section class="estdo-pedido">
+            <h2 class="titulo-detalle">Estado</h2>
+            <form class="form-estado">
+                <input type="radio" name="estado" value="" checked class="btn-radio">
+                <span class="text-radio">Confirmado</span>
+                <div class="barra"></div>
+                <input type="radio" name="estado" value="" checked class="btn-radio">
+                <span class="text-radio">En preparación</span>
+                <div class="barra"></div>
+                <input type="radio" name="estado" value="" checked class="btn-radio">
+                <span class="text-radio">En camino</span>
+                <div class="barra"></div>
+                <input type="radio" name="estado" value="" checked class="btn-radio">
+                <span class="text-radio">Entregado</span>
+            </form>
+
+        </section>
         <section class="formulario-registro">
-            <h2 class="titulo-detalle">Detalle</h2>
+            <h3 class="titulo-detalle">Detalle</h3>
             <div class="content-menu">
                 <div class="plato-img">
                     <img src="https://okdiario.com/img/2018/12/03/bagel-de-salmon-655x368.jpg" alt="plato" class="img-menu">
                     <p class="product-precio"><span class="texto-label">Bagel de salmón</span><span class="precio">$310</span></p>
 
                 </div>
-                <div class="contenedor-checheck">
-                    <input class="btn-menu-check" id="btn-menu1" type="checkbox" name="plato1">
-                    <label class="btn-menu" for="btn-menu1"></label>
-                </div>
+
             </div>
             <div class="content-menu">
                 <div class="plato-img">
                     <img src="https://sifu.unileversolutions.com/image/es-MX/recipe-topvisual/2/1260-709/hamburguesa-clasica-50425188.jpg" alt="plato" class="img-menu">
                     <p class="product-precio"><span class="texto-label">Hamburguesa clásica</span> <span class="precio">$425</span></p>
                 </div>
-                <div class="contenedor-checheck">
-                    <input class="btn-menu-check" id="btn-menu2" type="checkbox" name="plato2">
-                    <label class="btn-menu" for="btn-menu2"></label>
-                </div>
+
             </div>
             <input type="text" class="input-detalle" id="total-id" readonly value="Total: $600">
         </section>
         <section class="datos-detalle">
             <div class="pago">
-                <h3 class="titulo-detalle">Forma de pago</h3>
+                <h4 class="titulo-detalle">Forma de pago</h4>
                 <form class="form-pago">
                     <select class="selec-pago" name="" id="">
             <option value="">Seleccione</option>        
@@ -51,7 +62,7 @@
                 </form>
             </div>
             <div class="direccion">
-                <h4 class="titulo-detalle">Dirección</h4>
+                <h5 class="titulo-detalle">Dirección</h5>
                 <input type="text" class="input-detalle" id="direccion-id" readonly value="Dato viene del registro inicial">
             </div>
         </section>

@@ -2,26 +2,22 @@ const express = require('express')
 const app = express()
 require('dotenv').config({ path: './archivo.env' })
 const port = process.env.PORT || 3000
-
 const morgan = require('morgan')
-const usuarioController = require('./controller/usuarioController')
+const controlUsuario = require('./controller/usuarioController')
+const cors = require('cors')
+const corsOptions = {
+    origin: 'http://127.0.0.1:5500',
+    methods: "GET, POST, PUT, DELETE, OPTIONS",
+    optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
 
-
-/**
- * @summary: Middleware
- * @instance: bodyParser
- * @description: respuesta a consulta de endpoints
- * @description: importar control de usuarios
- */
-app.use(express.json())
+app.use(express.static('controller'))
+app.use(express.json({
+    type: ['application/json']
+}))
 app.use(morgan('dev'))
-app.use('/delilah-resto/usuario/', usuarioController)
-
-app.get('/', (req, res) => {
-    res.json({
-        message: 'pueba enviada'
-    })
-})
+app.use('/delilah-resto/usuario/', controlUsuario)
 
 /**
  * @summary: inicialización de servidor
