@@ -8,7 +8,7 @@ function eventBtnCrearCta() {
         let direccion = document.getElementById('direccion-id').value
         let password = document.getElementById('password-id').value
 
-        var result = await capturarDatos(usuario, nombre, email, telefono, direccion, password)
+        var result = await crearUsuarios(usuario, nombre, email, telefono, direccion, password)
         console.log('result de fetch: ' + JSON.stringify(result));
         console.log('result de fetch: ' + JSON.stringify(result));
 
@@ -21,7 +21,7 @@ function eventBtnCrearCta() {
 
         if (result.Code == 100) {
             alert('Usuario Creado')
-            window.location.replace("http://127.0.0.1:5500/frontend/login.html")
+            window.location.replace("http://127.0.0.1:5500/frontend/login.html?usuario")
         } else if (result.Code == -100) {
             alert('problemas para crear el usuario')
         }
@@ -30,7 +30,7 @@ function eventBtnCrearCta() {
 }
 window.addEventListener('load', eventBtnCrearCta)
 
-async function capturarDatos(usuario, nombre, email, telefono, direccion, password) {
+async function crearUsuarios(usuario, nombre, email, telefono, direccion, password) {
     let data = {
         usuario: usuario,
         nombre: nombre,

@@ -1,26 +1,25 @@
-const express = require('express')
-const controlUsuario = express.Router()
-
-
 const mysqlConnection = require('../database')
 
+//GET LISTAR TODOS
+function verUsuarios(req, res) {
+    return res.status(200).send({ mensaje: 'Usuarios obtenidos' })
+}
 
-
-controlUsuario.get('/', (req, res) => {
-    res.json({
-        mensaje: 'Respuesta enviada'
-    })
-})
-
-controlUsuario.get('/:id', (req, res) => {
+//GET X ID
+function usuarioId(req, res) {
     const id = req.params.id
-    res.json({
+    res.status(200).json({
         mensaje: `id ${id} obtenido`
     })
-
     console.log(id)
-})
-controlUsuario.post('/', (req, res) => {
+
+}
+//GET X ROLES
+function usuarioRol(req, res) {
+    return res.status(200).send({ mensaje: 'Usuario obtenido por rol' })
+}
+//POST
+function crearUsuario(req, res) {
     const body = req.body
     console.log('Usuario registrado:' + body.usuario);
     res.json({
@@ -29,20 +28,20 @@ controlUsuario.post('/', (req, res) => {
         Login: body.usuario,
         Id: 10000
     })
+}
 
-})
-
-
-controlUsuario.put('/:id', (req, res) => {
+//PUT
+function actualizarUsuario(req, res) {
     const id = req.params.id
     const body = req.body
     res.json({
         respuesta: `datos modificados`
     })
-
     console.log(`Obteniedo id:${id} datos ${JSON.stringify(body)} actualizados`)
-})
-controlUsuario.delete('/:id', (req, res) => {
+}
+
+//DELETE
+function borraUsuario(req, res) {
     const id = req.params.id
     const body = req.body
     res.json({
@@ -50,7 +49,7 @@ controlUsuario.delete('/:id', (req, res) => {
     })
 
     console.log(`Obteniedo id:${id} datos ${JSON.stringify(body)} borrados`)
-})
 
+}
 
-module.exports = controlUsuario
+module.exports = { verUsuarios, usuarioId, usuarioRol, crearUsuario, actualizarUsuario, borraUsuario }
