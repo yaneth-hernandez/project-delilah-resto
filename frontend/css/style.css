@@ -53,6 +53,16 @@
 /*======= fin estilos generales==========*/
 
 
+/*====Inicio======*/
+
+.inicio-titulo {
+    font-size: var(--letra-titulo);
+    color: var(--color-btn);
+    display: flex;
+    justify-content: center;
+}
+
+
 /*======= Incio- estilos login y registro==========*/
 
 .content-label {
@@ -63,6 +73,12 @@
 
 .texto-label {
     color: var(--color-fuente-form);
+}
+
+.precio-label {
+    color: var(--color-fuente-form);
+    transform: translateY(1.56em);
+    transform: translateX(2.5em);
 }
 
 .input-datos {
@@ -195,15 +211,7 @@
     margin-right: 0.5rem;
 }
 
-.btn-menu-check {
-    display: none;
-}
-
-label::before {
-    content: '+';
-}
-
-.contenedor-checheck {
+.btn-menu {
     width: 1.9rem;
     height: 1.9rem;
     border-radius: 1.25em;
@@ -211,17 +219,12 @@ label::before {
     color: var(--color-fuente-clara);
     font-weight: lighter;
     border: 0px;
-    font-size: 1.7em;
+    font-size: 1.9em;
     display: flex;
     justify-content: center;
 }
 
-.btn-menu-check:checked~label {
-    display: block;
-}
-
-.btn-menu-check:checked~label::before {
-    content: 'X';
+.btn-menu-check {
     width: 1.9rem;
     height: 1.9rem;
     border-radius: 1.25em;
@@ -229,7 +232,7 @@ label::before {
     color: var(--color-fuente-blue);
     font-weight: lighter;
     border: 1px solid var(--color-fuente-blue);
-    font-size: 0.7em;
+    font-size: 1.7em;
     display: flex;
     justify-content: center;
     align-items: center;

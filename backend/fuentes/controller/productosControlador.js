@@ -3,18 +3,17 @@ const mysqlConnection = require('../database')
 
 //GET LISTAR TODOS
 function verProductos(req, res) {
-    return res.status(200).json(productos)
-        //console.log(productos)5
+    return res.status(200).json(productos.items)
+        //console.log(productos.items)5
 
 }
 
 //GET X ID
 function productoId(req, res) {
     const id = req.params.id
-    res.status(200).json({
-        mensaje: `id ${id} obtenido`
-    })
-    console.log(id)
+
+    res.status(200).json(productos.items[id - 1])
+    console.log(productos.items[id - 1])
 }
 //POST
 function crearProducto(req, res) {

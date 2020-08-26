@@ -13,30 +13,12 @@
         <header class="contendor-cabecera">
             <h1 class="titulo-cabecera">Delilah Restó</h1>
         </header>
-        <section class="formulario-registro">
+        <section class="formulario-registro" id="formulario-registro-id">
             <h2 class="titulo-detalle">Detalle</h2>
-            <div class="content-menu">
-                <div class="plato-img">
-                    <img src="https://okdiario.com/img/2018/12/03/bagel-de-salmon-655x368.jpg" alt="plato" class="img-menu">
-                    <p class="product-precio"><span class="texto-label">Bagel de salmón</span><span class="precio">$310</span></p>
+            <div class="contenedor-items" id="contenedor-items-id">
 
-                </div>
-                <div class="contenedor-checheck">
-                    <input class="btn-menu-check" id="btn-menu1" type="checkbox" name="plato1">
-                    <label class="btn-menu" for="btn-menu1"></label>
-                </div>
             </div>
-            <div class="content-menu">
-                <div class="plato-img">
-                    <img src="https://sifu.unileversolutions.com/image/es-MX/recipe-topvisual/2/1260-709/hamburguesa-clasica-50425188.jpg" alt="plato" class="img-menu">
-                    <p class="product-precio"><span class="texto-label">Hamburguesa clásica</span> <span class="precio">$425</span></p>
-                </div>
-                <div class="contenedor-checheck">
-                    <input class="btn-menu-check" id="btn-menu2" type="checkbox" name="plato2">
-                    <label class="btn-menu" for="btn-menu2"></label>
-                </div>
-            </div>
-            <input type="text" class="input-detalle" id="total-id" readonly value="Total: $600">
+            <input type="text" class="input-detalle" id="total-id" data-precio="0" readonly value="">
         </section>
         <section class="datos-detalle">
             <div class="pago">
@@ -46,17 +28,17 @@
             <option value="">Seleccione</option>        
             <option value="">Efectivo</option>
             <option value="">Tarjeta</option>
-            <option value="">Medios electrónicos</option>
             </select>
                 </form>
             </div>
             <div class="direccion">
                 <h4 class="titulo-detalle">Dirección</h4>
-                <input type="text" class="input-detalle" id="direccion-id" readonly value="Dato viene del registro inicial">
+                <input type="text" class="input-detalle" id="direccion-id" readonly value="">
             </div>
         </section>
         <div class="contenedor-iniciar-crear">
             <button type="submit" class="crear-cta" id="crear-cta-id">CONFIRMAR PEDIDO</button>
+            <a class="iniciar-sesion" href="" target="_lblank">IR A MENÚ</a>
         </div>
     </main>
     <footer>
@@ -64,6 +46,7 @@
         <div></div>
         <div></div>
     </footer>
+    <script src="./javascript/detalle-pedido.js"></script>
 </body>
 
 </html>

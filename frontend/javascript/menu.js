@@ -1,27 +1,123 @@
 //mostrar productos obtenidos
-async function mostrarProductos() {
+async function obtenerProductos() {
     let respuestaBusqueda = await fetch('http://localhost:3020/delilah-resto/productos');
     let resultadoDatos = await respuestaBusqueda.json();
 
-    return resultadoDatos
-}
-mostrarProductos()
+    resultadoDatos.forEach(result => {
+        var objectResult = new ProductosClass(result);
 
-
-
-
-function eventoClickCheckbox() {
-    let inputCheckbox = document.getElementById("btn-menu1")
-    inputCheckbox.addEventListener('change', (e) => {
-        console.log(e.type)
-
-
-
-        let crearPedido = obtenerValoresInput()
+        mostrarProductosHtml(objectResult)
     })
 }
-window.addEventListener('load', eventoClickCheckbox)
 
-function obtenerValoresInput() {
-    //fetch
+
+class ProductosClass {
+    constructor(obj) {
+        this.id = obj.id_producto;
+        this.nombre = obj.nombre_producto;
+        this.imagen = obj.imagen_producto;
+        this.precio = obj.precio_producto;
+        this.stock = obj.stock_productos;
+
+    }
 }
+
+function mostrarProductosHtml(objectResult) {
+    let nombreClase = ''
+    let seleccionValor = ''
+    let existenciaPedido = validarExistenciaId(objectResult.id)
+
+    if (existenciaPedido == null) {
+        nombreClase = 'btn-menu'
+        seleccionValor = '+'
+    } else {
+        nombreClase = 'btn-menu-check'
+        seleccionValor = 'x'
+    }
+
+    let contenedorMenu = `
+                <div class="plato-img" id="plato-img-id${objectResult.id}">
+                    <img src="${objectResult.imagen}" alt="plato" class="img-menu" id="img-menu-id${objectResult.id}">
+                    <p><span class="texto-label" id="texto-label-id${objectResult.id}">${objectResult.nombre}</span><br>
+                    <span class="precio-label" id="precio-prod-id${objectResult.id}" >${objectResult.precio}$</span></p>
+                </div>
+                <div class="contenedor-checheck" class="contenedor-checheck-id">
+                    <label class="${nombreClase}" id="btn-menu-id${objectResult.id}" 
+                    onclick="buscarProductoId(${objectResult.id})">${seleccionValor}</label>
+                    
+                </div>`
+
+    let formularioMenu = document.getElementById('formulario-registro-id')
+    var div = document.createElement('div')
+    div.className = 'content-menu'
+    div.id = `content-menu-id${objectResult.id}`
+    div.innerHTML = contenedorMenu
+    formularioMenu.append(div)
+}
+
+//OBTENER CONFIGURACIÓN DE URL PARA HAYAR ID
+function obtenerUrl(id) {
+    let urlId = 'http://localhost:3020/delilah-resto/productos/' + id
+
+    return urlId
+}
+
+//BUSCAR ID DEL PRODUCTO
+async function buscarProductoId(id) {
+    let urlBusqueda = obtenerUrl(id)
+    let busqueda = await fetch(urlBusqueda)
+    let respuesta = await busqueda.json(id)
+    agrgarRemoverProducto(id)
+    return respuesta
+}
+//TODOS LOS IDS SON DINÁMICOS
+function agrgarRemoverProducto(id) {
+    let nombreKey = `usuario-${id}:prod_${id}`
+    let guardado = localStorage.getItem(nombreKey)
+    if (guardado == null) {
+        let check = document.querySelector(`#btn-menu-id${id}`)
+        check.className = 'btn-menu-check'
+        check.textContent = 'x'
+        localStorage.setItem(nombreKey, id)
+    } else {
+        let check = document.querySelector(`#btn-menu-id${id}`)
+        check.className = 'btn-menu'
+        check.textContent = '+'
+        localStorage.removeItem(nombreKey)
+    }
+}
+
+function validarExitstePedido() {
+    let existePedido = false
+
+    for (let i = 0; i < localStorage.length; i++) {
+        let existe = localStorage.key(i).indexOf(':prod_');
+        if (existe != -1) {
+            existePedido = true;
+            break
+        }
+    }
+    return existePedido
+}
+
+function validarExistenciaId(id) {
+    let nombreKey = `usuario-${id}:prod_${id}`
+    let existePedido = localStorage.getItem(nombreKey)
+
+    return existePedido
+}
+
+function agregarPedido() {
+    let btonAgregar = document.getElementById("crear-cta-id")
+    btonAgregar.addEventListener('click', () => {
+        let existe = validarExitstePedido()
+        if (existe == true) {
+            window.location.replace('http://127.0.0.1:5500/frontend/detalle-pedido.html?detalle-pedidos')
+        } else {
+            alert('Debe seleccionar un producto para continuar')
+        }
+    })
+}
+window.addEventListener('load', agregarPedido)
+
+obtenerProductos()
