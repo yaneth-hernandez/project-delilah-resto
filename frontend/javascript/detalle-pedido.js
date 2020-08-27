@@ -14,6 +14,20 @@ async function cargarContenidPagina() {
     let precioTotal = document.querySelector("#total-id")
     precioTotal.value = `Total: $${sumaTotalPedido}`
     precioTotal.dataset.precio = sumaTotalPedido
+
+    //buscar dirección usuario
+    let usuario = await buscarUsuario(obtenerUsuarioSesion())
+    let elementoDireccionUsuario = document.querySelector('#direccion-id')
+    elementoDireccionUsuario.value = usuario.direccion
+
+}
+
+async function buscarUsuario(idUsuario) {
+    let url = 'http://127.0.0.1:3020/delilah-resto/usuario/' + idUsuario
+    let respuestaFectch = await fetch(url);
+    let resultJson = await respuestaFectch.json()
+
+    return resultJson
 }
 
 function removerProducto(id) {
@@ -110,16 +124,38 @@ function mostrarPedidoHtml(producto) {
     sectionForm.append(crearDiv)
 }
 
-/*async function obtenerDireccionEnvio(direccion, idUsuario) {
-    let respuestaFectch = await fetch('http://127.0.0.1:3020/delilah-resto/usuario/id');
-    let resultJson = await respuestaFectch.json()
-    console.log(resultJson)
+function valorFormaPago() {
+    let formaPago = document.querySelector("#selec-pago-id").value
 
-    let respuestaDireccion = resultJson.direccion
-    let valorDireccion = document.querySelector(`#direccion-id${idUsuario}`).value
-    valorDireccion = respuestaDireccion
+    return formaPago
+}
 
-    return valorDireccion
-}*/
+function seleccionFormaPago() {
+    let formaPago = document.querySelector("#selec-pago-id")
+    formaPago.addEventListener('change', (e) => {
+        const resultado = document.querySelector('.resultado');
+        resultado.textContent = `Pago con: ${e.target.value} registrado`
+    })
+}
+window.addEventListener('load', seleccionFormaPago)
+
+function clickConfirmarPedido() {
+    let btonConfirmar = document.querySelector("#crear-cta-id")
+    btonConfirmar.addEventListener('click', () => {
+        let existeProducto = obtenerProductoLocal()
+        if (existeProducto != 0) {
+            let formaPgo = valorFormaPago()
+            if (formaPgo == "") {
+                alert('Seleccione una forma de pago')
+            } else {
+                window.location.replace('http://127.0.0.1:5500/frontend/envio-pedido.html')
+            }
+        } else {
+            alert('Carrito de compras vacío, seleccione un producto')
+        }
+    })
+
+}
+window.addEventListener('load', clickConfirmarPedido)
 
 cargarContenidPagina()

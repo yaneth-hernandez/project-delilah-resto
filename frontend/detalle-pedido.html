@@ -23,13 +23,14 @@
         <section class="datos-detalle">
             <div class="pago">
                 <h3 class="titulo-detalle">Forma de pago</h3>
-                <form class="form-pago">
-                    <select class="selec-pago" name="" id="">
-            <option value="">Seleccione</option>        
-            <option value="">Efectivo</option>
-            <option value="">Tarjeta</option>
+                <label class="form-pago">
+            <select class="selec-pago" name="selec-pago" id="selec-pago-id">
+                <option value="" id="seleccion-id">Seleccione</option>        
+                <option value="efectivo" id="efectivo-id"> Efectivo</option>
+                <option value="tarjeta" id="tarjeta-id">Tarjeta</option>
             </select>
-                </form>
+        </label>
+                <div class="resultado"></div>
             </div>
             <div class="direccion">
                 <h4 class="titulo-detalle">Dirección</h4>
@@ -47,6 +48,7 @@
         <div></div>
     </footer>
     <script src="./javascript/detalle-pedido.js"></script>
+    <script src="./javascript/manejo-sesion.js"></script>
 </body>
 
 </html>

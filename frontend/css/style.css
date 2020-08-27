@@ -286,6 +286,16 @@
     border: 0;
 }
 
+.resultado {
+    font-size: 40%;
+    font-family: var(--letra-titulo);
+    font-weight: lighter;
+    color: var(--color-btn);
+    padding-left: 0.75em;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+}
+
 
 /*Estado*/
 
