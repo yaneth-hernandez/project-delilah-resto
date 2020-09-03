@@ -4,6 +4,7 @@ const mysqlConnection = require('../database')
 //GET LISTAR TODOS
 function verUsuarios(req, res) {
     return res.status(200).json(usuarios.items)
+        //console.log(usuarios.items)
 }
 
 //GET X ID

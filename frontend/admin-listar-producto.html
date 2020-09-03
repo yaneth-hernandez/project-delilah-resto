@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style-admin.css">
+    <script src="https://kit.fontawesome.com/80b282fdb5.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <title>Administración-Productos</title>
+</head>
+
+<body>
+    <main class="contendor-ppal">
+        <header class="header">
+            <div class="titulo-fecha">
+                <h1 class="titulo">Delilah Restó</h1>
+                <label class="fecha" id="fecha-id">agosto 2020</label>
+            </div>
+            <nav class="nav-bar">
+                <a href="http://">VER PEDIDOS</a>
+                <a href="http://">ADMIN</a>
+                <a href="http://">LISTAR PRODUCTOS</a>
+                <button class="cargar-producto">CARGAR PRODUCTO</button>
+            </nav>
+        </header>
+        <section class="tabla-productos">
+            <div class="titulo-tabla">NÚMERO_PRODUCTO <img class="icon-order" src="./assets/order.svg" alt="order"></div>
+            <div class="titulo-tabla">IMAGEN_PRODUCTO</div>
+            <div class="titulo-tabla">NOMBRE_PRODUCTO</div>
+            <div class="titulo-tabla">DESCRIPCIÓN_PRODUCTO</div>
+            <div class="titulo-tabla">PRECIO_PRODUCTO</div>
+            <div class="titulo-tabla">ACCIONES</div>
+            <div class="item-tabla">#7</div>
+            <div class="item-tabla">HAMBURGUESA</div>
+            <div class="item-tabla">
+                <div class="tarjeta-icon"><em class="far fa-credit-card"></em></div>
+                <div class="efectivo-icon"><em class="fas fa-money-bill-wave"></em></div>
+                <span class="pago-tabla" id="pago-tabla-id">$600</span>
+            </div>
+            <div class="item-tabla">CRISTIANO RONALDO</div>
+            <div class="item-tabla" id="direccion-icon"> <span class="seccion-direccion">AV. CENTRAL ITALIA</span></div>
+            <div class="item-tabla" id="acciones"><button class="edita-borrar">EDITAR/BORRAR</button>
+        </section>
+    </main>
+
+    <script src="./javascript/admin.js"></script>
+</body>
+
+</html>

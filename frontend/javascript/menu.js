@@ -10,7 +10,6 @@ async function obtenerProductos() {
     })
 }
 
-
 class ProductosClass {
     constructor(obj) {
         this.id = obj.id_producto;

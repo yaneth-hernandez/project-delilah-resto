@@ -1,0 +1,515 @@
+:root {
+    --celeste: #3addda;
+    --blanco: #feffff;
+    --estilo-letra-encabezado: 'Balsamiq Sans';
+    --estilo-letra-documento: 'Noto Sans JP';
+    --estilo-letra-detalle-pedido: 'Lato';
+    --tam-letra-general: 2rem;
+    --color-naranja: #fc885c;
+    --color-fuente-form: #828385;
+    --colo-fuente-titulo: #888f94;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 75em;
+}
+
+.body-opaco {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    background: #ccccd3;
+    max-width: 75em;
+}
+
+main .contenedor-ppal {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.header {
+    width: 90%;
+    height: 3em;
+    padding-left: 1.5em;
+    margin: 0em 3.75em 0em 3.75em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--celeste);
+    color: var(--blanco);
+}
+
+.titulo-fecha {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo {
+    font-size: larger;
+    font-family: var(--estilo-letra-encabezado);
+}
+
+.fecha {
+    font-size: x-small;
+    font-family: var(--estilo-letra-documento);
+}
+
+.nav-bar {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    font-size: xx-small;
+    font-family: var(--estilo-letra-documento);
+}
+
+a:link {
+    color: #effcfc;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.cargar-producto:focus {
+    outline: none;
+}
+
+.cargar-producto {
+    width: 12em;
+    height: 1.3rem;
+    display: flex;
+    border: 0;
+    border-radius: 1.25em;
+    background: var(--blanco);
+    color: var(--color-naranja);
+    font-family: var(--estilo-letra-documento);
+    font-size: 1em;
+    font-weight: bold;
+    align-items: center;
+    padding-left: 1em;
+    transform: translateY(-0.5em);
+    cursor: pointer;
+}
+
+
+/*fin header*/
+
+.tabla-pedidos {
+    width: 90%;
+    display: grid;
+    margin: 2em 3.75em 0em 3.75em;
+    padding-left: 0.5em;
+    gap: 0.3em;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 1em;
+    /*background: hotpink;*/
+}
+
+.tabla-productos {
+    width: 90%;
+    display: grid;
+    margin: 2em 3.75em 0em 3.75em;
+    padding-left: 0.5em;
+    gap: 0.3em;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 1em;
+    /*background: hotpink;*/
+}
+
+.titulo-tabla {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 2em;
+    font-weight: bolder;
+    font-size: 45%;
+    color: var(--colo-fuente-titulo);
+}
+
+.item-tabla {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: lighter;
+    font-size: 50%;
+    padding-left: 2em;
+    color: var(--color-fuente-form);
+}
+
+#estdo-id {
+    border-radius: 2.5em;
+    padding-left: 1.5em;
+}
+
+#estdo-id:focus {
+    outline: none;
+}
+
+.item-option,
+.item-select {
+    background: whitesmoke;
+    color: var(--color-fuente-form);
+    font-size: 0.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+label[name='nuevo'],
+.nuevo-class {
+    background: #ef4a5a;
+    color: #faccd2;
+    font-size: 0.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+label[name='confirmado'],
+.confirmado-class {
+    background: #ff7342;
+    color: #ffe9e1;
+    font-size: 0.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+label[name='preparando'],
+.preparado-class {
+    background: #ffc641;
+    color: #fff7e4;
+    font-size: 0.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+label[name='enviado'],
+.enviado-class {
+    background: #30d694;
+    color: #dff8ee;
+    font-size: 0.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cancelado-class {
+    background: #a9b9f7;
+    color: #d8e0fb;
+    font-size: 0.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+label[name='entregado'],
+.entregado-class {
+    background: #7d94a3;
+    color: #e4eaec;
+    font-size: 0.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+#seleccione-id {
+    background: white;
+    color: var(--color-fuente-form);
+    font-size: 0.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.icon-order {
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 1em;
+}
+
+#direccion-icon {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-menu {
+    color: var(--color-fuente-form);
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    border: hidden;
+}
+
+.icon-menu:focus {
+    outline: none;
+}
+
+.pago-tabla {
+    margin-left: 1em;
+}
+
+.tarjeta-icon {
+    width: 2em;
+    display: none;
+}
+
+.efectivo-icon {
+    width: 2em;
+    display: block;
+}
+
+
+/*========================
+ emergente detalle pedido
+========================*/
+
+.cont-ppal-pedido {
+    width: 20em;
+    font-family: var(--estilo-letra-detalle-pedido);
+}
+
+.cont-cab {
+    width: 100%;
+    height: 3em;
+    padding: 0em 1em 0em 1em;
+    background: var(--celeste);
+    color: var(--blanco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo-cab,
+.icono-cab {
+    font-size: x-small;
+    font-weight: lighter;
+}
+
+.detalle-registro {
+    width: 100%;
+    margin: 1.5em 0em 0em 1em;
+}
+
+.titulo-estado,
+.titulo-detalle {
+    font-size: x-small;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    color: var(--colo-fuente-titulo);
+}
+
+.content-pedido {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.plato-img-pedido {
+    display: flex;
+    justify-content: space-around;
+}
+
+.product-precio {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.5em;
+}
+
+.img-menu {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.product-precio {
+    font-size: small;
+    margin-bottom: 1em;
+    color: var(--color-fuente-form);
+}
+
+.input-detalle {
+    border: 0;
+    margin-bottom: 2em;
+    color: var(--color-fuente-form);
+}
+
+.edo-pedido {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1em;
+}
+
+.form-estado {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.text-estado {
+    font-size: small;
+    color: var(--blanco);
+    width: 12em;
+    height: 1.9em;
+    border-radius: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+.datos-detalle {
+    margin-left: 1em;
+}
+
+.input-detalle,
+.pago-registrado {
+    border: 0;
+    font-family: var(--estilo-letra-detalle-pedido);
+    color: var(--color-fuente-form);
+    margin-bottom: 2em;
+    font-weight: lighter;
+}
+
+.contenedor-llamar-cancelar {
+    width: 65%;
+    margin-top: 1em;
+    margin-left: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancelar,
+.llamar {
+    width: 12em;
+    height: 1.5rem;
+    border-radius: 2.5em;
+    margin-bottom: 0.5em;
+    padding-left: 0.7em;
+    font-size: 0.5em;
+    font-weight: lighter;
+}
+
+button[name='llamar'] {
+    background: var(--color-naranja);
+    color: var(--blanco);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 0;
+    cursor: pointer;
+}
+
+button[name='cancelar'] {
+    background: var(--blanco);
+    color: var(--color-naranja);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--color-naranja);
+    cursor: pointer;
+}
+
+.pago-registrado,
+.input-detalle,
+.cancelar,
+.llamar:focus {
+    outline: none;
+}
+
+
+/*===========================
+cargar producto
+===========================*/
+
+.detalle-producto {
+    margin-left: 1em;
+    margin-top: 3em;
+}
+
+.contenedor-enviar-limpiar {
+    width: 95%;
+    margin-top: 4em;
+    margin-left: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-producto {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.titulo-producto {
+    font-size: small;
+    font-family: var(--estilo-letra-detalle-pedido);
+    color: var(--color-fuente-form);
+    font-weight: bolder;
+    margin-bottom: 0.5em;
+}
+
+.input-producto {
+    height: 2.5em;
+    font-size: xx-small;
+    font-family: var(--color-fuente-form);
+    color: var(--color-fuente-form);
+    font-weight: lighter;
+    border: 1px solid var(--color-naranja);
+    padding-left: 1em;
+}
+
+.input-producto:focus {
+    outline: var(--celeste);
+}
+
+button[name='enviar'] {
+    background: var(--color-naranja);
+    color: var(--blanco);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 0;
+    width: 12em;
+    height: 1.5rem;
+    border-radius: 2.5em;
+    margin-bottom: 0.5em;
+    padding-left: 0.7em;
+    font-size: 0.5em;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+button[name='limpiar'] {
+    background: var(--blanco);
+    color: var(--color-naranja);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--color-naranja);
+    width: 12em;
+    height: 1.5rem;
+    border-radius: 2.5em;
+    margin-bottom: 0.5em;
+    padding-left: 0.7em;
+    font-size: 0.5em;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+.edita-borrar,
+.enviar,
+.limpiar:focus {
+    outline: none;
+}
+
+.edita-borrar {
+    border: 1px solid var(--color-naranja);
+    width: 15em;
+    height: 1rem;
+    border-radius: 2.5em;
+    margin-bottom: 0.5em;
+    padding-left: 0.3em;
+    color: var(--color-naranja);
+    font-size: 0.5em;
+    font-weight: lighter;
+    cursor: pointer;
+}

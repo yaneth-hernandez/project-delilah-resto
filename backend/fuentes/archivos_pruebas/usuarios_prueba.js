@@ -36,7 +36,7 @@ const usuarios = {
             password: ""
         },
         {
-            id_usuario: 6,
+            id_usuario: 5,
             usuario_alias: "jose@gmail.com",
             nombre_apellido: "Jose Gonzalez",
             email: "jose@gmail.com",

@@ -18,7 +18,7 @@ function productoId(req, res) {
 //POST
 function crearProducto(req, res) {
     const body = req.body
-    console.log('Producto registrado:' + body.nombre);
+    console.log('Producto registrado:' + JSON.stringify(body));
     res.json({
         Mensaje: "Producto creado con exito",
         Code: 100,

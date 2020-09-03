@@ -30,7 +30,7 @@ async function buscarUsuario(idUsuario) {
     return resultJson
 }
 
-function removerProducto(id) {
+function removerMostrarProducto(id) {
     let nombreKey = `usuario-${id}:prod_${id}`
     let guardado = localStorage.getItem(nombreKey)
 
@@ -56,6 +56,8 @@ function actualizarPrecioTotal(precioProducto) {
     let precioTotal = parseInt(elementoPrecioTotal.dataset.precio) + parseInt(precioProducto)
     elementoPrecioTotal.value = `Total: $ ${precioTotal}`
     elementoPrecioTotal.dataset.precio = precioTotal
+
+    return precioTotal
 }
 
 function obtenerProductoLocal() {
@@ -139,6 +141,16 @@ function seleccionFormaPago() {
 }
 window.addEventListener('load', seleccionFormaPago)
 
+function borrarProductoLocal() {
+    for (let i = localStorage.length - 1; i > -1; i--) {
+        let productoLocaleStarage = localStorage.key(i);
+        let existe = localStorage.key(i).indexOf(':prod_');
+        if (existe != -1) {
+            localStorage.removeItem(productoLocaleStarage)
+        }
+    }
+}
+
 function clickConfirmarPedido() {
     let btonConfirmar = document.querySelector("#crear-cta-id")
     btonConfirmar.addEventListener('click', () => {
@@ -148,7 +160,10 @@ function clickConfirmarPedido() {
             if (formaPgo == "") {
                 alert('Seleccione una forma de pago')
             } else {
+                enviarPedidio()
+                borrarProductoLocal()
                 window.location.replace('http://127.0.0.1:5500/frontend/envio-pedido.html')
+
             }
         } else {
             alert('Carrito de compras vacío, seleccione un producto')
@@ -157,5 +172,67 @@ function clickConfirmarPedido() {
 
 }
 window.addEventListener('load', clickConfirmarPedido)
+
+
+async function construirPedido() {
+    let productos_pedido = []
+    for (let i = 0; i < localStorage.length; i++) {
+        let productoLocaleStarage = localStorage.key(i);
+        let existe = localStorage.key(i).indexOf(':prod_');
+        if (existe != -1) {
+            let idProducto = localStorage.getItem(productoLocaleStarage)
+            let precioProducto = document.querySelector(`#precio-id${idProducto}`).dataset.precio
+            productos_pedido.push({
+                id_producto: idProducto,
+                precio_producto: precioProducto
+            })
+
+        }
+    }
+    let datosUsuario = await buscarUsuario(obtenerUsuarioSesion())
+    let formaPago = valorFormaPago()
+    let precioXproducto = document.querySelector("#total-id").dataset.precio
+
+    var cuerpoPedido = {
+        pedido: {
+            item_pedido: {
+                hora_pedido: "12:99", //hora del cliente
+                detalle_pedido: productos_pedido,
+                usuario: {
+                    id_usuario: datosUsuario.id_usuario
+                },
+                pago: {
+                    forma_pago: formaPago, //traerselo del div depago
+                    monto_pagar: precioXproducto //traerselo del devi de pago
+                }
+            }
+        }
+    }
+    console.log(JSON.stringify(cuerpoPedido))
+    return cuerpoPedido
+}
+
+async function enviarPedidio() {
+    let data = await construirPedido()
+    let reqInit = {
+        method: 'POST',
+
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Request-Method": "POST"
+        },
+        body: JSON.stringify(data)
+    }
+    try {
+        let respuestaFectch = await fetch('http://127.0.0.1:3020/delilah-resto/pedidos', reqInit)
+        if (respuestaFectch.ok) {
+            let respuestaJson = await respuestaFectch.json()
+            console.log(respuestaJson)
+                //return respuestaJson
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 cargarContenidPagina()
