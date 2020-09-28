@@ -7,7 +7,9 @@ controlProductos.get('/', productosControlador.verProductos)
 
 controlProductos.get('/:id', productosControlador.productoId)
 
-controlProductos.post('/', productosControlador.crearProducto)
+//controlProductos.post('/', productosControlador.crearProducto)
+
+//controlProductos.post('/upload', productosControlador.enviarImagenes)
 
 controlProductos.put('/:id', productosControlador.actualizarProducto)
 

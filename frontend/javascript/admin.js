@@ -19,3 +19,13 @@ function clickSelect() {
     })
 }
 window.addEventListener('load', clickSelect)
+
+//listar producto
+function irListarProducto() {
+    let enlaceListar = document.querySelector("#listar-producto-id")
+    enlaceListar.addEventListener('click', (e) => {
+        e.preventDefault()
+        window.open("http://127.0.0.1:5500/frontend/admin-listar-producto.html", "_self")
+    })
+}
+window.addEventListener('load', irListarProducto)

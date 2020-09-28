@@ -1,6 +1,6 @@
 const express = require('express')
 const controlUsuario = express.Router()
-const { verUsuarios, usuarioId, usuarioRol, crearUsuario, actualizarUsuario, borraUsuario } = require('../controller/usuarioControlador')
+const { verUsuarios, usuarioId, usuarioRol, crearUsuarios, loginUsuarios, actualizarUsuario, borraUsuario } = require('../controller/usuarioControlador')
 
 
 controlUsuario.get('/', verUsuarios)
@@ -9,7 +9,9 @@ controlUsuario.get('/:id', usuarioId)
 
 controlUsuario.get('/:id/rol', usuarioRol)
 
-controlUsuario.post('/', crearUsuario)
+controlUsuario.post('/', crearUsuarios)
+
+controlUsuario.post('/login', loginUsuarios)
 
 controlUsuario.put('/:id', actualizarUsuario)
 

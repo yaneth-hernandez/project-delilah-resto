@@ -6,7 +6,8 @@ const usuarios = {
             email: "pedro@gmail.com",
             telefono: 310553312,
             direccion: "av 45 con 33",
-            password: ""
+            password: "",
+            rol: "cliente"
         },
         {
             id_usuario: 2,
@@ -15,16 +16,18 @@ const usuarios = {
             email: "pablo@gmail.com",
             telefono: 311523712,
             direccion: "av 42 con 22",
-            password: ""
+            password: "",
+            rol: "cliente"
         },
         {
             id_usuario: 3,
-            usuario_alias: "admin79@gmail.com",
+            usuario_alias: "admin_79@gmail.com",
             nombre_apellido: "leo messi",
-            email: "admin79@gmail.com",
+            email: "admin_79@gmail.com",
             telefono: 3053954035,
             direccion: "av 70 con 96",
-            password: ""
+            password: "",
+            rol: "administrador"
         },
         {
             id_usuario: 4,
@@ -33,16 +36,18 @@ const usuarios = {
             email: "cr7@gmail.com",
             telefono: 308563418,
             direccion: "av 90 con 112",
-            password: ""
+            password: "",
+            rol: "cliente"
         },
         {
             id_usuario: 5,
-            usuario_alias: "jose@gmail.com",
+            usuario_alias: "admin30@gmail.com",
             nombre_apellido: "Jose Gonzalez",
-            email: "jose@gmail.com",
-            telefono: 310195871,
-            direccion: "av 3 con 7ma",
-            password: ""
+            email: "admin30@gmail.com",
+            telefono: 318165878,
+            direccion: "av 4 con 9na",
+            password: "",
+            rol: "administrador"
         }
     ]
 }

@@ -23,7 +23,7 @@ async function cargarContenidPagina() {
 }
 
 async function buscarUsuario(idUsuario) {
-    let url = 'http://127.0.0.1:3020/delilah-resto/usuario/' + idUsuario
+    let url = 'http://127.0.0.1:3020/delilah-resto/usuarios/' + idUsuario
     let respuestaFectch = await fetch(url);
     let resultJson = await respuestaFectch.json()
 
@@ -161,8 +161,6 @@ function clickConfirmarPedido() {
                 alert('Seleccione una forma de pago')
             } else {
                 enviarPedidio()
-                borrarProductoLocal()
-                window.location.replace('http://127.0.0.1:5500/frontend/envio-pedido.html')
 
             }
         } else {
@@ -189,13 +187,15 @@ async function construirPedido() {
 
         }
     }
-    let datosUsuario = await buscarUsuario(obtenerUsuarioSesion())
+
+    let idUsuario = obtenerUsuarioSesion()
+    let datosUsuario = await buscarUsuario(idUsuario)
     let formaPago = valorFormaPago()
     let precioXproducto = document.querySelector("#total-id").dataset.precio
 
     var cuerpoPedido = {
-        pedido: {
-            item_pedido: {
+        order: {
+            process_order: {
                 hora_pedido: "12:99", //hora del cliente
                 detalle_pedido: productos_pedido,
                 usuario: {
@@ -208,30 +208,35 @@ async function construirPedido() {
             }
         }
     }
-    console.log(JSON.stringify(cuerpoPedido))
     return cuerpoPedido
 }
 
 async function enviarPedidio() {
-    let data = await construirPedido()
+    let respuestaJson = ""
+    let datos = await construirPedido()
     let reqInit = {
         method: 'POST',
-
         headers: {
             "Content-Type": "application/json",
             "Access-Control-Request-Method": "POST"
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(datos)
     }
     try {
         let respuestaFectch = await fetch('http://127.0.0.1:3020/delilah-resto/pedidos', reqInit)
+        console.log(respuestaFectch.ok)
         if (respuestaFectch.ok) {
-            let respuestaJson = await respuestaFectch.json()
-            console.log(respuestaJson)
-                //return respuestaJson
+            respuestaJson = await respuestaFectch.json()
         }
     } catch (err) {
         console.log(err)
+    }
+
+    if (respuestaJson.Code == 100) {
+        borrarProductoLocal()
+        window.location.replace('http://127.0.0.1:5500/frontend/envio-pedido.html')
+    } else {
+        alert('Tu pedido no pudo ser procesado')
     }
 }
 

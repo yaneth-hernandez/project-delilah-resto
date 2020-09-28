@@ -299,15 +299,15 @@
 
 /*Estado*/
 
-.text-radio {
+
+/* .text-radio {
     width: 90%;
     height: 2em;
     font-size: 40%;
     font-family: var(--letra-titulo);
-    color: var(--color-fuente-form);
-    margin-left: 0.10em;
+    margin-left: 0.8em;
     border: 0;
-}
+} */
 
 .btn-radio {
     font-size: 40%;
@@ -318,6 +318,56 @@
 
 .estdo-pedido {
     margin-bottom: 0.85em;
+}
+
+.form-estado input[type="radio"] {
+    display: none;
+}
+
+.form-estado label {
+    width: 90%;
+    font-size: 40%;
+    font-family: var(--letra-titulo);
+    padding-left: 0.8em;
+    color: var(--colo-fuente-input);
+    position: relative;
+}
+
+.form-estado label::before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    background: none;
+    border: 0.140625em solid var(--color-fuente-form);
+    border-radius: 50%;
+    margin-right: 0.5em;
+}
+
+.form-estado input[type="radio"]:checked+label::before {
+    content: '';
+    background: var(--color-btn);
+    border: 0.140625em solid var(--color-btn);
+}
+
+.barra {
+    width: 0.1em;
+    height: 1.5em;
+    margin: -0.25em 0em -0.40em 0.49em;
+    background: var(--color-fuente-form);
+}
+
+.form-estado input[type="radio"]:checked~.barra {
+    background: var(--color-btn);
+}
+
+#forma-pago {
+    height: 2em;
+    margin-left: 1em;
+    color: var(--color-btn);
+    font-weight: bolder;
+    border: 1px solid var(--color-fuente-form);
+    padding-left: 1em;
 }
 
 

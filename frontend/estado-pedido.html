@@ -15,55 +15,39 @@
         </header>
         <section class="estdo-pedido">
             <h2 class="titulo-detalle">Estado</h2>
-            <form class="form-estado">
-                <input type="radio" name="estado" value="" checked class="btn-radio" id="btn-confirm">
-                <label for="btn-confirm" class="text-radio">Confirmado</label>
+            <form class="form-estado" id="form-estado-id">
+                <input type="radio" name="estado" value="confirmado" checked class="btn-radio" id="btn-confirm">
+                <label for="btn-confirm" class="text-radio" id="radio-confirmado">Confirmado</label>
                 <div class="barra"></div>
-                <input type="radio" name="estado" value="" checked class="btn-radio" id="btn-prepar">
-                <label for="btn-prepar" class="text-radio">En preparación</label>
+                <input type="radio" name="estado" value="preparacion" checked class="btn-radio" id="btn-prepar">
+                <label for="btn-prepar" class="text-radio" id="radio-preparacion">En preparación</label>
                 <div class="barra"></div>
-                <input type="radio" name="estado" value="" checked class="btn-radio" id="btn-camino">
-                <label for="btn-camino" class="text-radio">En camino</label>
+                <input type="radio" name="estado" value="camino" checked class="btn-radio" id="btn-camino">
+                <label for="btn-camino" class="text-radio" id="radio-camino">En camino</label>
                 <div class="barra"></div>
-                <input type="radio" name="estado" value="" checked class="btn-radio" id="btn-entregado">
-                <label for="btn-entregado" class="text-radio">Entregado</label>
+                <input type="radio" name="estado" value="entregado" checked class="btn-radio" id="btn-entregado">
+                <label for="btn-entregado" class="text-radio" id="radio-entregado">Entregado</label>
             </form>
 
         </section>
         <section class="formulario-registro">
             <h3 class="titulo-detalle">Detalle</h3>
-            <div class="content-menu">
-                <div class="plato-img">
-                    <img src="https://okdiario.com/img/2018/12/03/bagel-de-salmon-655x368.jpg" alt="plato" class="img-menu">
-                    <p class="product-precio"><span class="texto-label">Bagel de salmón</span><span class="precio">$310</span></p>
-
-                </div>
+            <div class="contenedor-items" id="contenedor-items-id">
 
             </div>
-            <div class="content-menu">
-                <div class="plato-img">
-                    <img src="https://sifu.unileversolutions.com/image/es-MX/recipe-topvisual/2/1260-709/hamburguesa-clasica-50425188.jpg" alt="plato" class="img-menu">
-                    <p class="product-precio"><span class="texto-label">Hamburguesa clásica</span> <span class="precio">$425</span></p>
-                </div>
 
-            </div>
-            <input type="text" class="input-detalle" id="total-id" readonly value="Total: $600">
         </section>
+        <div class="pago-total">
+            <input type="text" class="input-detalle" id="total-id" readonly value="">
+        </div>
         <section class="datos-detalle">
             <div class="pago">
                 <h4 class="titulo-detalle">Forma de pago</h4>
-                <form class="form-pago">
-                    <select class="selec-pago" name="" id="">
-            <option value="">Seleccione</option>        
-            <option value="">Efectivo</option>
-            <option value="">Tarjeta</option>
-            <option value="">Medios electrónicos</option>
-            </select>
-                </form>
+                <input type="text" value="" data-pago="" readonly class="text-radio" id="forma-pago">
             </div>
             <div class="direccion">
                 <h5 class="titulo-detalle">Dirección</h5>
-                <input type="text" class="input-detalle" id="direccion-id" readonly value="Dato viene del registro inicial">
+                <input type="text" class="input-detalle" id="direccion-id" readonly value="">
             </div>
         </section>
         <div class="contenedor-iniciar-crear">

@@ -22,13 +22,6 @@ body {
     max-width: 75em;
 }
 
-.body-opaco {
-    opacity: 0.4;
-    filter: alpha(opacity=40);
-    background: #ccccd3;
-    max-width: 75em;
-}
-
 main .contenedor-ppal {
     display: flex;
     justify-content: center;
@@ -267,7 +260,7 @@ label[name='entregado'],
 ========================*/
 
 .cont-ppal-pedido {
-    width: 20em;
+    width: 25em;
     font-family: var(--estilo-letra-detalle-pedido);
 }
 
@@ -420,9 +413,55 @@ button[name='cancelar'] {
 cargar producto
 ===========================*/
 
+.overlay {
+    background: rgba(0, 0, 0, .4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding-right: 8.5em;
+    display: flex;
+    justify-content: flex-end;
+    visibility: hidden;
+}
+
+.overlay.active {
+    visibility: visible;
+}
+
+.overlay-cargar {
+    background: rgba(0, 0, 0, .4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding-right: 8.5em;
+    display: flex;
+    justify-content: flex-end;
+    visibility: hidden;
+}
+
+.overlay-cargar.active-cargar {
+    visibility: visible;
+}
+
+.cont-ppal-cargprod {
+    width: 25em;
+    font-family: var(--estilo-letra-detalle-pedido);
+    background-color: var(--blanco);
+    box-shadow: 0px 0px 5px 0px #888f94;
+}
+
 .detalle-producto {
     margin-left: 1em;
     margin-top: 3em;
+    padding-right: 0.5em;
+}
+
+.cerrar-popup {
+    color: var(--blanco);
 }
 
 .contenedor-enviar-limpiar {

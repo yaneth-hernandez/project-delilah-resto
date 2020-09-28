@@ -14,14 +14,15 @@
     <main class="contendor-ppal">
         <header class="header">
             <div class="titulo-fecha">
+                <div id="volver-id"><em class="fas fa-arrow-circle-left"></em></div>
                 <h1 class="titulo">Delilah Restó</h1>
                 <label class="fecha" id="fecha-id">agosto 2020</label>
             </div>
             <nav class="nav-bar">
-                <a href="http://">VER PEDIDOS</a>
-                <a href="http://">ADMIN</a>
-                <a href="http://">LISTAR PRODUCTOS</a>
-                <button class="cargar-producto">CARGAR PRODUCTO</button>
+                <h2>VER LISTA DE PRODUCTOS</h2>
+
+
+                <button class="cargar-producto" id="cargar-listar-producto-id">CARGAR PRODUCTO</button>
             </nav>
         </header>
         <section class="tabla-productos">
@@ -40,11 +41,87 @@
             </div>
             <div class="item-tabla">CRISTIANO RONALDO</div>
             <div class="item-tabla" id="direccion-icon"> <span class="seccion-direccion">AV. CENTRAL ITALIA</span></div>
-            <div class="item-tabla" id="acciones"><button class="edita-borrar">EDITAR/BORRAR</button>
+            <div class="item-tabla" id="acciones"><button class="edita-borrar" id="edita-borrar-id">EDITAR/BORRAR</button>
         </section>
     </main>
+    <!--Listar producto-->
+    <div class="overlay" id="overlay-id">
+        <div class="cont-ppal-cargprod" id="cont-ppal-cargprod-id">
+            <main class="cont-ppal-pedido">
+                <header class="cont-cab">
+                    <h1 class="titulo-cab">EDITAR/ BORRAR PRODUCTO</h1>
+                    <div class="icono-cab" id="icono-cab-id"><em class="fas fa-times"></em></div>
+                </header>
 
-    <script src="./javascript/admin.js"></script>
+                <section class="detalle-producto">
+                    <div class="item-producto">
+                        <label for="nom-prod-id" class="titulo-producto">INGRESE_NÚMERO_PRODUCTO:</label>
+                        <input type="text" class="input-producto" id="nom-prod-id" value="" maxlength="50" data-producto="" required>
+                    </div>
+                    <div class="item-producto">
+                        <label for="it-prod-id" class="titulo-producto">NOMBRE_PRODUCTO:</label>
+                        <input type="text" class="input-producto" id="it-prod-id" value="" maxlength="50" placeholder="-" data-producto="" readonly>
+                    </div>
+                    <div class="item-producto">
+                        <label for="img-admin-id" class="titulo-producto">IMAGEN_PRODUCTO:</label>
+                        <input type="file" name="image-file" class="input-producto" id="img-admin-id" value="" data-imagen="" readonly>
+                    </div>
+                    <div class="item-producto">
+                        <label for="precio-admin-id" class="titulo-producto">PRECIO_PRODUCTO:</label>
+                        <input type="text" class="input-producto" id="precio-admin-id" value="" placeholder="-" data-direccion="" readonly>
+                    </div>
+                </section>
+
+                <div class="contenedor-enviar-limpiar">
+                    <button type="submit" name="enviar" class="enviar" id="enviar-listar-id">ACTUALIZAR REGISTRO</button>
+                    <button type="submit" name="enviar" class="enviar" id="enviar-listar-id">BORRAR REGISTRO</button>
+                    <button type="reset" name="limpiar" class="limpiar" id="limpiar-listar-id">LIMPIAR PANTALLA</button>
+                </div>
+
+        </div>
+    </div>
+    <!--Listar producto-->
+
+    <!--cargar producto-->
+    <div class="overlay-cargar" id="overlay-cargar-id">
+        <div class="cont-ppal-cargprod" id="cont-ppal-cargprod-id">
+            <header class="cont-cab">
+                <h1 class="titulo-cab">CARGAR PRODUCTO</h1>
+                <div class="icono-cab"><a href="#" class="cerrar-popup" id="cerrar-popup-id"><em class="fas fa-times"></em></a></div>
+            </header>
+
+            <section class="detalle-producto">
+                <div class="item-producto">
+                    <label for="nom-prod-cargar-id" class="titulo-producto">NOMBRE_PRODUCTO:</label>
+                    <input type="text" class="input-producto" id="nom-prod-cargar-id" value="" maxlength="50" placeholder="Ingrese nombre del producto" data-producto="">
+                </div>
+                <div class="item-producto">
+                    <label for="des-prod-id" class="titulo-producto">DESCRIPCIÓN_PRODUCTO:</label>
+                    <input type="text" class="input-producto" id="des-prod-cargar-id" value="" maxlength="50" placeholder="Ingrese descripción del producto" data-producto="">
+                </div>
+
+                <div class="item-producto">
+                    <label for="img-admin-id" class="titulo-producto">IMAGEN_PRODUCTO:</label>
+                    <input type="file" name="imagefile" class="input-producto" id="img-admin-cargar-id" value="" data-imagen="">
+                </div>
+                <div class="item-producto">
+                    <label for="precio-admin-id" class="titulo-producto">PRECIO_PRODUCTO:</label>
+                    <input type="text" class="input-producto" id="precio-admin-cargar-id" value="" placeholder="Ingrese un valor">
+                </div>
+            </section>
+
+            <div class="contenedor-enviar-limpiar">
+                <button type="submit" name="enviar" class="enviar" id="enviar-cargar-id">ENVIAR REGISTRO</button>
+                <button type="button" name="limpiar" class="limpiar" id="limpiar-cargar-id">LIMPIAR PANTALLA</button>
+            </div>
+
+        </div>
+    </div>
+    <!--fin cargar producto-->
+    <script src="./javascript/manejo-sesion.js"></script>
+    <script src="./javascript/admin-cargar-producto.js"></script>
+    <script src="./javascript/admin-listar-producto.js"></script>
+
 </body>
 
 </html>

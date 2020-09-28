@@ -7,6 +7,8 @@ controlPedidos.get('/', pedidosControlador.verPedidos)
 
 controlPedidos.get('/:id', pedidosControlador.pedidosId)
 
+controlPedidos.get('/:id/status', pedidosControlador.estadoPedidoId)
+
 controlPedidos.post('/', pedidosControlador.crearPedidos)
 
 controlPedidos.put('/:id', pedidosControlador.actualizarPedido)
