@@ -43,6 +43,7 @@ app.post('/delilah-resto/productos/upload', upload.single('file'), (req, res) =>
     return res.json(statusCrecionProducto)
 })
 
+
 //MIDDLEWARE- LIBRERIÁS
 app.use(cors(corsOptions))
 app.use(express.static(__dirname + '/'))

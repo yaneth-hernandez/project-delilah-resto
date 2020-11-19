@@ -28,13 +28,63 @@ function estadoPedidoId(req, res) {
 //POST
 function crearPedidos(req, res) {
     const body = req.body
-    console.log('Pedido registrado:' + JSON.stringify(body));
-    res.json({
-        Mensaje: "Pedido creado con exito",
-        Code: 100,
-        //item: JSON.stringify(body),
-        Id: 1977
+
+    let sentenceSqlPostPedido = `INSERT INTO pedidos (fecha_pedido, total_pago, id_usuario, codigo_forma_pago,codigo_estatus) VALUES (` +
+        "'" + body.fecha_pedido + "'," +
+        "'" + body.total_pago + "'," +
+        +body.id_usuario + "," +
+        "'" + body.codigo_forma_pago + "'," +
+        "'" + body.codigo_estatus + "')"
+    mysqlConnection.query(sentenceSqlPostPedido, body, function(err, result) {
+        if (err) {
+            console.log(err)
+            res.status(500).json({
+                Mensaje: 'Error crear  el pedido:' + err,
+                Code: -100
+            })
+
+        } else {
+            let mensaje = ''
+            let code = 0
+
+            try {
+                crearDetallePedidos(result.insertId, body)
+                mensaje = 'Detalle de pedido creado'
+                code = 100
+
+                res.status(200).json({
+                    Mensaje: mensaje,
+                    Code: code
+                })
+
+
+            } catch (errorDetalle) {
+                console.log(errorDetalle)
+                mensaje = 'Error al crear detalle del pedido'
+                code = -100
+
+                res.status(500).json({
+                    Mensaje: mensaje,
+                    Code: code
+                })
+            }
+        }
     })
+}
+
+function crearDetallePedidos(idPedido, body) {
+    var detalle = body.detalle_pedido
+    if (detalle != null) {
+        for (let i = 0; i < detalle.length; i++) {
+            let sentenceSqlPostPedido = `INSERT INTO  detalle_pedido (id_pedido, id_producto, precio_producto) VALUES (` +
+                idPedido + "," +
+                detalle[i].id_producto + "," +
+                detalle[i].precio_producto + ")"
+            mysqlConnection.query(sentenceSqlPostPedido, body, function(err, result) {
+                if (err) throw err;
+            })
+        }
+    }
 }
 
 //PUT

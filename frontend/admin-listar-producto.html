@@ -15,36 +15,28 @@
         <header class="header">
             <div class="titulo-fecha">
                 <div id="volver-id"><em class="fas fa-arrow-circle-left"></em></div>
-                <h1 class="titulo">Delilah Restó</h1>
+                <h1 class="titulo">Delilah Restó- Admín</h1>
                 <label class="fecha" id="fecha-id">agosto 2020</label>
             </div>
             <nav class="nav-bar">
-                <h2>VER LISTA DE PRODUCTOS</h2>
-
+                <h2>LISTA DE PRODUCTOS</h2>
 
                 <button class="cargar-producto" id="cargar-listar-producto-id">CARGAR PRODUCTO</button>
             </nav>
         </header>
-        <section class="tabla-productos">
-            <div class="titulo-tabla">NÚMERO_PRODUCTO <img class="icon-order" src="./assets/order.svg" alt="order"></div>
-            <div class="titulo-tabla">IMAGEN_PRODUCTO</div>
-            <div class="titulo-tabla">NOMBRE_PRODUCTO</div>
-            <div class="titulo-tabla">DESCRIPCIÓN_PRODUCTO</div>
-            <div class="titulo-tabla">PRECIO_PRODUCTO</div>
-            <div class="titulo-tabla">ACCIONES</div>
-            <div class="item-tabla">#7</div>
-            <div class="item-tabla">HAMBURGUESA</div>
-            <div class="item-tabla">
-                <div class="tarjeta-icon"><em class="far fa-credit-card"></em></div>
-                <div class="efectivo-icon"><em class="fas fa-money-bill-wave"></em></div>
-                <span class="pago-tabla" id="pago-tabla-id">$600</span>
+        <section class="contenido-tabla" id="contenido-tabla-id">
+            <div class="tabla-productos" id="tabla-productos-id">
+                <div class="titulo-tabla">ID_PRODUCTO <img class="icon-order" src="./assets/order.svg" alt="order"></div>
+                <div class="titulo-tabla">IMAGEN_PRODUCTO</div>
+                <div class="titulo-tabla">NOMBRE_PRODUCTO</div>
+                <div class="titulo-tabla">DESCRIPCIÓN_PRODUCTO</div>
+                <div class="titulo-tabla">PRECIO_PRODUCTO</div>
+                <div class="titulo-tabla">ACCIONES</div>
             </div>
-            <div class="item-tabla">CRISTIANO RONALDO</div>
-            <div class="item-tabla" id="direccion-icon"> <span class="seccion-direccion">AV. CENTRAL ITALIA</span></div>
-            <div class="item-tabla" id="acciones"><button class="edita-borrar" id="edita-borrar-id">EDITAR/BORRAR</button>
+
         </section>
     </main>
-    <!--Listar producto-->
+    <!--editar borrar producto-->
     <div class="overlay" id="overlay-id">
         <div class="cont-ppal-cargprod" id="cont-ppal-cargprod-id">
             <main class="cont-ppal-pedido">
@@ -55,26 +47,32 @@
 
                 <section class="detalle-producto">
                     <div class="item-producto">
-                        <label for="nom-prod-id" class="titulo-producto">INGRESE_NÚMERO_PRODUCTO:</label>
-                        <input type="text" class="input-producto" id="nom-prod-id" value="" maxlength="50" data-producto="" required>
+                        <label for="nom-prod-id" class="titulo-producto">ID_PRODUCTO:</label>
+                        <input type="text" class="input-producto" id="nom-prod-id" value="" maxlength="50" data-producto="" readonly required>
                     </div>
                     <div class="item-producto">
                         <label for="it-prod-id" class="titulo-producto">NOMBRE_PRODUCTO:</label>
-                        <input type="text" class="input-producto" id="it-prod-id" value="" maxlength="50" placeholder="-" data-producto="" readonly>
+                        <input type="text" class="input-producto" id="it-prod-id" value="" maxlength="50" placeholder="-" data-producto="">
+                    </div>
+
+                    <div class="item-producto">
+                        <label for="it-prod-id" class="titulo-producto">DESCRIPCIÓN:</label>
+                        <input type="text" class="input-producto" id="desc-prod-id" value="" maxlength="50" placeholder="-" data-producto="">
                     </div>
                     <div class="item-producto">
                         <label for="img-admin-id" class="titulo-producto">IMAGEN_PRODUCTO:</label>
-                        <input type="file" name="image-file" class="input-producto" id="img-admin-id" value="" data-imagen="" readonly>
+                        <img src="" alt="" class="imagen-class-edit-borr" id="imagen-eb">
+                        <input type="file" name="image-file" class="input-producto" id="img-admin-id" value="" data-imagen="">
                     </div>
                     <div class="item-producto">
                         <label for="precio-admin-id" class="titulo-producto">PRECIO_PRODUCTO:</label>
-                        <input type="text" class="input-producto" id="precio-admin-id" value="" placeholder="-" data-direccion="" readonly>
+                        <input type="text" class="input-producto" id="precio-admin-id" value="" placeholder="-" data-direccion="">
                     </div>
                 </section>
 
                 <div class="contenedor-enviar-limpiar">
-                    <button type="submit" name="enviar" class="enviar" id="enviar-listar-id">ACTUALIZAR REGISTRO</button>
-                    <button type="submit" name="enviar" class="enviar" id="enviar-listar-id">BORRAR REGISTRO</button>
+                    <button type="submit" name="enviar" class="enviar" id="actualizar-listar-id">ACTUALIZAR REGISTRO</button>
+                    <button type="submit" name="enviar" class="enviar" id="borrar-listar-id">BORRAR REGISTRO</button>
                     <button type="reset" name="limpiar" class="limpiar" id="limpiar-listar-id">LIMPIAR PANTALLA</button>
                 </div>
 

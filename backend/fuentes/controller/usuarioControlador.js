@@ -49,9 +49,35 @@ function crearUsuarios(req, res) {
             Code: code,
         })
     });
-
     console.log('Usuario registrado:' + JSON.stringify(body));
+}
 
+//POST USUARIO ADMIN
+function crearUsuariosAdmin(req, res) {
+    const body = req.body
+    let sentenceSqlUadmin = `INSERT INTO usuarios (usuario_alias, nombre_apellido, email,passw, id_rol) VALUES (` +
+        "'" + body.usuario + "'," +
+        "'" + body.nombre + "'," +
+        "'" + body.email + "'," +
+        body.password + "," +
+        "'admin')"
+
+    mysqlConnection.query(sentenceSqlUadmin, body, function(err, result) {
+        let mensaje = ''
+        let code = 0
+        if (err) {
+            code = -100
+            mensaje = 'Error'
+        } else {
+            mensaje = "Usuario administrador creado con exito"
+            code = 100
+        }
+        res.json({
+            Mensaje: mensaje,
+            Code: code,
+        })
+    });
+    console.log('Usuario administrador registrado:' + JSON.stringify(body));
 }
 //POST LOGIN
 function loginUsuarios(req, res) {
@@ -97,4 +123,4 @@ function borraUsuario(req, res) {
 
 }
 
-module.exports = { verUsuarios, usuarioId, usuarioRol, crearUsuarios, loginUsuarios, actualizarUsuario, borraUsuario }
+module.exports = { verUsuarios, usuarioId, usuarioRol, crearUsuarios, crearUsuariosAdmin, loginUsuarios, actualizarUsuario, borraUsuario }

@@ -1,3 +1,6 @@
+/*====================================
+              USUARIOS                     
+====================================*/
 function eventBtnCrearCta() {
     const bton = document.getElementById('crear-cta-id')
     bton.addEventListener('click', async(e) => {
@@ -16,7 +19,7 @@ function eventBtnCrearCta() {
                 alert('Usuario Creado')
                 window.location.replace("http://127.0.0.1:5500/frontend/login.html?usuario")
             } else if (result.Code == -100) {
-                alert('problemas para crear el usuario')
+                alert('Problemas para crear el usuario')
             }
         }
     })

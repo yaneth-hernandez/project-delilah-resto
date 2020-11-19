@@ -29,3 +29,22 @@ function irListarProducto() {
     })
 }
 window.addEventListener('load', irListarProducto)
+
+//detalle de producto
+function verDatellePedido() {
+    let btonIconDetalle = document.getElementById('icon-menu-id')
+    btonIconDetalle.addEventListener('click', () => {
+        let overlayDetalle = document.getElementById('overlay-detalle-id')
+        overlayDetalle.classList.add('active-detalle')
+    })
+}
+window.addEventListener('load', verDatellePedido)
+
+function ocultarDatellePedido() {
+    let btonCierraDetalle = document.getElementById('icono-x-id')
+    btonCierraDetalle.addEventListener('click', () => {
+        let overlayDetalle = document.getElementById('overlay-detalle-id')
+        overlayDetalle.classList.remove('active-detalle')
+    })
+}
+window.addEventListener('load', ocultarDatellePedido)

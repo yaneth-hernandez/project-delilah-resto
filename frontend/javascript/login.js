@@ -9,9 +9,9 @@ function eventLogin() {
         if (validarLogin(email, password)) {
             var usuarioDatos = await logueoUsuarios(email, password);
             console.log('result de fetch: ' + JSON.stringify(usuarioDatos));
-            if (usuarioDatos.rol == 'administrador') {
+            if (usuarioDatos.rol == 'admin') {
                 alert('Usted ha ingresado como administrador')
-                window.location.replace("http://127.0.0.1:5500/frontend/admin-listar-producto.html")
+                window.location.replace("http://127.0.0.1:5500/frontend/admin-listar-pedidos.html")
 
             } else if (usuarioDatos.rol == 'cliente') {
                 alert('Bienvenido a Delilah-Restó')
@@ -20,7 +20,7 @@ function eventLogin() {
                 alert('Lo sentimos!, por favor valide su usuario y contraseña.')
             }
         } else {
-            alert('Lo sentimos! error en los datos ingrasados.')
+            alert('Lo sentimos! error en los datos ingresados.')
         }
     })
 }
@@ -45,7 +45,6 @@ async function logueoUsuarios(email, password) {
         let respuestaJson = await respuestaFectch.json()
         return respuestaJson
     }
-
 }
 
 function validarEmail(email) {

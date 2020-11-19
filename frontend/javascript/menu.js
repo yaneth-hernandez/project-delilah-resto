@@ -12,12 +12,13 @@ async function obtenerProductos() {
 
 class ProductosClass {
     constructor(obj) {
-        this.id = obj.id_producto;
-        this.nombre = obj.nombre_producto;
-        this.imagen = obj.imagen_producto;
-        this.precio = obj.precio_producto;
-        this.stock = obj.stock_productos;
-
+        if (obj != null) {
+            this.id = obj.id_productos;
+            this.nombre = obj.nombre;
+            this.imagen = obj.imagen;
+            this.precio = obj.precio;
+            this.stock = obj.estado;
+        }
     }
 }
 

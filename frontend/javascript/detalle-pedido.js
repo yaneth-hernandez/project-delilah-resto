@@ -4,7 +4,7 @@ async function cargarContenidPagina() {
 
     for (const item of productos) {
         let producto = await buscarProductoFetch(item)
-        let objectResult = new ProductosClass(producto);
+        let objectResult = new ProductosClass(producto[0]);
 
         sumaTotalPedido += objectResult.precio
         mostrarPedidoHtml(objectResult)
@@ -83,11 +83,11 @@ async function buscarProductoFetch(id) {
 
 class ProductosClass {
     constructor(obj) {
-        this.id = obj.id_producto;
-        this.nombre = obj.nombre_producto;
-        this.imagen = obj.imagen_producto;
-        this.precio = obj.precio_producto;
-        this.stock = obj.stock_productos;
+        this.id = obj.id_productos;
+        this.nombre = obj.nombre;
+        this.imagen = obj.imagen;
+        this.precio = obj.precio;
+        this.stock = obj.estado;
 
     }
 }
@@ -127,7 +127,7 @@ function mostrarPedidoHtml(producto) {
 }
 
 function valorFormaPago() {
-    let formaPago = document.querySelector("#selec-pago-id").value
+    let formaPago = document.querySelector("#selec-pago-id").selectedOptions[0].dataset.pago
 
     return formaPago
 }
@@ -172,6 +172,16 @@ function clickConfirmarPedido() {
 window.addEventListener('load', clickConfirmarPedido)
 
 
+function fechaActual() {
+    var currentDate = new Date()
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    var fecha = year + '-' + month + '-' + day
+
+    return fecha
+}
+
 async function construirPedido() {
     let productos_pedido = []
     for (let i = 0; i < localStorage.length; i++) {
@@ -194,20 +204,14 @@ async function construirPedido() {
     let precioXproducto = document.querySelector("#total-id").dataset.precio
 
     var cuerpoPedido = {
-        order: {
-            process_order: {
-                hora_pedido: "12:99", //hora del cliente
-                detalle_pedido: productos_pedido,
-                usuario: {
-                    id_usuario: datosUsuario.id_usuario
-                },
-                pago: {
-                    forma_pago: formaPago, //traerselo del div depago
-                    monto_pagar: precioXproducto //traerselo del devi de pago
-                }
-            }
-        }
+        fecha_pedido: fechaActual(),
+        total_pago: precioXproducto,
+        id_usuario: datosUsuario.id_usuario,
+        codigo_forma_pago: formaPago,
+        codigo_estatus: "PD-01",
+        detalle_pedido: productos_pedido
     }
+
     return cuerpoPedido
 }
 
@@ -223,7 +227,7 @@ async function enviarPedidio() {
         body: JSON.stringify(datos)
     }
     try {
-        let respuestaFectch = await fetch('http://127.0.0.1:3020/delilah-resto/pedidos', reqInit)
+        let respuestaFectch = await fetch('http://127.0.0.1:3020/delilah-resto/pedidos/', reqInit)
         console.log(respuestaFectch.ok)
         if (respuestaFectch.ok) {
             respuestaJson = await respuestaFectch.json()

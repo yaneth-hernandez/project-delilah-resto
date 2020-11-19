@@ -22,10 +22,54 @@ body {
     max-width: 75em;
 }
 
-main .contenedor-ppal {
+
+/*======INICIO=======*/
+
+.envio-pedido {
     display: flex;
     justify-content: center;
-    align-content: center;
+}
+
+.titulo-inicio {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    font-family: var(--estilo-letra-encabezado);
+    color: var(--color-naranja);
+}
+
+.imagen {
+    width: 67.5em;
+}
+
+.contenedor-iniciar-crear {
+    display: flex;
+    justify-content: center;
+}
+
+.crear-cta {
+    width: 12em;
+    height: 2rem;
+    display: flex;
+    border: 0;
+    border-radius: 1.25em;
+    background: var(--color-naranja);
+    color: var(--blanco);
+    font-family: var(--estilo-letra-documento);
+    font-size: 1em;
+    font-weight: bold;
+    align-items: center;
+    padding-left: 2.7em;
+    transform: translateY(-0.5em);
+    cursor: pointer;
+}
+
+
+/*======FIN INICIO=======*/
+
+main .contenedor-ppal {
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
@@ -88,13 +132,40 @@ a:hover {
     font-size: 1em;
     font-weight: bold;
     align-items: center;
-    padding-left: 1em;
+    padding-left: 1.3em;
     transform: translateY(-0.5em);
     cursor: pointer;
 }
 
+.cargar-producto-bton {
+    width: 12em;
+    height: 1.3rem;
+    display: flex;
+    border: 0;
+    border-radius: 1.25em;
+    background: var(--blanco);
+    color: var(--color-naranja);
+    font-family: var(--estilo-letra-documento);
+    font-size: 1em;
+    font-weight: bold;
+    align-items: center;
+    padding-left: 3em;
+    transform: translateY(-0.5em);
+    cursor: pointer;
+}
+
+.cargar-producto-bton:focus {
+    outline: none;
+}
+
 
 /*fin header*/
+
+.contenido-tabla {
+    width: 90%;
+    margin: 2em 3.75em 0em 3.75em;
+    padding-left: 0.5em;
+}
 
 .tabla-pedidos {
     width: 90%;
@@ -108,13 +179,24 @@ a:hover {
 }
 
 .tabla-productos {
-    width: 90%;
+    width: 100%;
     display: grid;
-    margin: 2em 3.75em 0em 3.75em;
+    margin: 2em 3.75em 0em 0em;
     padding-left: 0.5em;
     gap: 0.3em;
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: 1em;
+    /*background: hotpink;*/
+}
+
+.tabla-productos-items {
+    width: 100%;
+    display: grid;
+    margin: 0.3em 3.75em 0em 0em;
+    padding-left: 0.5em;
+    gap: 0.3em;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 4em;
     /*background: hotpink;*/
 }
 
@@ -136,6 +218,11 @@ a:hover {
     font-size: 50%;
     padding-left: 2em;
     color: var(--color-fuente-form);
+}
+
+.imagen-class {
+    width: 90%;
+    height: 90%;
 }
 
 #estdo-id {
@@ -259,15 +346,34 @@ label[name='entregado'],
  emergente detalle pedido
 ========================*/
 
+.overlay-detalle {
+    background: rgba(0, 0, 0, .4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding-right: 28em;
+    display: flex;
+    justify-content: flex-end;
+    visibility: hidden;
+}
+
+.overlay-detalle.active-detalle {
+    visibility: visible;
+}
+
 .cont-ppal-pedido {
-    width: 25em;
+    width: 20em;
     font-family: var(--estilo-letra-detalle-pedido);
+    background-color: var(--blanco);
+    box-shadow: 0px 0px 5px 0px #888f94;
 }
 
 .cont-cab {
     width: 100%;
     height: 3em;
-    padding: 0em 1em 0em 1em;
+    padding: 0em 1em 0em 0.5em;
     background: var(--celeste);
     color: var(--blanco);
     display: flex;
@@ -283,21 +389,21 @@ label[name='entregado'],
 
 .detalle-registro {
     width: 100%;
-    margin: 1.5em 0em 0em 1em;
+    margin: 1em 0em 0em 0.3em;
 }
 
 .titulo-estado,
 .titulo-detalle {
     font-size: x-small;
     margin-bottom: 1em;
-    margin-top: 1em;
+    margin-top: 0.3em;
     color: var(--colo-fuente-titulo);
 }
 
 .content-pedido {
     display: flex;
     width: 100%;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 .plato-img-pedido {
@@ -358,13 +464,13 @@ label[name='entregado'],
     border: 0;
     font-family: var(--estilo-letra-detalle-pedido);
     color: var(--color-fuente-form);
-    margin-bottom: 2em;
+    margin-bottom: 0.5em;
     font-weight: lighter;
 }
 
 .contenedor-llamar-cancelar {
     width: 65%;
-    margin-top: 1em;
+    margin-top: 0.5em;
     margin-left: 1em;
     display: flex;
     justify-content: space-between;
@@ -420,9 +526,9 @@ cargar producto
     left: 0;
     bottom: 0;
     right: 0;
-    padding-right: 8.5em;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     visibility: hidden;
 }
 
@@ -437,9 +543,9 @@ cargar producto
     left: 0;
     bottom: 0;
     right: 0;
-    padding-right: 8.5em;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     visibility: hidden;
 }
 
@@ -448,7 +554,8 @@ cargar producto
 }
 
 .cont-ppal-cargprod {
-    width: 25em;
+    width: 20em;
+    height: 26em;
     font-family: var(--estilo-letra-detalle-pedido);
     background-color: var(--blanco);
     box-shadow: 0px 0px 5px 0px #888f94;
@@ -543,7 +650,7 @@ button[name='limpiar'] {
 .edita-borrar {
     border: 1px solid var(--color-naranja);
     width: 15em;
-    height: 1rem;
+    height: 3em;
     border-radius: 2.5em;
     margin-bottom: 0.5em;
     padding-left: 0.3em;

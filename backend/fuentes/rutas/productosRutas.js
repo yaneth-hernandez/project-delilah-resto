@@ -5,15 +5,17 @@ const productosControlador = require('../controller/productosControlador')
 
 controlProductos.get('/', productosControlador.verProductos)
 
+controlProductos.get('/imagenes', productosControlador.imagenProductos)
+
 controlProductos.get('/:id', productosControlador.productoId)
 
 //controlProductos.post('/', productosControlador.crearProducto)
 
 //controlProductos.post('/upload', productosControlador.enviarImagenes)
 
-controlProductos.put('/:id', productosControlador.actualizarProducto)
+controlProductos.put('/', productosControlador.actualizarProducto)
 
-controlProductos.delete('/:id', productosControlador.borraProducto)
+controlProductos.delete('/borrar', productosControlador.borraProducto)
 
 
 module.exports = controlProductos

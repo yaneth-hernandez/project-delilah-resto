@@ -1,3 +1,3 @@
 function obtenerUsuarioSesion() {
-    return 1
+    return 4
 }
