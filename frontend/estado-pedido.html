@@ -16,16 +16,16 @@
         <section class="estdo-pedido">
             <h2 class="titulo-detalle">Estado</h2>
             <form class="form-estado" id="form-estado-id">
-                <input type="radio" name="estado" value="confirmado" checked class="btn-radio" id="btn-confirm">
+                <input type="radio" name="estado" value="confirmado" class="btn-radio" id="btn-confirm" readonly>
                 <label for="btn-confirm" class="text-radio" id="radio-confirmado">Confirmado</label>
                 <div class="barra"></div>
-                <input type="radio" name="estado" value="preparacion" checked class="btn-radio" id="btn-prepar">
+                <input type="radio" name="estado" value="preparacion" class="btn-radio" id="btn-prepar" readonly>
                 <label for="btn-prepar" class="text-radio" id="radio-preparacion">En preparación</label>
                 <div class="barra"></div>
-                <input type="radio" name="estado" value="camino" checked class="btn-radio" id="btn-camino">
+                <input type="radio" name="estado" value="camino" class="btn-radio" id="btn-camino" readonly>
                 <label for="btn-camino" class="text-radio" id="radio-camino">En camino</label>
                 <div class="barra"></div>
-                <input type="radio" name="estado" value="entregado" checked class="btn-radio" id="btn-entregado">
+                <input type="radio" name="estado" value="entregado" class="btn-radio" id="btn-entregado" readonly>
                 <label for="btn-entregado" class="text-radio" id="radio-entregado">Entregado</label>
             </form>
 
@@ -61,6 +61,7 @@
     </footer>
     <script src="./javascript/estado-pedido.js"></script>
     <script src="./javascript/manejo-sesion.js"></script>
+
 </body>
 
 </html>

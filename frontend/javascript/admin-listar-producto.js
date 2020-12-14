@@ -1,7 +1,7 @@
 function volver() {
     let btonVolver = document.getElementById('volver-id')
     btonVolver.addEventListener('click', () => {
-        window.location = 'http://127.0.0.1:5500/frontend/admin.html'
+        window.location = 'http://127.0.0.1:5500/frontend/admin-listar-pedidos.html'
     })
 }
 window.addEventListener('load', volver)
@@ -54,43 +54,49 @@ function abrirEditarBorrar(id) {
     precioProductoEditarBorrar.value = precio
 }
 
-function cerrarEditBorrar() {
+function clickCerrarEditBorrar() {
     let btonCerrar = document.getElementById('icono-cab-id')
     btonCerrar.addEventListener('click', () => {
         let overly = document.getElementById('overlay-id')
         overly.classList.remove('active')
     })
 }
-window.addEventListener('load', cerrarEditBorrar)
+window.addEventListener('load', clickCerrarEditBorrar)
+
+
 
 function cargarProducto() {
     let btnEnviarReg = document.querySelector("#enviar-cargar-id")
-    btnEnviarReg.addEventListener('click', () => {
-        let nombreProducto = document.querySelector("#nom-prod-cargar-id").value
-        let descripcionProducto = document.querySelector("#des-prod-cargar-id").value
-        let imagenProducto = document.querySelector("#img-admin-cargar-id").files
-        let precioProducto = document.querySelector("#precio-admin-cargar-id").value
-
-        crearProductos(nombreProducto, descripcionProducto, imagenProducto, precioProducto)
+    btnEnviarReg.addEventListener('click', (e) => {
+        e.preventDefault()
         validarDatosRegistroProducto()
-        limpiarFormulario()
     })
-
 }
 window.addEventListener('load', cargarProducto)
 
-function validarDatosRegistroProducto() {
+async function validarDatosRegistroProducto() {
     let nombreProducto = document.querySelector("#nom-prod-cargar-id").value
     let descripcionProducto = document.querySelector("#des-prod-cargar-id").value
-    let imagenProducto = document.querySelector("#img-admin-cargar-id").value
+    let imagenProducto = document.querySelector("#img-admin-cargar-id").files
     let precioProducto = document.querySelector("#precio-admin-cargar-id").value
 
     if (nombreProducto === '' && descripcionProducto === '' && imagenProducto === '' && precioProducto === '') {
         alert('Todos los campos son obligatorios')
     } else {
-        alert('Usted ha credao un producto de manera exitosa')
-    }
+        let crearStatus = await crearProductos(nombreProducto, descripcionProducto, imagenProducto, precioProducto)
+        if (crearStatus != null && crearStatus.Code === 100) {
+            alert('Usted ha creado un producto de manera exitosa')
+                //cerrar formulario
 
+        } else if (crearStatus != null && crearStatus.Code === -100) {
+            alert('Error creando el producto:' + crearStatus.Mensaje)
+
+        } else {
+            alert('Error creando el producto')
+        }
+        console.log(crearStatus)
+            //  limpiarFormulario()
+    }
 }
 
 async function obtenerListaProductos() {
@@ -102,9 +108,7 @@ async function obtenerListaProductos() {
 }
 obtenerListaProductos()
 
-
-
-async function mostrarListaProductosHtml() {
+async function mostrarListaPedidosHtml() {
     let sectionContenidoTabla = document.querySelector("#contenido-tabla-id")
 
     let contenidoJson = await obtenerListaProductos()
@@ -127,47 +131,42 @@ async function mostrarListaProductosHtml() {
 
     }
 }
-mostrarListaProductosHtml()
+mostrarListaPedidosHtml()
 
 //borrar producto
 
 async function borraProducto(id) {
-    let datos = {
-        id_productos: id
-    }
-
     let requestInit = {
         method: 'DELETE',
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Request-Method": "DELETE"
-        },
-        body: JSON.stringify(datos)
+        body: id
     }
     try {
-        let responsToFetch = await fetch('http://127.0.0.1:3020/delilah-resto/productos/borrar/', requestInit)
+        let responsToFetch = await fetch('http://127.0.0.1:3020/delilah-resto/productos/' + id, requestInit)
         if (responsToFetch.ok) {
             let respuestaJson = await responsToFetch.json()
 
             if (respuestaJson.code == 100) {
-                //cerrar ventana editar borrar
-                mostrarListaProductosHtml()
+                //mostrarListaPedidosHtml()
+                let overly = document.getElementById('overlay-id')
+                overly.classList.remove('active')
+
             } else {
                 //no cerrar ventana editar borrar
+                let overly = document.getElementById('overlay-id')
+                overly.classList.add('active')
             }
 
         }
     } catch (err) {
         console.log(err)
     }
-
 }
 
 function clickBorrarProducto() {
     let btonBorrar = document.querySelector("#borrar-listar-id")
     btonBorrar.addEventListener('click', () => {
         var id = document.querySelector("#nom-prod-id").value
-        console.log(id)
+            // console.log(id)
         borraProducto(id)
     })
 }
@@ -198,13 +197,14 @@ async function actualizarProducto(id, nombre, descripcion, imagen, precio) {
         body: JSON.stringify(datos)
     }
     try {
-        let responsToFetch = await fetch('http://127.0.0.1:3020/delilah-resto/productos/', requestInit)
+        let responsToFetch = await fetch('http://127.0.0.1:3020/delilah-resto/productos/' + id, requestInit)
         if (responsToFetch.ok) {
             let respuestaJson = await responsToFetch.json()
 
             if (respuestaJson.code == 100) {
-                //cerrar ventana editar borrar
-                mostrarListaProductosHtml()
+                let overly = document.getElementById('overlay-id')
+                overly.classList.remove('active')
+                    //mostrarListaPedidosHtml()
             } else {
                 //no cerrar ventana editar borrar
             }

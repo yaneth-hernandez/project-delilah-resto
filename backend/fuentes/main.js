@@ -3,6 +3,7 @@ const app = express()
 require('dotenv').config({ path: './variables_entorno/archivo.env' })
 const port = process.env.PORT || 3000
 const morgan = require('morgan')
+const mysqlConnection = require('./database')
 const controlUsuario = require('./rutas/usuarioRutas')
 const controlProductos = require('./rutas/productosRutas')
 const controlPedidos = require('./rutas/pedidosRutas')
@@ -39,8 +40,34 @@ let storage = multer.diskStorage({
 
 const upload = multer({ storage })
 app.post('/delilah-resto/productos/upload', upload.single('file'), (req, res) => {
-    let statusCrecionProducto = productosController.crearProducto(req.body, nombreArchivo)
-    return res.json(statusCrecionProducto)
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    const body = req.body
+    let sentenceSql = `INSERT INTO productos (nombre, descripcion, imagen, precio) VALUES (` +
+        "'" + body.nombre + "'," +
+        "'" + body.descripcion + "'," +
+        "'" + nombreArchivo + "'," +
+        body.precio + ")"
+    mysqlConnection.query(sentenceSql, body, function(err, result) {
+        if (err) {
+            console.log(err)
+            res.status(200).json({
+                Mensaje: "Los datos introducidos son inválidos",
+                Code: -100
+            })
+        } else {
+            console.log(result.insertId)
+            res.status(200).json({
+                Mensaje: "Producto creado con exito",
+                Code: 100,
+                Item: result.insertId
+
+            })
+        }
+
+    })
+
 })
 
 

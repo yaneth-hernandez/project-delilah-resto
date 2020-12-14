@@ -13,9 +13,10 @@ controlProductos.get('/:id', productosControlador.productoId)
 
 //controlProductos.post('/upload', productosControlador.enviarImagenes)
 
-controlProductos.put('/', productosControlador.actualizarProducto)
+controlProductos.put('/:id', productosControlador.actualizarProducto)
 
-controlProductos.delete('/borrar', productosControlador.borraProducto)
+controlProductos.delete('/:id', productosControlador.borraProducto)
+
 
 
 module.exports = controlProductos

@@ -62,7 +62,7 @@ function validarDatosRegistro(nombre, email, telefono, direccion, password) {
     if (nombre === "" || direccion === "") {
         alert('Todos los campos son obligatorios')
         esValido = false
-    } else if (nombre.length > 35 && direccion.length > 80 && expresionNombre.test(nombre) && expresionNombre.test(direccion)) {
+    } else if (nombre.length <= 35 && direccion.length > 80 && expresionNombre.test(nombre) && expresionNombre.test(direccion)) {
         alert('El campo no debe ser tan largo')
         esValido = false
     }

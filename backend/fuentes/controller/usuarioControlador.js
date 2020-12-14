@@ -25,6 +25,7 @@ function usuarioRol(req, res) {
 //POST
 function crearUsuarios(req, res) {
     const body = req.body
+
     let sentenceSql = `INSERT INTO usuarios (usuario_alias, nombre_apellido, email, telefono, direccion, passw, id_rol) VALUES (` +
         "'" + body.usuario + "'," +
         "'" + body.nombre + "'," +
@@ -35,19 +36,20 @@ function crearUsuarios(req, res) {
         "'cliente')"
 
     mysqlConnection.query(sentenceSql, body, function(err, result) {
-        let mensaje = ''
-        let code = 0
+        console.log(err)
         if (err) {
-            code = -100
-            mensaje = 'Error'
+            res.status(200).json({
+                Mensaje: 'Error al ingresar los datos',
+                Code: -100,
+            })
+
         } else {
-            mensaje = "Usuario creado con exito"
-            code = 100
+            res.status(200).json({
+                Mensaje: "Usuario creado con exito",
+                Code: 100,
+            })
         }
-        res.json({
-            Mensaje: mensaje,
-            Code: code,
-        })
+
     });
     console.log('Usuario registrado:' + JSON.stringify(body));
 }

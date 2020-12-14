@@ -193,7 +193,7 @@
 .content-menu {
     display: flex;
     justify-content: space-between;
-    font-size: 45%;
+    font-size: 46%;
     padding-left: 0.75em;
     padding-right: 0.75em;
     margin-bottom: 1.25em;
@@ -206,14 +206,14 @@
 }
 
 .img-menu {
-    width: 2em;
-    height: 2em;
+    width: 4rem;
+    height: 4rem;
     margin-right: 0.5rem;
 }
 
 .btn-menu {
-    width: 1.9rem;
-    height: 1.9rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 1.25em;
     background-color: var(--color-btn);
     color: var(--color-fuente-clara);

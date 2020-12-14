@@ -26,6 +26,7 @@ function mostrarProductosHtml(objectResult) {
     let nombreClase = ''
     let seleccionValor = ''
     let existenciaPedido = validarExistenciaId(objectResult.id)
+    let rutaImg = 'http://127.0.0.1:3020/delilah-resto/productos/imagenes?name=' + objectResult.imagen
 
     if (existenciaPedido == null) {
         nombreClase = 'btn-menu'
@@ -37,7 +38,7 @@ function mostrarProductosHtml(objectResult) {
 
     let contenedorMenu = `
                 <div class="plato-img" id="plato-img-id${objectResult.id}">
-                    <img src="${objectResult.imagen}" alt="plato" class="img-menu" id="img-menu-id${objectResult.id}">
+                    <img src="${rutaImg}" alt="plato" class="img-menu" id="img-menu-id${objectResult.id}">
                     <p><span class="texto-label" id="texto-label-id${objectResult.id}">${objectResult.nombre}</span><br>
                     <span class="precio-label" id="precio-prod-id${objectResult.id}" >${objectResult.precio}$</span></p>
                 </div>
