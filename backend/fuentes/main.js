@@ -3,6 +3,7 @@ const app = express()
 require('dotenv').config({ path: './variables_entorno/archivo.env' })
 const port = process.env.PORT || 3000
 const morgan = require('morgan')
+const verificarToken = require('./middleware/auth')
 const mysqlConnection = require('./database')
 const controlUsuario = require('./rutas/usuarioRutas')
 const controlProductos = require('./rutas/productosRutas')
@@ -39,7 +40,7 @@ let storage = multer.diskStorage({
 })
 
 const upload = multer({ storage })
-app.post('/delilah-resto/productos/upload', upload.single('file'), (req, res) => {
+app.post('/delilah-resto/productos/upload', verificarToken.verificarToken, upload.single('file'), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 

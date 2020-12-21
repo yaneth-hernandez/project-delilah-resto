@@ -1,7 +1,7 @@
 const express = require('express')
 const controlProductos = express.Router()
 const productosControlador = require('../controller/productosControlador')
-
+const mdwVerificarToken = require('../middleware/auth')
 
 controlProductos.get('/', productosControlador.verProductos)
 
@@ -13,9 +13,9 @@ controlProductos.get('/:id', productosControlador.productoId)
 
 //controlProductos.post('/upload', productosControlador.enviarImagenes)
 
-controlProductos.put('/:id', productosControlador.actualizarProducto)
+controlProductos.put('/:id', mdwVerificarToken.verificarToken, productosControlador.actualizarProducto) //ok
 
-controlProductos.delete('/:id', productosControlador.borraProducto)
+controlProductos.delete('/:id', mdwVerificarToken.verificarToken, productosControlador.borraProducto) //ok
 
 
 

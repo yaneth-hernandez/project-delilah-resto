@@ -33,7 +33,7 @@ window.addEventListener('load', cerrarCargarProducto)
 function abrirEditarBorrar(id) {
     let overly = document.getElementById('overlay-id')
     overly.classList.add('active')
-    console.log(id)
+
 
     let idProductoEditarBorrar = document.querySelector(`#nom-prod-id`)
     idProductoEditarBorrar.value = id
@@ -108,30 +108,30 @@ async function obtenerListaProductos() {
 }
 obtenerListaProductos()
 
-async function mostrarListaPedidosHtml() {
+async function mostrarListaProductosHtml() {
     let sectionContenidoTabla = document.querySelector("#contenido-tabla-id")
 
     let contenidoJson = await obtenerListaProductos()
     for (let i = 0; i < contenidoJson.length; i++) {
         let rutaImg = 'http://127.0.0.1:3020/delilah-resto/productos/imagenes?name=' + contenidoJson[i].imagen
 
-        let contenidoTabla = `<div class="item-tabla" id="numero-producto-${contenidoJson[i].id_productos}">${contenidoJson[i].id_productos}</div>
+        let contenidoTabla = `<div class="item-tabla"  id="numero-producto-${contenidoJson[i].id_productos}">${contenidoJson[i].id_productos}</div>
         <div class="item-tabla" id="imagen-producto-${contenidoJson[i].id_productos}"><img src=${rutaImg} alt="" class="imagen-class" id="imagen-${contenidoJson[i].id_productos}"></div>
         <div class="item-tabla" id="nombre-producto-${contenidoJson[i].id_productos}">${contenidoJson[i].nombre}</div>
         <div class="item-tabla" id="descriocion-producto-${contenidoJson[i].id_productos}">${contenidoJson[i].descripcion}</div>
         <div class="item-tabla" id="precio-producto-${contenidoJson[i].id_productos}"><span class="seccion-direccion" id="valor-precio-${contenidoJson[i].id_productos}">${contenidoJson[i].precio}</span></div>
         <div class="item-tabla" id="acciones-${contenidoJson[i].id_productos}"><button onclick="abrirEditarBorrar(${contenidoJson[i].id_productos})"class="edita-borrar" id="edita-borrar-${contenidoJson[i].id_productos}">EDITAR/BORRAR</button></div>`
 
+
         let divProductos = document.createElement('div')
         divProductos.className = 'tabla-productos-items'
-        divProductos.id = 'tabla-productos-items-id'
+        divProductos.id = 'tabla-productos-items-' + contenidoJson[i].id_productos
         divProductos.innerHTML = contenidoTabla
-
         sectionContenidoTabla.append(divProductos)
 
     }
 }
-mostrarListaPedidosHtml()
+mostrarListaProductosHtml()
 
 //borrar producto
 
@@ -146,9 +146,11 @@ async function borraProducto(id) {
             let respuestaJson = await responsToFetch.json()
 
             if (respuestaJson.code == 100) {
-                //mostrarListaPedidosHtml()
                 let overly = document.getElementById('overlay-id')
                 overly.classList.remove('active')
+                let item = document.getElementById('tabla-productos-items-' + id)
+                item.remove()
+
 
             } else {
                 //no cerrar ventana editar borrar
@@ -162,12 +164,14 @@ async function borraProducto(id) {
     }
 }
 
+
 function clickBorrarProducto() {
     let btonBorrar = document.querySelector("#borrar-listar-id")
     btonBorrar.addEventListener('click', () => {
         var id = document.querySelector("#nom-prod-id").value
             // console.log(id)
         borraProducto(id)
+            //eliminarItem(id)
     })
 }
 window.addEventListener('load', clickBorrarProducto)
@@ -204,7 +208,7 @@ async function actualizarProducto(id, nombre, descripcion, imagen, precio) {
             if (respuestaJson.code == 100) {
                 let overly = document.getElementById('overlay-id')
                 overly.classList.remove('active')
-                    //mostrarListaPedidosHtml()
+                mostrarListaProductosHtml()
             } else {
                 //no cerrar ventana editar borrar
             }

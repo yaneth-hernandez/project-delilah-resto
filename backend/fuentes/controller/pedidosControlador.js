@@ -1,5 +1,6 @@
-const pedidosPrueba = require('../archivos_pruebas/pedidos_prueba')
+//const pedidosPrueba = require('../archivos_pruebas/pedidos_prueba')
 const mysqlConnection = require('../database')
+
 
 //GET LISTAR TODOS
 function verPedidos(req, res) {
@@ -66,7 +67,7 @@ function estadoPedidoId(req, res) {
 //POST
 function crearPedidos(req, res) {
     const body = req.body
-
+    console.log('cuerpo' + JSON.stringify(body) + 'pedido')
     let sentenceSqlPostPedido = `INSERT INTO pedidos (fecha_pedido, total_pago, id_usuario, codigo_forma_pago,codigo_estatus) VALUES (` +
         "'" + body.fecha_pedido + "'," +
         "'" + body.total_pago + "'," +
@@ -77,7 +78,7 @@ function crearPedidos(req, res) {
         if (err) {
             console.log(err)
             res.status(500).json({
-                Mensaje: 'Error crear  el pedido:' + err,
+                Mensaje: 'Error al crear  el pedido:' + err,
                 Code: -100
             })
 
@@ -85,14 +86,17 @@ function crearPedidos(req, res) {
             let mensaje = ''
             let code = 0
 
+
             try {
+
                 crearDetallePedidos(result.insertId, body)
                 mensaje = 'Detalle de pedido creado'
                 code = 100
 
                 res.status(200).json({
                     Mensaje: mensaje,
-                    Code: code
+                    Code: code,
+
                 })
 
 
@@ -128,8 +132,9 @@ function crearDetallePedidos(idPedido, body) {
 //PUT
 function actualizarPedido(req, res) {
     const body = req.body
+    const id = req.params.id
     let updateSqlPedido = 'UPDATE pedidos SET codigo_estatus =' + "'" + body.codigo_estatus + "'" +
-        '  WHERE id_pedido = ' + body.id_pedido
+        '  WHERE id_pedido = ' + id
 
     mysqlConnection.query(updateSqlPedido, body, function(err, result) {
         if (err) {

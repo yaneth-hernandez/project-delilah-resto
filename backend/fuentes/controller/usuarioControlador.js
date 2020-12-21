@@ -1,5 +1,8 @@
 const usuarios = require('../archivos_pruebas/usuarios_prueba')
 const mysqlConnection = require('../database')
+const jwt = require('jsonwebtoken')
+const verificarToken = require('../middleware/auth')
+
 
 //GET LISTAR TODOS
 function verUsuarios(req, res) {
@@ -86,22 +89,35 @@ function loginUsuarios(req, res) {
     const body = req.body
     let sentenceSelectSql = `SELECT id_usuario,usuario_alias,id_rol FROM usuarios WHERE usuario_alias = '${body.usuario}' AND  passw = ${body.password}`
 
-    mysqlConnection.query(sentenceSelectSql, function(err, rows, fields) {
+    mysqlConnection.query(sentenceSelectSql, function(errSelect, rows, fields) {
         if (rows == null) {
             res.status(400).json({
                 Mensaje: "Problemas al autenticar usuario"
             })
         } else {
-            res.status(200).json({
-                Mensaje: "Usuario autenticado con exito",
-                Code: 100,
-                rol: rows[0].id_rol,
-                Login: rows[0].usuario_alias,
-                Id: rows[0].id_usuario
+            const { usuario, password, id } = req.body
+            jwt.sign({ usuario_alias: usuario, passw: password, id_usuario: id }, process.env.SECRETKEY, { expiresIn: process.env.TIMETOKEN }, (err, token) => {
+
+                if (!err) {
+                    res.status(200).json({
+                        Mensaje: "Usuario autenticado con exito",
+                        Code: 100,
+                        rol: rows[0].id_rol,
+                        Login: rows[0].usuario_alias,
+                        Id: rows[0].id_usuario,
+                        token: token
+                    })
+                } else {
+                    console.log('error token' + err)
+                    res.status(400).json({
+                        Mensaje: "Problemas al autenticar usuario:" + err.code
+                    })
+                }
             })
         }
     })
 }
+
 
 //PUT
 function actualizarUsuario(req, res) {
