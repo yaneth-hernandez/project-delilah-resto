@@ -136,7 +136,11 @@ mostrarListaProductosHtml()
 //borrar producto
 
 async function borraProducto(id) {
+    let token = localStorage.getItem('Auht')
     let requestInit = {
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         method: 'DELETE',
         body: id
     }
@@ -191,12 +195,13 @@ async function actualizarProducto(id, nombre, descripcion, imagen, precio) {
         precio: precio,
         estado: 1
     }
-
+    let token = localStorage.getItem('Auht')
     let requestInit = {
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Request-Method": "PUT"
+            "Access-Control-Request-Method": "PUT",
+            "Authorization": "Bearer " + token
         },
         body: JSON.stringify(datos)
     }

@@ -4,12 +4,13 @@
      formData.append('descripcion', descripcion)
      formData.append('precio', precio)
      formData.append('file', imagen[0], imagen[0].name)
-
+     let token = localStorage.getItem('Auht')
      let reqInit = {
          method: 'POST',
          headers: {
              "Accept": "application/json, image/* ",
-             "Content-Type": "multipart/form-data"
+             "Content-Type": "multipart/form-data",
+             "Authorization": "Bearer " + token
          },
          body: formData
      }

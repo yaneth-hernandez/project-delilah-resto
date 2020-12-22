@@ -9,6 +9,8 @@ function eventLogin() {
         if (validarLogin(email, password)) {
             var usuarioDatos = await logueoUsuarios(email, password);
             console.log('result de fetch: ' + JSON.stringify(usuarioDatos));
+            var obtenerToken = JSON.stringify(usuarioDatos.token)
+            localStorage.setItem('token', obtenerToken)
             if (usuarioDatos.rol == 'admin') {
                 alert('Usted ha ingresado como administrador')
                 window.location.replace("http://127.0.0.1:5500/frontend/admin-listar-pedidos.html")
@@ -37,15 +39,20 @@ async function logueoUsuarios(email, password) {
         headers: {
             "Content-Type": "application/json",
             "Access-Control-Request-Method": "POST"
+
         },
         body: JSON.stringify(data)
     }
     let respuestaFectch = await fetch('http://127.0.0.1:3020/delilah-resto/usuarios/login', reqInit)
-    if (respuestaFectch.ok) {
+    if (respuestaFectch) {
         let respuestaJson = await respuestaFectch.json()
+        var token = respuestaJson.token
+        localStorage.removeItem('Auht')
+        localStorage.setItem('Auht', token)
         return respuestaJson
     }
 }
+
 
 function validarEmail(email) {
     let esValido = false

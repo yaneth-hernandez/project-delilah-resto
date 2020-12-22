@@ -97,7 +97,6 @@ function loginUsuarios(req, res) {
         } else {
             const { usuario, password, id } = req.body
             jwt.sign({ usuario_alias: usuario, passw: password, id_usuario: id }, process.env.SECRETKEY, { expiresIn: process.env.TIMETOKEN }, (err, token) => {
-
                 if (!err) {
                     res.status(200).json({
                         Mensaje: "Usuario autenticado con exito",

@@ -60,11 +60,13 @@ async function actualizarPedido(idPedido) {
         codigo_estatus: obtenerCodigoEstatus(idPedido)
 
     }
+    let token = localStorage.getItem('Auht')
     let requestInitPedido = {
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Request-Method": "PUT"
+            "Access-Control-Request-Method": "PUT",
+            "Authorization": "Bearer " + token
         },
         body: JSON.stringify(datosPedido)
     }
@@ -405,8 +407,10 @@ async function cancelarPedido() {
 }
 
 async function fetchCancelarPedido(idPedido) {
+    let token = localStorage.getItem('Auht')
     let requestInitPedido = {
         method: 'DELETE',
+        headers: { "Authorization": "Bearer " + token },
         body: idPedido
     }
     try {

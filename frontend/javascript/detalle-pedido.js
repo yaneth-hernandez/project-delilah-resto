@@ -216,13 +216,16 @@ async function construirPedido() {
 }
 
 async function enviarPedidio() {
+    let token = localStorage.getItem('Auht')
+
     let respuestaJson = ""
     let datos = await construirPedido()
     let reqInit = {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Request-Method": "POST"
+            "Access-Control-Request-Method": "POST",
+            "Authorization": "Bearer " + token
         },
         body: JSON.stringify(datos)
     }
