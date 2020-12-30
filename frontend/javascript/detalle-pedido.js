@@ -16,18 +16,35 @@ async function cargarContenidPagina() {
     precioTotal.dataset.precio = sumaTotalPedido
 
     //buscar dirección usuario
-    let usuario = await buscarUsuario(obtenerUsuarioSesion())
+    let usuario = await buscarUsuario()
     let elementoDireccionUsuario = document.querySelector('#direccion-id')
-    elementoDireccionUsuario.value = usuario.direccion
+    elementoDireccionUsuario.value = usuario[0].direccion
 
 }
 
-async function buscarUsuario(idUsuario) {
-    let url = 'http://127.0.0.1:3020/delilah-resto/usuarios/' + idUsuario
-    let respuestaFectch = await fetch(url);
+async function buscarUsuario() {
+    let url = 'http://127.0.0.1:3020/delilah-resto/usuarios/sesion/verify'
+    let token = localStorage.getItem('Auht')
+    let reqInit = {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Request-Method": "GET",
+            "Authorization": "Bearer " + token
+        }
+    }
+    let respuestaFectch = await fetch(url, reqInit);
     let resultJson = await respuestaFectch.json()
 
-    return resultJson
+    if (resultJson != null && resultJson.code == -100) {
+        alert('Su sesión ha expirado')
+        localStorage.removeItem('Auht')
+        window.location.replace('http://127.0.0.1:5500/frontend/login.html')
+
+    } else {
+        return resultJson
+    }
+
 }
 
 function removerMostrarProducto(id) {
@@ -106,9 +123,9 @@ function mostrarPedidoHtml(producto) {
         nombreClase = 'btn-menu-check'
         seleccionValor = 'x'
     }
-
+    let rutaImg = 'http://127.0.0.1:3020/delilah-resto/productos/imagenes?name=' + producto.imagen
     let detallePedido = ` <div class="plato-img" id="plato-img-id${producto.id}">
-    <img src="${producto.imagen}" alt="plato" class="img-menu" id="img-menu-id${producto.id}">
+    <img src="${rutaImg}" alt="plato" class="img-menu" id="img-menu-id${producto.id}">
     <p class="product-precio"><span class="texto-label" id="texto-label-id${producto.id}">${producto.nombre}</span>
     <span class="precio" id="precio-id${producto.id}" data-precio="${producto.precio}"  >$ ${producto.precio}</span></p>
 </div>
@@ -198,15 +215,20 @@ async function construirPedido() {
         }
     }
 
-    let idUsuario = obtenerUsuarioSesion()
-    let datosUsuario = await buscarUsuario(idUsuario)
+
+    let idUsuario = 0
+    let datosUsuario = await buscarUsuario()
     let formaPago = valorFormaPago()
     let precioXproducto = document.querySelector("#total-id").dataset.precio
+
+    if (datosUsuario != null) {
+        idUsuario = datosUsuario[0].id_usuario
+    }
 
     var cuerpoPedido = {
         fecha_pedido: fechaActual(),
         total_pago: precioXproducto,
-        id_usuario: datosUsuario.id_usuario,
+        id_usuario: idUsuario,
         codigo_forma_pago: formaPago,
         codigo_estatus: "PD-01",
         detalle_pedido: productos_pedido
@@ -234,6 +256,7 @@ async function enviarPedidio() {
         console.log(respuestaFectch.ok)
         if (respuestaFectch.ok) {
             respuestaJson = await respuestaFectch.json()
+            console.log(respuestaJson)
         }
     } catch (err) {
         console.log(err)
@@ -241,7 +264,12 @@ async function enviarPedidio() {
 
     if (respuestaJson.Code == 100) {
         borrarProductoLocal()
+        localStorage.setItem('order', respuestaJson.Id_Pedido)
         window.location.replace('http://127.0.0.1:5500/frontend/envio-pedido.html')
+    } else if (respuestaJson.Code == -100) {
+        alert('Su sesión ha expirado')
+        localStorage.removeItem('Auht')
+        window.location.replace('http://127.0.0.1:5500/frontend/login.html')
     } else {
         alert('Tu pedido no pudo ser procesado')
     }

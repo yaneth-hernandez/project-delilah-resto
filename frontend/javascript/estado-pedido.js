@@ -1,14 +1,29 @@
 async function cargarPagina() {
-    let respFetch = await obtenerPedido(40)
+    let idPedido = obtenerPedidoLocal()
+    console.log(idPedido)
+    let respFetch = await obtenerPedido(idPedido)
     montrarElementosHtml(respFetch)
 
 }
 cargarPagina()
 
+function obtenerPedidoLocal() {
+    let existePedido = ''
+    let idPedido = ''
+    if (existePedido == -1) {
+        alert('Debe seleccionar su pedido')
+        window.location.replace('http://127.0.0.1:5500/frontend/menu.html')
+    } else {
+        idPedido = localStorage.getItem('order')
+    }
+    return idPedido
+}
+
 function irMenuUsuarioReg() {
     let btonSeguirPidiendo = document.querySelector("#crear-cta-id")
     btonSeguirPidiendo.addEventListener('click', () => {
         window.location.replace('http://127.0.0.1:5500/frontend/menu.html')
+        localStorage.removeItem('order')
     })
 }
 window.addEventListener('load', irMenuUsuarioReg)
@@ -35,7 +50,6 @@ function montrarElementosHtml(pedido) {
     let elementoPrep = document.querySelector("#btn-prepar")
     let elementoEnCamino = document.querySelector("#btn-camino")
     let elementoEntregado = document.querySelector("#btn-entregado")
-    console.log(console.log(pedido.Pedido[0].id_usuario))
     let respuestaEstado = pedido.Pedido[0].codigo_estatus
 
     if (respuestaEstado == 'PD-01') {

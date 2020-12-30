@@ -9,8 +9,6 @@ function eventLogin() {
         if (validarLogin(email, password)) {
             var usuarioDatos = await logueoUsuarios(email, password);
             console.log('result de fetch: ' + JSON.stringify(usuarioDatos));
-            var obtenerToken = JSON.stringify(usuarioDatos.token)
-            localStorage.setItem('token', obtenerToken)
             if (usuarioDatos.rol == 'admin') {
                 alert('Usted ha ingresado como administrador')
                 window.location.replace("http://127.0.0.1:5500/frontend/admin-listar-pedidos.html")

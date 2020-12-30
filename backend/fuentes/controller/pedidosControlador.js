@@ -1,4 +1,3 @@
-//const pedidosPrueba = require('../archivos_pruebas/pedidos_prueba')
 const mysqlConnection = require('../database')
 
 
@@ -81,30 +80,24 @@ function crearPedidos(req, res) {
                 Mensaje: 'Error al crear  el pedido:' + err,
                 Code: -100
             })
-
         } else {
             let mensaje = ''
             let code = 0
-
-
+            let id = ''
             try {
-
                 crearDetallePedidos(result.insertId, body)
                 mensaje = 'Detalle de pedido creado'
                 code = 100
-
+                id = result.insertId
                 res.status(200).json({
                     Mensaje: mensaje,
                     Code: code,
-
+                    Id_Pedido: id
                 })
-
-
             } catch (errorDetalle) {
                 console.log(errorDetalle)
                 mensaje = 'Error al crear detalle del pedido'
                 code = -100
-
                 res.status(500).json({
                     Mensaje: mensaje,
                     Code: code

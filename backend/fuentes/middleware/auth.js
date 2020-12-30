@@ -5,15 +5,19 @@ function verificarToken(req, res, next) {
 
     if (typeof bearerHeader !== 'undefined') {
         const bearerToken = bearerHeader.split(" ")[1]
-        jwt.verify(bearerToken, 'secretkey001-1', (error, authData) => {
+        jwt.verify(bearerToken, process.env.SECRETKEY, (error, authData) => {
+
             if (!error && authData != null) {
                 next()
-            } else {
-                console.log(error)
-                res.status(403).json({
-                    mensaje: 'Error en autenticación'
+            } else if (error.name == 'TokenExpiredError') {
+                res.status(200).json({
+                    mensaje: 'Error en autenticación',
+                    code: -100
                 })
+            } else {
+                res.sendStatus(403)
             }
+
         })
     } else {
         res.sendStatus(403)

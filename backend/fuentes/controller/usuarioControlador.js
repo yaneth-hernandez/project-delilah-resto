@@ -1,7 +1,7 @@
 const usuarios = require('../archivos_pruebas/usuarios_prueba')
 const mysqlConnection = require('../database')
 const jwt = require('jsonwebtoken')
-const verificarToken = require('../middleware/auth')
+
 
 
 //GET LISTAR TODOS
@@ -16,11 +16,38 @@ function verUsuarios(req, res) {
 }
 
 //GET X ID
-function usuarioId(req, res) {
-    const id = req.params.id
-    res.status(200).json(usuarios.items[id - 1])
-    console.log(usuarios.items[id - 1])
+function obtenerUsuario(req, res) {
+    const body = req.body
+    const bearerHeader = req.headers['authorization']
+    const bearerToken = bearerHeader.split(" ")[1]
+    jwt.verify(bearerToken, process.env.SECRETKEY, (error, authData) => {
+        console.log(authData)
+        if (!error && authData != null) {
+            let sentenceSqlIdUsuario = `SELECT * FROM usuarios WHERE usuario_alias ='${authData.usuario_alias}'`
+
+            mysqlConnection.query(sentenceSqlIdUsuario, body, function(err, rows, fields) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    res.status(200).json(rows)
+                }
+            })
+
+        } else if (error.name == 'TokenExpiredError') {
+            res.status(200).json({
+                mensaje: 'Error en autenticación',
+                code: -100
+            })
+        } else {
+            console.log(error)
+            res.sendStatus(403)
+        }
+    })
+
 }
+/* res.status(200).json(usuarios.items[id - 1])
+console.log(usuarios.items[id - 1]) */
+
 //GET X ROLES
 function usuarioRol(req, res) {
     return res.status(200).send({ mensaje: 'Usuario obtenido por rol' })
@@ -140,4 +167,6 @@ function borraUsuario(req, res) {
 
 }
 
-module.exports = { verUsuarios, usuarioId, usuarioRol, crearUsuarios, crearUsuariosAdmin, loginUsuarios, actualizarUsuario, borraUsuario }
+
+
+module.exports = { verUsuarios, obtenerUsuario, usuarioRol, crearUsuarios, crearUsuariosAdmin, loginUsuarios, actualizarUsuario, borraUsuario }
