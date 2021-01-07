@@ -8,6 +8,7 @@ const mysqlConnection = require('./database')
 const controlUsuario = require('./rutas/usuarioRutas')
 const controlProductos = require('./rutas/productosRutas')
 const controlPedidos = require('./rutas/pedidosRutas')
+
 const productosController = require('./controller/productosControlador')
 const cors = require('cors')
 const { v4: uuidv4 } = require('uuid');
@@ -19,6 +20,37 @@ const corsOptions = {
     }
     //gestion de imagenes
 const multer = require('multer')
+
+//swagger
+const expressSwagger = require('express-swagger-generator')(app);
+
+let options = {
+    swaggerDefinition: {
+        info: {
+            description: 'This is a sample server',
+            title: 'Swagger',
+            version: '2.0',
+        },
+        host: 'localhost:3020',
+        basePath: '/',
+        produces: [
+            "application/json",
+            "application/xml"
+        ],
+        schemes: ['http', 'https'],
+        securityDefinitions: {
+            JWT: {
+                type: 'apiKey',
+                in: 'header',
+                name: 'Authorization',
+                description: ""
+            }
+        }
+    },
+    basedir: __dirname,
+    files: ['./rutas/*.js', 'main.js']
+};
+expressSwagger(options)
 
 //MIDDLEWARE- gestion de imagenes POST
 var nombreArchivo = ''
@@ -39,6 +71,37 @@ let storage = multer.diskStorage({
     }
 })
 
+
+/*******************************
+ *      CREAR PRODUCTOS        *
+ *******************************/
+/**
+ * @typedef CrearProductoModelo
+ * @property {string} nombre.required -Nombre del producto
+ * @property {string} descripcion.required -Descripción del producto
+ * @property {string} file.required -File, imagen
+ * @property {integer} precio.required -Precio del producto
+ */
+
+/**
+ * @typedef RespCrearProductoOk
+ * @property {string} Mensaje
+ * @property {integer} Code
+ * @property {integer} Item
+ */
+
+/**
+ * This function comment is parsed by doctrine
+ * @route POST /delilah-resto/productos/upload
+ * @group Productos 
+ * @param {file} file.formData.required -Imagen
+ * @param {string} nombre.formData.required -Nombre del producto
+ * @param {string} descripcion.formData.required -Descripción del producto
+ * @param {integer} precio.formData.required -Precio del producto
+ * @returns {RespCrearProductoOk.model} 200 - 
+ * @returns {Error}  400 - {Mensaje: "Los datos introducidos son inválidos"}
+ * @security JWT
+ */
 const upload = multer({ storage })
 app.post('/delilah-resto/productos/upload', verificarToken.verificarToken, upload.single('file'), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*")
@@ -66,9 +129,7 @@ app.post('/delilah-resto/productos/upload', verificarToken.verificarToken, uploa
 
             })
         }
-
     })
-
 })
 
 
@@ -79,9 +140,8 @@ app.use(express.static('controller'))
 app.use(express.json({
     type: ['application/json']
 }))
-
-
 app.use(morgan('dev'))
+
 
 //imagen
 app.use(express.urlencoded({ extended: true }))
@@ -91,10 +151,11 @@ app.use('/delilah-resto/usuarios/', controlUsuario)
 app.use('/delilah-resto/productos/', controlProductos)
 app.use('/delilah-resto/pedidos/', controlPedidos)
 
+
 //INI-SERVIDOR
 app.listen(port, () => {
     console.log(`Iniciado http://localhost:${port}`)
 })
 
 //EXPORT-SERVIDOS
-module.exports = { app } //REQUERIR EN RUTAS!!!!
+module.exports = app //REQUERIR EN RUTAS!!!!

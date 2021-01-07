@@ -106,7 +106,7 @@ function borraProducto(req, res) {
         } else {
             res.status(200).json({
                 code: 100,
-                mensaje: "Producto borrado con exito"
+                mensaje: "El producto a sido inactivado con exito"
             })
         }
     })

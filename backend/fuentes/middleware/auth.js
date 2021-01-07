@@ -15,6 +15,8 @@ function verificarToken(req, res, next) {
                     code: -100
                 })
             } else {
+                console.log('linea1' + authData)
+                console.log('linea1' + error)
                 res.sendStatus(403)
             }
 

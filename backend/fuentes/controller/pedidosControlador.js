@@ -133,7 +133,7 @@ function actualizarPedido(req, res) {
         if (err) {
             console.log(err)
             res.status(500).json({
-                Mensaje: 'Error actualizar  el pedido:' + err,
+                Mensaje: 'Error al actualizar  el pedido:' + err,
                 Code: -100
             })
         } else {
@@ -170,7 +170,7 @@ function borrarPedidos(req, res) {
                     })
                 } else {
                     res.status(200).json({
-                        Mensaje: 'Estatus de pedido borrado con exito',
+                        Mensaje: 'Pedido borrado con exito',
                         Code: 100,
 
                     })

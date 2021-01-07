@@ -15,7 +15,7 @@ function verUsuarios(req, res) {
     mysqlConnection.end();
 }
 
-//GET X ID
+//GET X USUARIO EN SESIÓN
 function obtenerUsuario(req, res) {
     const body = req.body
     const bearerHeader = req.headers['authorization']
@@ -45,13 +45,7 @@ function obtenerUsuario(req, res) {
     })
 
 }
-/* res.status(200).json(usuarios.items[id - 1])
-console.log(usuarios.items[id - 1]) */
 
-//GET X ROLES
-function usuarioRol(req, res) {
-    return res.status(200).send({ mensaje: 'Usuario obtenido por rol' })
-}
 //POST
 function crearUsuarios(req, res) {
     const body = req.body
@@ -68,7 +62,7 @@ function crearUsuarios(req, res) {
     mysqlConnection.query(sentenceSql, body, function(err, result) {
         console.log(err)
         if (err) {
-            res.status(200).json({
+            res.status(400).json({
                 Mensaje: 'Error al ingresar los datos',
                 Code: -100,
             })
@@ -99,7 +93,7 @@ function crearUsuariosAdmin(req, res) {
         let code = 0
         if (err) {
             code = -100
-            mensaje = 'Error'
+            mensaje = 'Error al ingresar los datos'
         } else {
             mensaje = "Usuario administrador creado con exito"
             code = 100
@@ -149,24 +143,44 @@ function loginUsuarios(req, res) {
 function actualizarUsuario(req, res) {
     const id = req.params.id
     const body = req.body
-    res.json({
-        respuesta: `datos modificados`
+    let updateSqlUsuario = "UPDATE usuarios SET ? WHERE id_usuario = '" + id + "'"
+    mysqlConnection.query(updateSqlUsuario, body, function(err, result) {
+        if (err) {
+            console.log(err)
+            res.status(500).json({
+                code: -100,
+                mensaje: 'Error actualizando el usuario:' + err
+            })
+        } else {
+            res.status(200).json({
+                code: 100,
+                mensaje: "Usuario actualizado con exito"
+            })
+        }
     })
-    console.log(`Obteniedo id:${id} datos ${JSON.stringify(body)} actualizados`)
 }
 
 //DELETE
 function borraUsuario(req, res) {
     const id = req.params.id
     const body = req.body
-    res.json({
-        respuesta: `datos de id borrados`
+    let sentenceSqlDeleteUsuario = "DELETE FROM usuarios WHERE id_usuario = '" + id + "'"
+    mysqlConnection.query(sentenceSqlDeleteUsuario, body, function(err, result) {
+        if (err) {
+            console.log(err)
+            res.status(500).json({
+                code: -100,
+                mensaje: 'Error borrando el usuario:' + err
+            })
+        } else {
+            res.status(200).json({
+                code: 100,
+                mensaje: "Usuario borrado con exito"
+            })
+        }
     })
-
-    console.log(`Obteniedo id:${id} datos ${JSON.stringify(body)} borrados`)
-
 }
 
 
 
-module.exports = { verUsuarios, obtenerUsuario, usuarioRol, crearUsuarios, crearUsuariosAdmin, loginUsuarios, actualizarUsuario, borraUsuario }
+module.exports = { verUsuarios, obtenerUsuario, crearUsuarios, crearUsuariosAdmin, loginUsuarios, actualizarUsuario, borraUsuario }

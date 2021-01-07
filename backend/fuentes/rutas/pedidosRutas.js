@@ -3,17 +3,140 @@ const controlPedidos = express.Router()
 const pedidosControlador = require('../controller/pedidosControlador')
 const mdwVerificarToken = require('../middleware/auth')
 
-
+/*******************************
+ *      LISTAR PEDIDO          *
+ *******************************/
+/**
+ * This function comment is parsed by doctrine
+ * @route GET /delilah-resto/pedidos
+ * @group Pedido
+ * @returns {object} 200 - Información de todos los pedidos
+ * @returns {Error}  500 -Error al listar pedidos
+ */
 controlPedidos.get('/', pedidosControlador.verPedidos)
 
+
+/*******************************
+ *  VER PEDIDO POR ID       *
+ *******************************/
+/**
+ * This function comment is parsed by doctrine
+ * @route GET /delilah-resto/pedidos/{id}
+ * @group Pedido
+ * @param {integer} id.path.required
+ * @returns {object} 200 - Información de todos los pedidos
+ * @returns {Error}  500 -Error al listar pedidos
+ */
 controlPedidos.get('/:id', pedidosControlador.pedidosId)
 
+
+/*******************************
+ * VER DETALLE DE UN PEDIDO ID *
+ *******************************/
+/**
+ * This function comment is parsed by doctrine
+ * @route GET /delilah-resto/pedidos/{id}/status
+ * @group Pedido
+ * @param {integer} id.path.required
+ * @returns {object} 200 - Información sobre la facturaciónde un pedido detallado
+ * @returns {Error}  500 -Error al listar pedidos
+ */
 controlPedidos.get('/:id/status', pedidosControlador.estadoPedidoId)
 
+/*******************************
+ *       CREAR PEDIDO          *
+ *******************************/
+/**
+ * @typedef DetallePedidoModelo
+ * @property {string} id_producto.required -Identificador producto
+ * @property {string} precio_producto.required -Valor por unidad
+ */
+
+/**
+ * @typedef PedidoModelo
+ * @property {string} fecha_pedido.required -Fecha de creación
+ * @property {string} total_pago.required -Total pago
+ * @property {integer} id_usuario.required -Identificador usuario
+ * @property {string} codigo_forma_pago.required -Forma de pago usada
+ * @property {string} codigo_estatus.required -Estatus del pedido
+ * @property {Array.<DetallePedidoModelo>} detalle_pedido -Detalle productos
+ */
+
+/**
+ * @typedef RespuestaPedidoOk
+ * @property {string} Mensaje
+ * @property {integer} Code
+ * @property {integer} Id_Pedido
+ */
+
+/**
+ * This function comment is parsed by doctrine
+ * @route POST /delilah-resto/pedidos
+ * @group Pedido 
+ * @param {PedidoModelo.model} pedidoModelo.body - Detalle Pedido
+ * @returns {RespuestaPedidoOk.model} 200 - Detalle de pedido creado
+ * @returns {Error}  500 - {Mensaje: "Error al crear detalle del pedido", Code:-100}
+ * @security JWT
+ */
 controlPedidos.post('/', mdwVerificarToken.verificarToken, pedidosControlador.crearPedidos) //ok
 
+/*******************************
+ *       ACTUALIZAR PEDIDO     *
+ *******************************/
+/**
+ * @typedef ActualizarPedidoModelo
+ * @property {string} id_producto.required -Identificador producto
+ * @property {string} precio_producto.required -Valor por unidad
+ */
+
+/**
+ * @typedef ActualizarPedidoModelo
+ * @property {string} fecha_pedido.required -Fecha de creación
+ * @property {string} total_pago.required -Total pago
+ * @property {integer} id_usuario.required -Identificador usuario
+ * @property {string} codigo_forma_pago.required -Forma de pago usada
+ * @property {string} codigo_estatus.required -Estatus del pedido
+ * @property {Array.<DetallePedidoModelo>} detalle_pedido -Detalle productos
+ */
+
+/**
+ * @typedef RespuestaActualizarPedidoOk
+ * @property {string} Mensaje
+ * @property {integer} Code
+ * @property {integer} IdPedido
+ * @property {string} EstatusActual
+ */
+
+/**
+ * This function comment is parsed by doctrine
+ * @route PUT /delilah-resto/pedidos/{id}
+ * @group Pedido 
+ * @param {integer} id.path.required
+ * @param {ActualizarPedidoModelo.model} pedidoModelo.body - Detalle Pedido
+ * @returns {RespuestaActualizarPedidoOk.model} 200 - Estatus de pedido actualizado de manera exitosa
+ * @returns {Error}  500 - {Mensaje: "Error al actualizar el pedido", Code:-100}
+ * @security JWT
+ */
 controlPedidos.put('/:id', mdwVerificarToken.verificarToken, pedidosControlador.actualizarPedido) //ok
 
+
+/*******************************
+ *       BORRAR PEDIDO          *
+ *******************************/
+/**
+ * @typedef RespuestaBorrarPedidoOk
+ * @property {string} Mensaje
+ * @property {integer} Code
+ */
+
+/**
+ * This function comment is parsed by doctrine
+ * @route DELETE /delilah-resto/pedidos/{id}
+ * @group Pedido 
+ * @param {integer} id.path.required
+ * @returns {Error}  500 - {Mensaje: "Error al borrar el pedido", Code:-100}
+ * @security JWT
+ */
 controlPedidos.delete('/:id', mdwVerificarToken.verificarToken, pedidosControlador.borrarPedidos) //ok
 
 
