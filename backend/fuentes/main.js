@@ -27,8 +27,8 @@ const expressSwagger = require('express-swagger-generator')(app);
 let options = {
     swaggerDefinition: {
         info: {
-            description: 'This is a sample server',
-            title: 'Swagger',
+            description: 'Esta API permite realizar CRUD de un e-commerce',
+            title: 'Delilah-Resto-API',
             version: '2.0',
         },
         host: 'localhost:3020',
@@ -85,9 +85,9 @@ let storage = multer.diskStorage({
 
 /**
  * @typedef RespCrearProductoOk
- * @property {string} Mensaje
- * @property {integer} Code
- * @property {integer} Item
+ * @property {string} Mensaje.required
+ * @property {integer} Code.required
+ * @property {integer} Item.required
  */
 
 /**
@@ -98,6 +98,7 @@ let storage = multer.diskStorage({
  * @param {string} nombre.formData.required -Nombre del producto
  * @param {string} descripcion.formData.required -Descripción del producto
  * @param {integer} precio.formData.required -Precio del producto
+ * @consumes multipart/form-data
  * @returns {RespCrearProductoOk.model} 200 - 
  * @returns {Error}  400 - {Mensaje: "Los datos introducidos son inválidos"}
  * @security JWT

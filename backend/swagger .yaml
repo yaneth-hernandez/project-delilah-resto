@@ -1,0 +1,731 @@
+info:
+  description: Esta API permite realizar CRUD de un e-commerce
+  title: Delilah-Resto-API
+  version: '2.0'
+host: 'localhost:3020'
+basePath: /
+produces:
+  - application/json
+  - application/xml
+schemes:
+  - http
+  - https
+securityDefinitions:
+  JWT:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: ''
+swagger: '2.0'
+paths:
+  /delilah-resto/pedidos:
+    get:
+      parameters: []
+      description: Se obtiene un listado que contiene todos los pedidos
+      tags:
+        - Pedido
+      responses:
+        '200':
+          description: Información de todos los pedidos
+        '500':
+          description: Error al listar pedidos
+    post:
+      parameters:
+        - name: pedidoModelo
+          in: body
+          description: Detalle Pedido
+          required: false
+          schema:
+            $ref: '#/definitions/PedidoModelo'
+      description: Crear un pedido
+      tags:
+        - Pedido
+      responses:
+        '200':
+          description: Detalle de pedido creado
+          schema:
+            $ref: '#/definitions/RespuestaPedidoOk'
+        '500':
+          description: '{Mensaje: "Error al crear detalle del pedido", Code:'
+      security:
+        - JWT: []
+  '/delilah-resto/pedidos/{id}':
+    get:
+      parameters:
+        - name: id
+          in: path
+          description: '-Id del pedido a obtener'
+          required: true
+          type: integer
+      description: Se obtiene un pedido por ID
+      tags:
+        - Pedido
+      responses:
+        '200':
+          description: Información de todos los pedidos
+        '500':
+          description: Error al listar pedidos
+    put:
+      parameters:
+        - name: id
+          in: path
+          description: '-Id del pedido a actualizar'
+          required: true
+          type: integer
+        - name: actualizarPedidoModelo
+          in: body
+          description: Detalle Pedido
+          required: false
+          schema:
+            $ref: '#/definitions/ActualizarPedidoModelo'
+      description: Actualiza un el estado de un pedido
+      tags:
+        - Pedido
+      responses:
+        '200':
+          description: Estatus de pedido actualizado de manera exitosa
+          schema:
+            $ref: '#/definitions/RespuestaActualizarPedidoOk'
+        '500':
+          description: '{Mensaje: "Error al actualizar el pedido", Code:'
+      security:
+        - JWT: []
+    delete:
+      parameters:
+        - name: id
+          in: path
+          description: '-Id del pedido a borrar'
+          required: true
+          type: integer
+      description: Borrar un pedido registrado
+      tags:
+        - Pedido
+      responses:
+        '500':
+          description: '{Mensaje: "Error al borrar el pedido", Code:'
+      security:
+        - JWT: []
+  '/delilah-resto/pedidos/{id}/status':
+    get:
+      parameters:
+        - name: id
+          in: path
+          description: '-Id del pedido a obtener'
+          required: true
+          type: integer
+      description: Se obtiene eñ detalle completo de un pedido
+      tags:
+        - Pedido
+      responses:
+        '200':
+          description: Información sobre la facturaciónde un pedido detallado
+        '500':
+          description: Error al listar pedidos
+  /delilah-resto/productos:
+    get:
+      parameters: []
+      description: Obtiene listado de productos
+      tags:
+        - Productos
+      responses:
+        '200':
+          description: Información de todos los productos
+        '500':
+          description: Error al listar productos
+  '/delilah-resto/productos/{id}':
+    get:
+      parameters:
+        - name: id
+          in: path
+          description: '-Id del producto a obtener'
+          required: true
+          type: integer
+      description: Obtiene un producto por ID
+      tags:
+        - Productos
+      responses:
+        '200':
+          description: Información de todos los pedidos
+        '500':
+          description: Error al listar pedidos
+    put:
+      parameters:
+        - name: id
+          in: path
+          description: '-Id del producto a actualizar'
+          required: true
+          type: integer
+        - name: imagen
+          in: formData
+          description: '-Imagen'
+          required: true
+          type: string
+        - name: nombre
+          in: formData
+          description: '-Nombre del producto'
+          required: true
+          type: string
+        - name: descripcion
+          in: formData
+          description: '-Descripción del producto'
+          required: true
+          type: string
+        - name: precio
+          in: formData
+          description: '-Precio del producto'
+          required: true
+          type: integer
+      description: Actualizar/Modificar un producto
+      tags:
+        - Productos
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/RespActualizarProductoOk'
+        '400':
+          description: '{Mensaje: "Error actualizando productos"}'
+      consumes:
+        - application/x-www-form-urlencoded
+      security:
+        - JWT: []
+    delete:
+      parameters:
+        - name: id
+          in: path
+          description: '-Id del producto a borrar'
+          required: true
+          type: integer
+      description: Borra el registro de un producto
+      tags:
+        - Productos
+      responses:
+        '500':
+          description: '{Mensaje: "Error borrando el producto", Code:'
+      security:
+        - JWT: []
+  /delilah-resto/usuarios:
+    get:
+      parameters: []
+      description: Obtener listado de ususarios
+      tags:
+        - Usuario
+      responses:
+        '200':
+          description: Información de todos los usuarios
+        '500':
+          description: Error al listar usuarios
+    post:
+      parameters:
+        - name: CrearClienteModelo
+          in: body
+          description: Datos de registro
+          required: false
+          schema:
+            $ref: '#/definitions/CrearClienteModelo'
+      description: Crear usuario cliente
+      tags:
+        - Usuario
+      responses:
+        '200':
+          description: Informacion de usuario
+          schema:
+            $ref: '#/definitions/RespRegClienteOk'
+        '400':
+          description: '{Mensaje: "Error al ingresar los datos"}'
+  /delilah-resto/usuarios/sesion/verify:
+    get:
+      parameters: []
+      description: Obtiene el usuario autenticado en sesión
+      tags:
+        - Usuario
+      responses:
+        '200':
+          description: Información de todos los usuarios
+        '500':
+          description: Error al listar usuarios
+  /delilah-resto/usuarios/admin:
+    post:
+      parameters:
+        - name: crearUsuAdminModelo
+          in: body
+          description: Datos de registro
+          required: false
+          schema:
+            $ref: '#/definitions/CrearUsuAdminModelo'
+      description: Crear un usuario administrador
+      tags:
+        - Usuario
+      responses:
+        '200':
+          description: Informacion de usuario
+          schema:
+            $ref: '#/definitions/RespRegAdminOk'
+        '400':
+          description: '{Mensaje: "Error al ingresar los datos"}'
+  /delilah-resto/usuarios/login:
+    post:
+      parameters:
+        - name: usuarioModelo
+          in: body
+          description: Email y password
+          required: false
+          schema:
+            $ref: '#/definitions/UsuarioModelo'
+      description: Logueo para ingresar a Delilah
+      tags:
+        - Usuario
+      responses:
+        '200':
+          description: Informacion de usuario
+          schema:
+            $ref: '#/definitions/RespuestaLoginOk'
+        '400':
+          description: '{Mensaje: "Problemas al autenticar usuario"}'
+  '/delilah-resto/usuarios/{id}':
+    put:
+      parameters:
+        - name: id
+          in: path
+          description: '-Id del ususario a actualizar'
+          required: true
+          type: integer
+        - name: ActualizarUsuarioModelo
+          in: body
+          description: Datos del usuario
+          required: false
+          schema:
+            $ref: '#/definitions/ActualizarUsuarioModelo'
+      description: Actualizar datos del usuarios
+      tags:
+        - Usuario
+      responses:
+        '200':
+          description: Usuario actualizado de manera exitosa
+          schema:
+            $ref: '#/definitions/RespuestaActualizarUsuarioOk'
+        '500':
+          description: '{Mensaje: "Error al actualizar el usuario"}'
+      security:
+        - JWT: []
+    delete:
+      parameters:
+        - name: id
+          in: path
+          description: '-Id del usuario a borrar'
+          required: true
+          type: integer
+      description: Borrar registro de usuario
+      tags:
+        - Usuario
+      responses:
+        '200':
+          description: Usuario borrado con éxito
+          schema:
+            $ref: '#/definitions/RespuestaBorrarUsuarioOk'
+        '500':
+          description: '{Mensaje: "Error al borrar el Usuario"}'
+      security:
+        - JWT: []
+  /delilah-resto/productos/upload:
+    post:
+      parameters:
+        - name: file
+          in: formData
+          description: '-Imagen'
+          required: true
+          type: file
+        - name: nombre
+          in: formData
+          description: '-Nombre del producto'
+          required: true
+          type: string
+        - name: descripcion
+          in: formData
+          description: '-Descripción del producto'
+          required: true
+          type: string
+        - name: precio
+          in: formData
+          description: '-Precio del producto'
+          required: true
+          type: integer
+      description: This function comment is parsed by doctrine
+      tags:
+        - Productos
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/RespCrearProductoOk'
+        '400':
+          description: '{Mensaje: "Los datos introducidos son inválidos"}'
+      consumes:
+        - multipart/form-data
+      security:
+        - JWT: []
+definitions:
+  DetallePedidoModelo:
+    required:
+      - id_producto
+      - precio_producto
+    properties:
+      id_producto:
+        type: string
+        description: '-Identificador producto'
+      precio_producto:
+        type: string
+        description: '-Valor por unidad'
+  PedidoModelo:
+    required:
+      - fecha_pedido
+      - total_pago
+      - id_usuario
+      - codigo_forma_pago
+      - codigo_estatus
+    properties:
+      fecha_pedido:
+        type: string
+        description: '-Fecha de creación'
+      total_pago:
+        type: string
+        description: '-Total pago'
+      id_usuario:
+        type: integer
+        description: '-Identificador usuario'
+      codigo_forma_pago:
+        type: string
+        description: '-Forma de pago usada'
+      codigo_estatus:
+        type: string
+        description: '-Estatus del pedido'
+      detalle_pedido:
+        type: array
+        items:
+          $ref: '#/definitions/DetallePedidoModelo'
+  RespuestaPedidoOk:
+    required:
+      - Mensaje
+      - Code
+      - Id_Pedido
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+      Id_Pedido:
+        type: integer
+        description: ''
+  ActualizarPedidoModelo:
+    required:
+      - fecha_pedido
+      - total_pago
+      - id_usuario
+      - codigo_forma_pago
+      - codigo_estatus
+    properties:
+      fecha_pedido:
+        type: string
+        description: '-Fecha de creación'
+      total_pago:
+        type: string
+        description: '-Total pago'
+      id_usuario:
+        type: integer
+        description: '-Identificador usuario'
+      codigo_forma_pago:
+        type: string
+        description: '-Forma de pago usada'
+      codigo_estatus:
+        type: string
+        description: '-Estatus del pedido'
+      detalle_pedido:
+        type: array
+        items:
+          $ref: '#/definitions/DetallePedidoModelo'
+  RespuestaActualizarPedidoOk:
+    required:
+      - Mensaje
+      - Code
+      - IdPedido
+      - EstatusActual
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+      IdPedido:
+        type: integer
+        description: ''
+      EstatusActual:
+        type: string
+        description: ''
+  RespuestaBorrarPedidoOk:
+    required:
+      - Mensaje
+      - Code
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+  ActualizarProductoModelo:
+    required:
+      - nombre
+      - descripcion
+      - file
+      - precio
+    properties:
+      nombre:
+        type: string
+        description: '-Nombre del producto'
+      descripcion:
+        type: string
+        description: '-Descripción del producto'
+      file:
+        type: string
+        description: '-File, imagen'
+      precio:
+        type: integer
+        description: '-Precio del producto'
+  RespActualizarProductoOk:
+    required:
+      - Mensaje
+      - Code
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+  RespuestaBorrarProductoOk:
+    required:
+      - Mensaje
+      - Code
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+  RespuestaGetUsuarioOk:
+    required:
+      - Mensaje
+      - Code
+      - Id_Pedido
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+      Id_Pedido:
+        type: integer
+        description: ''
+  CrearClienteModelo:
+    required:
+      - usuario
+      - nombre
+      - email
+      - telefono
+      - direccion
+      - password
+    properties:
+      usuario:
+        type: string
+        description: '-Alias o email'
+      nombre:
+        type: string
+        description: '-Nombre y apellido'
+      email:
+        type: string
+        description: '-Email'
+      telefono:
+        type: integer
+        description: '-Numero de telefono'
+      direccion:
+        type: string
+        description: '-Ubicación o domicilio'
+      password:
+        type: integer
+        description: '-Password'
+  RespRegClienteOk:
+    required:
+      - Mensaje
+      - Code
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+  CrearUsuAdminModelo:
+    required:
+      - usuario
+      - nombre
+      - email
+      - password
+    properties:
+      usuario:
+        type: string
+        description: '-Alias o email'
+      nombre:
+        type: string
+        description: '-Nombre y apellido'
+      email:
+        type: string
+        description: '-Email'
+      password:
+        type: integer
+        description: '-Password'
+  RespRegAdminOk:
+    required:
+      - Mensaje
+      - Code
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+  UsuarioModelo:
+    required:
+      - usuario
+      - password
+    properties:
+      usuario:
+        type: string
+        description: '-Alias o email'
+      password:
+        type: integer
+        description: '-Password'
+  RespuestaLoginOk:
+    required:
+      - Mensaje
+      - Code
+      - rol
+      - Login
+      - Id
+      - Token
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+      rol:
+        type: string
+        description: ''
+      Login:
+        type: integer
+        description: ''
+      Id:
+        type: integer
+        description: ''
+      Token:
+        type: string
+        description: ''
+  ActualizarUsuarioModelo:
+    required:
+      - usuario_alias
+      - nombre_apellido
+      - email
+      - telefono
+      - direccion
+      - passw
+    properties:
+      usuario_alias:
+        type: string
+        description: '-Alias/email'
+      nombre_apellido:
+        type: string
+        description: '-Nombre y apellido'
+      email:
+        type: string
+        description: '-email'
+      telefono:
+        type: integer
+        description: '-Número telefónico'
+      direccion:
+        type: string
+        description: '-Domicilio o ubicación'
+      passw:
+        type: integer
+        description: '-Clave secreta'
+  RespuestaActualizarUsuarioOk:
+    required:
+      - Mensaje
+      - Code
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+  RespuestaBorrarUsuarioOk:
+    required:
+      - Mensaje
+      - Code
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+  CrearProductoModelo:
+    required:
+      - nombre
+      - descripcion
+      - file
+      - precio
+    properties:
+      nombre:
+        type: string
+        description: '-Nombre del producto'
+      descripcion:
+        type: string
+        description: '-Descripción del producto'
+      file:
+        type: string
+        description: '-File, imagen'
+      precio:
+        type: integer
+        description: '-Precio del producto'
+  RespCrearProductoOk:
+    required:
+      - Mensaje
+      - Code
+      - Item
+    properties:
+      Mensaje:
+        type: string
+        description: ''
+      Code:
+        type: integer
+        description: ''
+      Item:
+        type: integer
+        description: ''
+responses: {}
+parameters: {}
+tags:
+  - name: Pedido
+    description: ''
+  - name: Productos
+    description: ''
+  - name: Usuario
+    description: ''

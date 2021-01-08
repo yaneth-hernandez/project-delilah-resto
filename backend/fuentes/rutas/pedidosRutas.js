@@ -7,7 +7,7 @@ const mdwVerificarToken = require('../middleware/auth')
  *      LISTAR PEDIDO          *
  *******************************/
 /**
- * This function comment is parsed by doctrine
+ * Se obtiene un listado que contiene todos los pedidos
  * @route GET /delilah-resto/pedidos
  * @group Pedido
  * @returns {object} 200 - Información de todos los pedidos
@@ -20,10 +20,10 @@ controlPedidos.get('/', pedidosControlador.verPedidos)
  *  VER PEDIDO POR ID       *
  *******************************/
 /**
- * This function comment is parsed by doctrine
+ * Se obtiene un pedido por ID
  * @route GET /delilah-resto/pedidos/{id}
  * @group Pedido
- * @param {integer} id.path.required
+ * @param {integer} id.path.required -Id del pedido a obtener
  * @returns {object} 200 - Información de todos los pedidos
  * @returns {Error}  500 -Error al listar pedidos
  */
@@ -34,10 +34,10 @@ controlPedidos.get('/:id', pedidosControlador.pedidosId)
  * VER DETALLE DE UN PEDIDO ID *
  *******************************/
 /**
- * This function comment is parsed by doctrine
+ * Se obtiene eñ detalle completo de un pedido
  * @route GET /delilah-resto/pedidos/{id}/status
  * @group Pedido
- * @param {integer} id.path.required
+ * @param {integer} id.path.required -Id del pedido a obtener
  * @returns {object} 200 - Información sobre la facturaciónde un pedido detallado
  * @returns {Error}  500 -Error al listar pedidos
  */
@@ -64,13 +64,13 @@ controlPedidos.get('/:id/status', pedidosControlador.estadoPedidoId)
 
 /**
  * @typedef RespuestaPedidoOk
- * @property {string} Mensaje
- * @property {integer} Code
- * @property {integer} Id_Pedido
+ * @property {string} Mensaje.required
+ * @property {integer} Code.required
+ * @property {integer} Id_Pedido.required
  */
 
 /**
- * This function comment is parsed by doctrine
+ * Crear un pedido
  * @route POST /delilah-resto/pedidos
  * @group Pedido 
  * @param {PedidoModelo.model} pedidoModelo.body - Detalle Pedido
@@ -101,18 +101,18 @@ controlPedidos.post('/', mdwVerificarToken.verificarToken, pedidosControlador.cr
 
 /**
  * @typedef RespuestaActualizarPedidoOk
- * @property {string} Mensaje
- * @property {integer} Code
- * @property {integer} IdPedido
- * @property {string} EstatusActual
+ * @property {string} Mensaje.required
+ * @property {integer} Code.required
+ * @property {integer} IdPedido.required
+ * @property {string} EstatusActual.required
  */
 
 /**
- * This function comment is parsed by doctrine
+ * Actualiza un el estado de un pedido
  * @route PUT /delilah-resto/pedidos/{id}
  * @group Pedido 
- * @param {integer} id.path.required
- * @param {ActualizarPedidoModelo.model} pedidoModelo.body - Detalle Pedido
+ * @param {integer} id.path.required -Id del pedido a actualizar
+ * @param {ActualizarPedidoModelo.model} actualizarPedidoModelo.body - Detalle Pedido
  * @returns {RespuestaActualizarPedidoOk.model} 200 - Estatus de pedido actualizado de manera exitosa
  * @returns {Error}  500 - {Mensaje: "Error al actualizar el pedido", Code:-100}
  * @security JWT
@@ -125,15 +125,15 @@ controlPedidos.put('/:id', mdwVerificarToken.verificarToken, pedidosControlador.
  *******************************/
 /**
  * @typedef RespuestaBorrarPedidoOk
- * @property {string} Mensaje
- * @property {integer} Code
+ * @property {string} Mensaje.required
+ * @property {integer} Code.required
  */
 
 /**
- * This function comment is parsed by doctrine
+ * Borrar un pedido registrado
  * @route DELETE /delilah-resto/pedidos/{id}
  * @group Pedido 
- * @param {integer} id.path.required
+ * @param {integer} id.path.required -Id del pedido a borrar
  * @returns {Error}  500 - {Mensaje: "Error al borrar el pedido", Code:-100}
  * @security JWT
  */

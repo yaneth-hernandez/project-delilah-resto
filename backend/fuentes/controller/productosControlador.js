@@ -36,38 +36,6 @@ function productoId(req, res) {
     })
 }
 
-//POST
-/* function crearProducto(body, imagenNombre) {
-
-    let sentenceSql = `INSERT INTO productos (nombre, descripcion, imagen, precio) VALUES (` +
-        "'" + body.nombre + "'," +
-        "'" + body.descripcion + "'," +
-        "'" + imagenNombre + "'," +
-        body.precio + ")"
-    mysqlConnection.query(sentenceSql, body, function(err, result) {
-        var respuesta = {}
-        if (err) {
-            console.log(err)
-                
-            respuesta = {
-                Mensaje: 'Producto no ha sido registrado ',
-                Code: -100
-            }
-        } else {
-            respuesta = {
-                Mensaje: "Producto creado con exito",
-                Code: 100,
-                Item: result.insertId
-            }
-        }
-
-        console.log(JSON.stringify(respuesta));
-
-        return respuesta
-    })
-
-}  */
-
 //PUT
 function actualizarProducto(req, res) {
     const body = req.body
