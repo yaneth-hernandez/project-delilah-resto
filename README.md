@@ -45,7 +45,7 @@ https://github.com/yaneth-hernandez/project-delilah-resto
     - Ubicar la carpeta del proyecto
     - Ejecutar comando npm install.
 - Inicializar servidor, ejecutando archivo `main.js` a través del comando node main.js
-- Editar el `archivo.env` en usuario y password para acceso a la base de datos, definición de puerto de conexión.
+- Editar el `archivo.env` en USER y PASSWORD para acceso a la base de datos, definición de puerto de conexión.
 - Importar la estructura de la Base de datos de `db.sql` Puede importar el archivo mediante un programa como MySQL Workbench o phpMyAdmin, si tiene una base de datos con nombre delilah_resto, será eliminada. 
 - Postman archivo `Delilah-Resto Proyecto III.postman_collection.json` con prueba de métodos
 
