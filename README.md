@@ -1,7 +1,7 @@
 # Project-Delilah-Resto
 Se desarrolló según la siguiente estructura:
 - FRONTEND (No obligatorio para aprobar)
-    Fué desarrollado con vista mobile para el usuario cliente y con vista escritorio para el usuario administrador muy similar a las vistas indicadas según diseño planteado. La prueba de API por este medio se realiza ingresando a la página del restaurant comenzando por el archivo `inicio.html` 
+    Fué desarrollado con vista mobile para el usuario cliente y con vista escritorio para el usuario administrador muy similar a las vistas indicadas según diseño planteado. La prueba de API por este medio se realiza ingresando a la página del restaurant comenzando por el archivo `inicio.html`, el directorio `frontend` contiene todo el desarrollo de este entorno. 
 
 - BACKEND 
     Api- Delilah-Resto
