@@ -1,4 +1,3 @@
-const usuarios = require('../archivos_pruebas/usuarios_prueba')
 const mysqlConnection = require('../database')
 const jwt = require('jsonwebtoken')
 

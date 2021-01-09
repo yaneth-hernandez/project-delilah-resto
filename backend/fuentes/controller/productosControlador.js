@@ -1,4 +1,3 @@
-const productos = require('../archivos_pruebas/productos_prueba')
 const mysqlConnection = require('../database')
 
 

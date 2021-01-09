@@ -1,552 +1,533 @@
 {
-	"info": {
-		"_postman_id": "f7633e81-b092-424d-a179-f875feb4b4b9",
-		"name": "Delilah-Resto Proyecto III",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "USUARIOS",
-			"item": [
-				{
-					"name": "POST Login usuarios",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"usuario\": \"angela@gmail.com\",\r\n    \"password\": 12345678\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/usuarios/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"usuarios",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET Listar Usuarios",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/usuarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"usuarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET Obtener usuario en sesión",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5ODk4OTEzLCJleHAiOjE2MDk4OTg5NzN9.OWA3smbA694rMZ_KCWkcGZmtfjGNPSAi-Eca7kC9xco",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/usuarios/sesion/verify",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"usuarios",
-								"sesion",
-								"verify"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PUT Actualización cliente",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5ODk0ODI0LCJleHAiOjE2MDk4OTQ4ODR9.SanfsBpZ7EuCjCABouSZ8VyngQzkrEMCvZzEVd1UNpU",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"usuario_alias\": \"yahe@gmail.com\",\r\n        \"nombre_apellido\": \"Yaneth hernandez\",\r\n        \"email\": \"yahe@gmail.com\",\r\n        \"telefono\": 3053983540,\r\n        \"direccion\": \"Cll70\",\r\n        \"passw\": \"12345678\",\r\n        \"id_rol\": \"cliente\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/usuarios/45",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"usuarios",
-								"45"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PUT Actualización Admin",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5ODk4NjkwLCJleHAiOjE2MDk4OTg3NTB9.7-2R7Y71yhPF8a8Pe1i0bgEJl7yXsl0L16z331Qb6aA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"usuario\": \"lapano@gmail.com\",\r\n        \"nombre\": \"Maria\",\r\n        \"email\": \"lapano@gmail.com\",\r\n        \"password\": \"12345678\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/usuarios/45",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"usuarios",
-								"45"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE Usuario",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/usuarios/14",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"usuarios",
-								"14"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "POST Crear Usuarios Cliente",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"usuario\": \"karina@gmail.com\",\r\n        \"nombre\": \"karina larez\",\r\n        \"email\": \"karina@gmail.com\",\r\n        \"telefono\": 3053983540,\r\n        \"direccion\": \"Av 95\",\r\n        \"password\": \"12345678\",\r\n        \"id_rol\": \"cliente\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/usuarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"usuarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "POST Crear Usuarios Adm",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"usuario\": \"karina@gmail.com\",\r\n        \"nombre\": \"karina larez\",\r\n        \"email\": \"karina@gmail.com\",\r\n        \"telefono\": 3053983540,\r\n        \"direccion\": \"Av 95\",\r\n        \"password\": \"12345678\",\r\n        \"id_rol\": \"cliente\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/usuarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"usuarios"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "PRODUCTOS",
-			"item": [
-				{
-					"name": "POST Crear producto",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5OTY3MTM1LCJleHAiOjE2MDk5NjcxOTV9.EPipfS2Cnga03lVkV0hkHwNk4N7SEl-af7QNAZgUmko",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/C:/Users/yahec/Dropbox/My PC (DESKTOP-L2A0EM8)/Desktop/paisaje.png"
-								},
-								{
-									"key": "nombre",
-									"value": "pan",
-									"type": "text"
-								},
-								{
-									"key": "descripcion",
-									"value": "queso",
-									"type": "text"
-								},
-								{
-									"key": "precio",
-									"value": "10",
-									"type": "text"
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/productos/upload",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"productos",
-								"upload"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PUT Actualizar producto",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5OTg1OTkxLCJleHAiOjE2MDk5ODc3OTF9.eirgwJMMX44YgaxsB5c11xXlbE3GveiX3adLmyGMBdk",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"fritanga\",\r\n    \"descripcion\": \"hello\",\r\n    \"imagen\": \"6a12f02f-9931-478a-8fc1-87a1d681ab1f.jpeg\",\r\n    \"precio\": 123,\r\n    \"estado\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/productos/33",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"productos",
-								"33"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE Productos",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/productos/34",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"productos",
-								"34"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET Listar Productos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/productos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"productos"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "PEDIDOS",
-			"item": [
-				{
-					"name": "POST Crear Pedido",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": " {\r\n    \"fecha_pedido\":\"2021-01-06\",\r\n    \"total_pago\":\"12222\",\r\n    \"id_usuario\":4,\r\n    \"codigo_forma_pago\":\"PGO-02\",\r\n    \"codigo_estatus\":\"PD-01\",\r\n    \"detalle_pedido\":\r\n[\r\n    {\r\n        \"id_producto\":\"70\",\r\n        \"precio_producto\":\"100\"\r\n        },\r\n    {   \"id_producto\":\"67\",\r\n        \"precio_producto\":\"12122\"\r\n    }\r\n]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PUT Actualizar Pedido",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5OTgwMTgyLCJleHAiOjE2MDk5ODE5ODJ9.M-YilNRX2ceaOD33plsXhmoT3VGMaGrcJRICt0zPUUk",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"fecha_pedido\":\"2020-12-21\",\r\n    \"total_pago\":\"12222\",\r\n    \"id_usuario\":4,\r\n    \"codigo_forma_pago\":\"PGO-04\",\r\n    \"codigo_estatus\":\"PD-03\",\r\n    \"detalle_pedido\":\r\n[\r\n    {\r\n        \"id_producto\":\"20\",\r\n        \"precio_producto\":\"100\"\r\n        },\r\n    {   \"id_producto\":\"67\",\r\n        \"precio_producto\":\"12122\"\r\n    }\r\n]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/pedidos/136",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"pedidos",
-								"136"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE Pedidos",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5OTg2NjI2LCJleHAiOjE2MDk5ODg0MjZ9.YxUabuNw_FiL3wEMSjZtqR__PEPqCLP4ahNKMQPx_RU",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/pedidos/34",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"pedidos",
-								"34"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET Pedidos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET Pedidos x Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/pedidos/75",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"pedidos",
-								"75"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET Detalle de pedido/ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3020/delilah-resto/pedidos/75/status",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3020",
-							"path": [
-								"delilah-resto",
-								"pedidos",
-								"75",
-								"status"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+    "info": {
+        "_postman_id": "f7633e81-b092-424d-a179-f875feb4b4b9",
+        "name": "Delilah-Resto Proyecto III",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [{
+            "name": "USUARIOS",
+            "item": [{
+                    "name": "POST Login usuarios",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"usuario\": \"angela@gmail.com\",\r\n    \"password\": 12345678\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/usuarios/login",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "usuarios",
+                                "login"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET Listar Usuarios",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/usuarios",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "usuarios"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET Obtener usuario en sesión",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [{
+                                "key": "token",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5ODk4OTEzLCJleHAiOjE2MDk4OTg5NzN9.OWA3smbA694rMZ_KCWkcGZmtfjGNPSAi-Eca7kC9xco",
+                                "type": "string"
+                            }]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/usuarios/sesion/verify",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "usuarios",
+                                "sesion",
+                                "verify"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT Actualización cliente",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [{
+                                "key": "token",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5ODk0ODI0LCJleHAiOjE2MDk4OTQ4ODR9.SanfsBpZ7EuCjCABouSZ8VyngQzkrEMCvZzEVd1UNpU",
+                                "type": "string"
+                            }]
+                        },
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n        \"usuario_alias\": \"yahe@gmail.com\",\r\n        \"nombre_apellido\": \"Yaneth hernandez\",\r\n        \"email\": \"yahe@gmail.com\",\r\n        \"telefono\": 3053983540,\r\n        \"direccion\": \"Cll70\",\r\n        \"passw\": \"12345678\",\r\n        \"id_rol\": \"cliente\"\r\n    }",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/usuarios/45",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "usuarios",
+                                "45"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT Actualización Admin",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [{
+                                "key": "token",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5ODk4NjkwLCJleHAiOjE2MDk4OTg3NTB9.7-2R7Y71yhPF8a8Pe1i0bgEJl7yXsl0L16z331Qb6aA",
+                                "type": "string"
+                            }]
+                        },
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n        \"usuario\": \"lapano@gmail.com\",\r\n        \"nombre\": \"Maria\",\r\n        \"email\": \"lapano@gmail.com\",\r\n        \"password\": \"12345678\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/usuarios/45",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "usuarios",
+                                "45"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE Usuario",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/usuarios/14",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "usuarios",
+                                "14"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST Crear Usuarios Cliente",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n        \"usuario\": \"karina@gmail.com\",\r\n        \"nombre\": \"karina larez\",\r\n        \"email\": \"karina@gmail.com\",\r\n        \"telefono\": 3053983540,\r\n        \"direccion\": \"Av 95\",\r\n        \"password\": \"12345678\",\r\n        \"id_rol\": \"cliente\"\r\n    }",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/usuarios",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "usuarios"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST Crear Usuarios Adm",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n        \"usuario\": \"karina@gmail.com\",\r\n        \"nombre\": \"karina larez\",\r\n        \"email\": \"karina@gmail.com\",\r\n        \"telefono\": 3053983540,\r\n        \"direccion\": \"Av 95\",\r\n        \"password\": \"12345678\",\r\n        \"id_rol\": \"cliente\"\r\n    }",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/usuarios/admin",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "usuarios"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "PRODUCTOS",
+            "item": [{
+                    "name": "POST Crear producto",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [{
+                                "key": "token",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5OTY3MTM1LCJleHAiOjE2MDk5NjcxOTV9.EPipfS2Cnga03lVkV0hkHwNk4N7SEl-af7QNAZgUmko",
+                                "type": "string"
+                            }]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [{
+                                    "key": "file",
+                                    "type": "file",
+                                    "src": "/C:/Users/yahec/Dropbox/My PC (DESKTOP-L2A0EM8)/Desktop/paisaje.png"
+                                },
+                                {
+                                    "key": "nombre",
+                                    "value": "pan",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "descripcion",
+                                    "value": "queso",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "precio",
+                                    "value": "10",
+                                    "type": "text"
+                                }
+                            ],
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/productos/upload",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "productos",
+                                "upload"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT Actualizar producto",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [{
+                                "key": "token",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5OTg1OTkxLCJleHAiOjE2MDk5ODc3OTF9.eirgwJMMX44YgaxsB5c11xXlbE3GveiX3adLmyGMBdk",
+                                "type": "string"
+                            }]
+                        },
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"nombre\": \"fritanga\",\r\n    \"descripcion\": \"hello\",\r\n    \"imagen\": \"6a12f02f-9931-478a-8fc1-87a1d681ab1f.jpeg\",\r\n    \"precio\": 123,\r\n    \"estado\": 1\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/productos/33",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "productos",
+                                "33"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE Productos",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/productos/34",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "productos",
+                                "34"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET Listar Productos",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/productos",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "productos"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "PEDIDOS",
+            "item": [{
+                    "name": "POST Crear Pedido",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": " {\r\n    \"fecha_pedido\":\"2021-01-06\",\r\n    \"total_pago\":\"12222\",\r\n    \"id_usuario\":4,\r\n    \"codigo_forma_pago\":\"PGO-02\",\r\n    \"codigo_estatus\":\"PD-01\",\r\n    \"detalle_pedido\":\r\n[\r\n    {\r\n        \"id_producto\":\"70\",\r\n        \"precio_producto\":\"100\"\r\n        },\r\n    {   \"id_producto\":\"67\",\r\n        \"precio_producto\":\"12122\"\r\n    }\r\n]\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": ""
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT Actualizar Pedido",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [{
+                                "key": "token",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5OTgwMTgyLCJleHAiOjE2MDk5ODE5ODJ9.M-YilNRX2ceaOD33plsXhmoT3VGMaGrcJRICt0zPUUk",
+                                "type": "string"
+                            }]
+                        },
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"fecha_pedido\":\"2020-12-21\",\r\n    \"total_pago\":\"12222\",\r\n    \"id_usuario\":4,\r\n    \"codigo_forma_pago\":\"PGO-04\",\r\n    \"codigo_estatus\":\"PD-03\",\r\n    \"detalle_pedido\":\r\n[\r\n    {\r\n        \"id_producto\":\"20\",\r\n        \"precio_producto\":\"100\"\r\n        },\r\n    {   \"id_producto\":\"67\",\r\n        \"precio_producto\":\"12122\"\r\n    }\r\n]\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/pedidos/136",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "pedidos",
+                                "136"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE Pedidos",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [{
+                                "key": "token",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2FsaWFzIjoiYW5nZWxhQGdtYWlsLmNvbSIsInBhc3N3IjoxMjM0NTY3OCwiaWF0IjoxNjA5OTg2NjI2LCJleHAiOjE2MDk5ODg0MjZ9.YxUabuNw_FiL3wEMSjZtqR__PEPqCLP4ahNKMQPx_RU",
+                                "type": "string"
+                            }]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/pedidos/34",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "pedidos",
+                                "34"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET Pedidos",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": ""
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET Pedidos x Id",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/pedidos/75",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "pedidos",
+                                "75"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET Detalle de pedido/ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3020/delilah-resto/pedidos/75/status",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3020",
+                            "path": [
+                                "delilah-resto",
+                                "pedidos",
+                                "75",
+                                "status"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
 }
