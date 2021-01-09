@@ -75,7 +75,7 @@ controlPedidos.get('/:id/status', pedidosControlador.estadoPedidoId)
  * @group Pedido 
  * @param {PedidoModelo.model} pedidoModelo.body - Detalle Pedido
  * @returns {RespuestaPedidoOk.model} 200 - Detalle de pedido creado
- * @returns {Error}  500 - {Mensaje: "Error al crear detalle del pedido", Code:-100}
+ * @returns {Error}  500 - {Mensaje: "Error al crear detalle del pedido"}
  * @security JWT
  */
 controlPedidos.post('/', mdwVerificarToken.verificarToken, pedidosControlador.crearPedidos) //ok
@@ -114,7 +114,7 @@ controlPedidos.post('/', mdwVerificarToken.verificarToken, pedidosControlador.cr
  * @param {integer} id.path.required -Id del pedido a actualizar
  * @param {ActualizarPedidoModelo.model} actualizarPedidoModelo.body - Detalle Pedido
  * @returns {RespuestaActualizarPedidoOk.model} 200 - Estatus de pedido actualizado de manera exitosa
- * @returns {Error}  500 - {Mensaje: "Error al actualizar el pedido", Code:-100}
+ * @returns {Error}  500 - {Mensaje: "Error al actualizar el pedido"}
  * @security JWT
  */
 controlPedidos.put('/:id', mdwVerificarToken.verificarToken, pedidosControlador.actualizarPedido) //ok
@@ -134,7 +134,7 @@ controlPedidos.put('/:id', mdwVerificarToken.verificarToken, pedidosControlador.
  * @route DELETE /delilah-resto/pedidos/{id}
  * @group Pedido 
  * @param {integer} id.path.required -Id del pedido a borrar
- * @returns {Error}  500 - {Mensaje: "Error al borrar el pedido", Code:-100}
+ * @returns {Error}  500 - {Mensaje: "Error al borrar el pedido"}
  * @security JWT
  */
 controlPedidos.delete('/:id', mdwVerificarToken.verificarToken, pedidosControlador.borrarPedidos) //ok

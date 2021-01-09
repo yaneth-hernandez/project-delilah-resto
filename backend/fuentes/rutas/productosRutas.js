@@ -81,7 +81,7 @@ controlProductos.put('/:id', mdwVerificarToken.verificarToken, productosControla
  * @route DELETE /delilah-resto/productos/{id}
  * @group Productos 
  * @param {integer} id.path.required -Id del producto a borrar
- * @returns {Error}  500 - {Mensaje: "Error borrando el producto", Code:-100}
+ * @returns {Error}  500 - {Mensaje: "Error borrando el producto"}
  * @security JWT
  */
 controlProductos.delete('/:id', mdwVerificarToken.verificarToken, productosControlador.borraProducto) //ok
