@@ -113,7 +113,7 @@ function agregarPedido() {
     btonAgregar.addEventListener('click', () => {
         let existe = validarExitstePedido()
         if (existe == true) {
-            window.location.replace('http://127.0.0.1:5500/frontend/detalle-pedido.html?detalle-pedidos')
+            window.location.replace('./detalle-pedido.html?detalle-pedidos')
         } else {
             alert('Debe seleccionar un producto para continuar')
         }

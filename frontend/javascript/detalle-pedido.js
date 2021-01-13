@@ -39,7 +39,7 @@ async function buscarUsuario() {
     if (resultJson != null && resultJson.code == -100) {
         alert('Su sesión ha expirado')
         localStorage.removeItem('Auht')
-        window.location.replace('http://127.0.0.1:5500/frontend/login.html')
+        window.location.replace('./login.html')
 
     } else {
         return resultJson
@@ -265,11 +265,11 @@ async function enviarPedidio() {
     if (respuestaJson.Code == 100) {
         borrarProductoLocal()
         localStorage.setItem('order', respuestaJson.Id_Pedido)
-        window.location.replace('http://127.0.0.1:5500/frontend/envio-pedido.html')
+        window.location.replace('./envio-pedido.html')
     } else if (respuestaJson.Code == -100) {
         alert('Su sesión ha expirado')
         localStorage.removeItem('Auht')
-        window.location.replace('http://127.0.0.1:5500/frontend/login.html')
+        window.location.replace('./login.html')
     } else {
         alert('Tu pedido no pudo ser procesado')
     }

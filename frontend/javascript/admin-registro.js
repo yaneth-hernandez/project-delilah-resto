@@ -15,7 +15,7 @@ function eventBtnCrearCtaAdmin() {
 
             if (resultado.Code == 100) {
                 alert('Usuario Creado')
-                window.location.replace("http://127.0.0.1:5500/frontend/login.html?usuario")
+                window.location.replace("./login.html?usuario")
             } else if (resultado.Code == -100) {
                 alert('Problemas para crear el usuario')
             }

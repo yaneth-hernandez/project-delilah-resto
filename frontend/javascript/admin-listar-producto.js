@@ -1,7 +1,7 @@
 function volver() {
     let btonVolver = document.getElementById('volver-id')
     btonVolver.addEventListener('click', () => {
-        window.location = 'http://127.0.0.1:5500/frontend/admin-listar-pedidos.html'
+        window.location = './admin-listar-pedidos.html'
     })
 }
 window.addEventListener('load', volver)

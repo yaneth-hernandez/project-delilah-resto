@@ -154,3 +154,28 @@ CREATE TABLE `usuarios` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2021-01-08 20:05:04
+
+/*INSERCIÓN DE DATOS DE CONFIGURACIÓN*/
+INSERT INTO `delilah_resto`.`estatus` (`codigo`,`descripcion`) VALUES ('PD-01', 'NUEVO');
+INSERT INTO `delilah_resto`.`estatus` (`codigo`,`descripcion`) VALUES ('PD-02', 'ENVIADO');
+INSERT INTO `delilah_resto`.`estatus` (`codigo`,`descripcion`) VALUES ('PD-03', 'CONFIRMADO');
+INSERT INTO `delilah_resto`.`estatus` (`codigo`,`descripcion`) VALUES ('PD-04', 'PREPARANDO');
+INSERT INTO `delilah_resto`.`estatus` (`codigo`,`descripcion`) VALUES ('PD-05', 'ENTREGADO');
+INSERT INTO `delilah_resto`.`estatus` (`codigo`,`descripcion`) VALUES ('PD-100', 'CANCELADO');
+
+INSERT INTO `delilah_resto`.`roles` (`id_rol`, `nombre`, `descripcion`, `activo`) VALUES 
+('admin', 'administrador', 'administrador del sistema', '1');
+INSERT INTO `delilah_resto`.`roles` (`id_rol`, `nombre`, `descripcion`, `activo`) VALUES 
+('cliente', 'usuario', 'cliente del restaurante', '1');
+
+INSERT INTO `delilah_resto`.`usuarios`
+(`usuario_alias`,
+`nombre_apellido`,
+`email`,
+`telefono`,
+`direccion`,
+`passw`,
+`id_rol`)
+VALUES
+('isabel@gmail.com', 'Isabel Caceres', 'isabel@gmail.com', NULL, NULL, '12345678', 'admin'
+);

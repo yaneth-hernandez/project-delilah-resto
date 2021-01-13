@@ -11,11 +11,11 @@ function eventLogin() {
             console.log('result de fetch: ' + JSON.stringify(usuarioDatos));
             if (usuarioDatos.rol == 'admin') {
                 alert('Usted ha ingresado como administrador')
-                window.location.replace("http://127.0.0.1:5500/frontend/admin-listar-pedidos.html")
+                window.location.replace("./admin-listar-pedidos.html")
 
             } else if (usuarioDatos.rol == 'cliente') {
                 alert('Bienvenido a Delilah-Restó')
-                window.location.replace("http://127.0.0.1:5500/frontend/menu.html")
+                window.location.replace("./menu.html")
             } else {
                 alert('Lo sentimos!, por favor valide su usuario y contraseña.')
             }

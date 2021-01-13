@@ -12,7 +12,7 @@ function obtenerPedidoLocal() {
     let idPedido = ''
     if (existePedido == -1) {
         alert('Debe seleccionar su pedido')
-        window.location.replace('http://127.0.0.1:5500/frontend/menu.html')
+        window.location.replace('./menu.html')
     } else {
         idPedido = localStorage.getItem('order')
     }
@@ -22,7 +22,7 @@ function obtenerPedidoLocal() {
 function irMenuUsuarioReg() {
     let btonSeguirPidiendo = document.querySelector("#crear-cta-id")
     btonSeguirPidiendo.addEventListener('click', () => {
-        window.location.replace('http://127.0.0.1:5500/frontend/menu.html')
+        window.location.replace('./menu.html')
         localStorage.removeItem('order')
     })
 }
