@@ -12,6 +12,7 @@ const mdwVerificarToken = require('../middleware/auth')
  * @group Usuario
  * @returns {object} 200 - Información de todos los usuarios
  * @returns {Error}  500 -Error al listar usuarios
+ * @security JWT
  */
 controlUsuario.get('/', mdwVerificarToken.verificarToken, verUsuarios)
 
