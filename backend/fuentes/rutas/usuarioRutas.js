@@ -32,6 +32,7 @@ controlUsuario.get('/', mdwVerificarToken.verificarToken, verUsuarios)
  * @group Usuario
  * @returns {object} 200 - Información de todos los usuarios
  * @returns {Error}  500 -Error al listar usuarios
+ * @security JWT
  */
 controlUsuario.get('/sesion/verify', obtenerUsuario)
 

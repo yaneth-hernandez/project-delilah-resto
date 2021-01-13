@@ -46,7 +46,7 @@ paths:
           schema:
             $ref: '#/definitions/RespuestaPedidoOk'
         '500':
-          description: '{Mensaje: "Error al crear detalle del pedido", Code:'
+          description: '{Mensaje: "Error al crear detalle del pedido"}'
       security:
         - JWT: []
   '/delilah-resto/pedidos/{id}':
@@ -87,7 +87,7 @@ paths:
           schema:
             $ref: '#/definitions/RespuestaActualizarPedidoOk'
         '500':
-          description: '{Mensaje: "Error al actualizar el pedido", Code:'
+          description: '{Mensaje: "Error al actualizar el pedido"}'
       security:
         - JWT: []
     delete:
@@ -102,7 +102,7 @@ paths:
         - Pedido
       responses:
         '500':
-          description: '{Mensaje: "Error al borrar el pedido", Code:'
+          description: '{Mensaje: "Error al borrar el pedido"}'
       security:
         - JWT: []
   '/delilah-resto/pedidos/{id}/status':
@@ -201,7 +201,7 @@ paths:
         - Productos
       responses:
         '500':
-          description: '{Mensaje: "Error borrando el producto", Code:'
+          description: '{Mensaje: "Error borrando el producto"}'
       security:
         - JWT: []
   /delilah-resto/usuarios:
@@ -215,6 +215,8 @@ paths:
           description: Información de todos los usuarios
         '500':
           description: Error al listar usuarios
+      security:
+        - JWT: []
     post:
       parameters:
         - name: CrearClienteModelo
@@ -244,6 +246,8 @@ paths:
           description: Información de todos los usuarios
         '500':
           description: Error al listar usuarios
+      security:
+        - JWT: []
   /delilah-resto/usuarios/admin:
     post:
       parameters:
