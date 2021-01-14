@@ -41,7 +41,7 @@ async function enviarUsuarios(nombre, email, password) {
         body: JSON.stringify(datos)
     }
     try {
-        let responsToFetch = await fetch('http://127.0.0.1:3020/delilah-resto/usuarios/admin', requestInit)
+        let responsToFetch = await fetch(backendEndpoints + '/usuarios/admin', requestInit)
         if (responsToFetch.ok) {
             let respuestaJson = await responsToFetch.json()
             return respuestaJson

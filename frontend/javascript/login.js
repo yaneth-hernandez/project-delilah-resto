@@ -41,7 +41,7 @@ async function logueoUsuarios(email, password) {
         },
         body: JSON.stringify(data)
     }
-    let respuestaFectch = await fetch('http://127.0.0.1:3020/delilah-resto/usuarios/login', reqInit)
+    let respuestaFectch = await fetch(backendEndpoints + '/usuarios/login', reqInit)
     if (respuestaFectch) {
         let respuestaJson = await respuestaFectch.json()
         var token = respuestaJson.token

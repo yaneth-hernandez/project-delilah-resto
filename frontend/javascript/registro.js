@@ -45,7 +45,7 @@ async function crearUsuarios(nombre, email, telefono, direccion, password) {
         body: JSON.stringify(data)
     }
     try {
-        let respuestaFectch = await fetch('http://127.0.0.1:3020/delilah-resto/usuarios', reqInit)
+        let respuestaFectch = await fetch(backendEndpoints + '/usuarios', reqInit)
         if (respuestaFectch.ok) {
             let respuestaJson = await respuestaFectch.json()
             return respuestaJson

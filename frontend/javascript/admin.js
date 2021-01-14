@@ -47,7 +47,7 @@ function ocultarPantallaDatellePedido() {
 window.addEventListener('load', ocultarPantallaDatellePedido)
 
 async function obtenerListarPedidos() {
-    let url = 'http://127.0.0.1:3020/delilah-resto/pedidos'
+    let url = backendEndpoints + '/pedidos'
     let respuestaFectch = await fetch(url);
     let resultJson = await respuestaFectch.json()
 
@@ -71,7 +71,7 @@ async function actualizarPedido(idPedido) {
         body: JSON.stringify(datosPedido)
     }
     try {
-        let responsToFetch = await fetch('http://127.0.0.1:3020/delilah-resto/pedidos/' + idPedido, requestInitPedido)
+        let responsToFetch = await fetch(backendEndpoints + '/pedidos/' + idPedido, requestInitPedido)
         if (responsToFetch.ok) {
             let respuestaJson = await responsToFetch.json()
 
@@ -196,7 +196,7 @@ async function mostrarHtmlDetallePedido(pedido) {
 
 
     for (let i = 0; i < detallePedido.length; i++) {
-        let rutaImg = 'http://127.0.0.1:3020/delilah-resto/productos/imagenes?name=' + detallePedido[i].imagen
+        let rutaImg = backendEndpoints + '/productos/imagenes?name=' + detallePedido[i].imagen
         let detallePedidoStatus = `<div class="content-pedido" id="contenedor-pedidos-${idPedido}">
             <div class="plato-img-pedido" id="plato-img-detalle-pedido-${idPedido}">
                 <img src="${rutaImg}" alt="plato" class="img-menu" id="img-menu-detalle-${idPedido}">
@@ -414,7 +414,7 @@ async function fetchCancelarPedido(idPedido) {
         body: idPedido
     }
     try {
-        let responsToFetch = await fetch('http://127.0.0.1:3020/delilah-resto/pedidos/' + idPedido, requestInitPedido)
+        let responsToFetch = await fetch(backendEndpoints + '/pedidos/' + idPedido, requestInitPedido)
         if (responsToFetch.ok) {
             let respuestaJson = await responsToFetch.json()
 

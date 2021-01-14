@@ -65,7 +65,7 @@ function montrarElementosHtml(pedido) {
     let sectionForm = document.querySelector("body > main > section.formulario-registro")
     let itemPedido = pedido.detalle
     for (let i = 0; i < itemPedido.length; i++) {
-        let rutaImg = 'http://127.0.0.1:3020/delilah-resto/productos/imagenes?name=' + itemPedido[i].imagen
+        let rutaImg = backendEndpoints + '/productos/imagenes?name=' + itemPedido[i].imagen
         let detallePedido = `<div class="plato-img">
         <img src=${rutaImg} alt="plato" class="img-menu">
         <p class="product-precio"><span class="texto-label">${itemPedido[i].nombre}</span><span class="precio">${itemPedido[i].precio_producto}</span></p></div>`

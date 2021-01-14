@@ -23,7 +23,7 @@ async function cargarContenidPagina() {
 }
 
 async function buscarUsuario() {
-    let url = 'http://127.0.0.1:3020/delilah-resto/usuarios/sesion/verify'
+    let url = backendEndpoints + '/usuarios/sesion/verify'
     let token = localStorage.getItem('Auht')
     let reqInit = {
         method: 'GET',
@@ -123,7 +123,7 @@ function mostrarPedidoHtml(producto) {
         nombreClase = 'btn-menu-check'
         seleccionValor = 'x'
     }
-    let rutaImg = 'http://127.0.0.1:3020/delilah-resto/productos/imagenes?name=' + producto.imagen
+    let rutaImg = backendEndpoints + '/productos/imagenes?name=' + producto.imagen
     let detallePedido = ` <div class="plato-img" id="plato-img-id${producto.id}">
     <img src="${rutaImg}" alt="plato" class="img-menu" id="img-menu-id${producto.id}">
     <p class="product-precio"><span class="texto-label" id="texto-label-id${producto.id}">${producto.nombre}</span>
@@ -252,7 +252,7 @@ async function enviarPedidio() {
         body: JSON.stringify(datos)
     }
     try {
-        let respuestaFectch = await fetch('http://127.0.0.1:3020/delilah-resto/pedidos/', reqInit)
+        let respuestaFectch = await fetch(backendEndpoints + '/pedidos/', reqInit)
         console.log(respuestaFectch.ok)
         if (respuestaFectch.ok) {
             respuestaJson = await respuestaFectch.json()

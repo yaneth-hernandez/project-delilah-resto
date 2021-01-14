@@ -100,7 +100,7 @@ async function validarDatosRegistroProducto() {
 }
 
 async function obtenerListaProductos() {
-    let url = 'http://127.0.0.1:3020/delilah-resto/productos'
+    let url = backendEndpoints + '/productos'
     let respuestaFectch = await fetch(url);
     let resultJson = await respuestaFectch.json()
 
@@ -113,7 +113,7 @@ async function mostrarListaProductosHtml() {
 
     let contenidoJson = await obtenerListaProductos()
     for (let i = 0; i < contenidoJson.length; i++) {
-        let rutaImg = 'http://127.0.0.1:3020/delilah-resto/productos/imagenes?name=' + contenidoJson[i].imagen
+        let rutaImg = backendEndpoints + '/productos/imagenes?name=' + contenidoJson[i].imagen
 
         let contenidoTabla = `<div class="item-tabla"  id="numero-producto-${contenidoJson[i].id_productos}">${contenidoJson[i].id_productos}</div>
         <div class="item-tabla" id="imagen-producto-${contenidoJson[i].id_productos}"><img src=${rutaImg} alt="" class="imagen-class" id="imagen-${contenidoJson[i].id_productos}"></div>
@@ -145,7 +145,7 @@ async function borraProducto(id) {
         body: id
     }
     try {
-        let responsToFetch = await fetch('http://127.0.0.1:3020/delilah-resto/productos/' + id, requestInit)
+        let responsToFetch = await fetch(backendEndpoints + '/productos/' + id, requestInit)
         if (responsToFetch.ok) {
             let respuestaJson = await responsToFetch.json()
 
@@ -206,7 +206,7 @@ async function actualizarProducto(id, nombre, descripcion, imagen, precio) {
         body: JSON.stringify(datos)
     }
     try {
-        let responsToFetch = await fetch('http://127.0.0.1:3020/delilah-resto/productos/' + id, requestInit)
+        let responsToFetch = await fetch(backendEndpoints + '/productos/' + id, requestInit)
         if (responsToFetch.ok) {
             let respuestaJson = await responsToFetch.json()
 

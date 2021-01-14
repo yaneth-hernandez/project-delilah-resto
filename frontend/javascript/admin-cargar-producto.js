@@ -16,7 +16,7 @@
      }
      delete reqInit.headers['Content-Type']
 
-     let respuestaFectch = await fetch('http://127.0.0.1:3020/delilah-resto/productos/upload', reqInit)
+     let respuestaFectch = await fetch(backendEndpoints + '/productos/upload', reqInit)
      if (respuestaFectch != null) {
          let creoProducto = await respuestaFectch.json()
          return creoProducto
