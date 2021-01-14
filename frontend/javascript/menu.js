@@ -1,6 +1,6 @@
 //mostrar productos obtenidos
 async function obtenerProductos() {
-    let respuestaBusqueda = await fetch('http://localhost:3020/delilah-resto/productos');
+    let respuestaBusqueda = await fetch(backendEndpoints + '/delilah-resto/productos');
     let resultadoDatos = await respuestaBusqueda.json();
 
     resultadoDatos.forEach(result => {
@@ -58,7 +58,7 @@ function mostrarProductosHtml(objectResult) {
 
 //OBTENER CONFIGURACIÓN DE URL PARA HAYAR ID
 function obtenerUrl(id) {
-    let urlId = 'http://localhost:3020/delilah-resto/productos/' + id
+    let urlId = backendEndpoints + '/productos/' + id
 
     return urlId
 }

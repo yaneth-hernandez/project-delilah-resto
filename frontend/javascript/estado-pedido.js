@@ -38,7 +38,7 @@ function clickEstadosPedido() {
 window.addEventListener('load', clickEstadosPedido)
 
 async function obtenerPedido(id) {
-    let urlId = `http://localhost:3020/delilah-resto/pedidos/${id}/status`
+    let urlId = `${backendEndpoints}/pedidos/${id}/status`
     let busqueda = await fetch(urlId)
     let respuesta = await busqueda.json()
 

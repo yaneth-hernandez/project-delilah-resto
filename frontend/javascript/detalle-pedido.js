@@ -91,7 +91,7 @@ function obtenerProductoLocal() {
 }
 
 async function buscarProductoFetch(id) {
-    let urlId = 'http://localhost:3020/delilah-resto/productos/' + id
+    let urlId = backendEndpoints + '/productos/' + id
     let busqueda = await fetch(urlId)
     let respuesta = await busqueda.json(id)
 
