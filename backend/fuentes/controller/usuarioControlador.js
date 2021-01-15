@@ -107,18 +107,19 @@ function crearUsuariosAdmin(req, res) {
 //POST LOGIN
 function loginUsuarios(req, res) {
     const body = req.body
+
     let sentenceSelectSql = `SELECT id_usuario,usuario_alias,id_rol FROM usuarios WHERE usuario_alias = '${body.usuario}' AND  passw = ${body.password}`
 
     mysqlConnection.query(sentenceSelectSql, function(errSelect, rows, fields) {
         if (rows == null) {
-            res.status(400).json({
+            return res.status(400).json({
                 Mensaje: "Problemas al autenticar usuario"
             })
         } else {
             const { usuario, password, id } = req.body
             jwt.sign({ usuario_alias: usuario, passw: password, id_usuario: id }, process.env.SECRETKEY, { expiresIn: process.env.TIMETOKEN }, (err, token) => {
                 if (!err) {
-                    res.status(200).json({
+                    return res.status(200).json({
                         Mensaje: "Usuario autenticado con exito",
                         Code: 100,
                         rol: rows[0].id_rol,
@@ -128,7 +129,7 @@ function loginUsuarios(req, res) {
                     })
                 } else {
                     console.log('error token' + err)
-                    res.status(400).json({
+                    return res.status(400).json({
                         Mensaje: "Problemas al autenticar usuario:" + err.code
                     })
                 }

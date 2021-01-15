@@ -14,7 +14,7 @@ const cors = require('cors')
 const { v4: uuidv4 } = require('uuid');
 //const { parse } = require('dotenv/types')
 const corsOptions = {
-        origin: 'http://127.0.0.1:5500',
+        origin: '*',
         methods: "GET, POST, PUT, DELETE, OPTIONS",
         optionsSuccessStatus: 200
     }

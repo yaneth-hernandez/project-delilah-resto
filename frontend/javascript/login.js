@@ -3,28 +3,32 @@
 function eventLogin() {
     const bton = document.getElementById('crear-cta-id')
     bton.addEventListener('click', async(e) => {
-        let email = document.getElementById('email-id').value
-        let password = document.getElementById('password-id').value
-
-        if (validarLogin(email, password)) {
-            var usuarioDatos = await logueoUsuarios(email, password);
-            console.log('result de fetch: ' + JSON.stringify(usuarioDatos));
-            if (usuarioDatos.rol == 'admin') {
-                alert('Usted ha ingresado como administrador')
-                window.location.replace("./admin-listar-pedidos.html")
-
-            } else if (usuarioDatos.rol == 'cliente') {
-                alert('Bienvenido a Delilah-Restó')
-                window.location.replace("./menu.html")
-            } else {
-                alert('Lo sentimos!, por favor valide su usuario y contraseña.')
-            }
-        } else {
-            alert('Lo sentimos! error en los datos ingresados.')
-        }
+        datosInicioSeseion()
     })
 }
 window.addEventListener('load', eventLogin)
+
+async function datosInicioSeseion() {
+    let email = document.getElementById('email-id').value
+    let password = document.getElementById('password-id').value
+
+    if (validarLogin(email, password)) {
+        var usuarioDatos = await logueoUsuarios(email, password);
+        console.log('result de fetch: ' + JSON.stringify(usuarioDatos));
+        if (usuarioDatos != null && usuarioDatos.rol == 'admin') {
+            alert('Usted ha ingresado como administrador')
+            window.location.replace("./admin-listar-pedidos.html")
+
+        } else if (usuarioDatos.rol == 'cliente') {
+            alert('Bienvenido a Delilah-Restó')
+            window.location.replace("./menu.html")
+        } else {
+            alert('Lo sentimos!, por favor valide su usuario y contraseña.')
+        }
+    } else {
+        alert('Lo sentimos! error en los datos ingresados.')
+    }
+}
 
 async function logueoUsuarios(email, password) {
     let data = {
@@ -33,21 +37,23 @@ async function logueoUsuarios(email, password) {
     }
     let reqInit = {
         method: 'POST',
-
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Request-Method": "POST"
-
+            "Access-Control-Request-Method": "POST",
         },
         body: JSON.stringify(data)
     }
-    let respuestaFectch = await fetch(backendEndpoints + '/usuarios/login', reqInit)
-    if (respuestaFectch) {
-        let respuestaJson = await respuestaFectch.json()
-        var token = respuestaJson.token
-        localStorage.removeItem('Auht')
-        localStorage.setItem('Auht', token)
-        return respuestaJson
+    try {
+        let respuestaFectch = await fetch(backendEndpoints + '/usuarios/login', reqInit)
+        if (respuestaFectch.ok) {
+            let respuestaJson = await respuestaFectch.json()
+            var token = respuestaJson.token
+            localStorage.removeItem('Auht')
+            localStorage.setItem('Auht', token)
+            return respuestaJson
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
 

@@ -179,7 +179,7 @@ mostrarListaPedidosHtml()
 //detalle pedido
 
 async function obtenerDetallePedidoPorId(idPedido) {
-    let url = `http://127.0.0.1:3020/delilah-resto/pedidos/${idPedido}/status/`
+    let url = `${backendEndpoints}/pedidos/${idPedido}/status/`
     let respuestaFectchDetalle = await fetch(url);
     let resultJsonDetalle = await respuestaFectchDetalle.json(idPedido)
 

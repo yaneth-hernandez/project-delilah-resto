@@ -12,7 +12,8 @@ function eventBtnCrearCta() {
         let password = document.getElementById('password-id').value
 
         if (validarDatosRegistro(nombre, email, telefono, direccion, password)) {
-            var result = await crearUsuarios(nombre, email, telefono, direccion, password)
+            var result = await datosObtenidoUsuario()
+                //var result = await crearUsuarios(nombre, email, telefono, direccion, password)
             console.log('result de fetch: ' + JSON.stringify(result));
             console.log('result de fetch: ' + JSON.stringify(result));
             if (result.Code == 100) {
@@ -25,6 +26,18 @@ function eventBtnCrearCta() {
     })
 }
 window.addEventListener('load', eventBtnCrearCta)
+
+async function datosObtenidoUsuario() {
+    let nombre = document.getElementById('nombre-apellido-id').value
+    let email = document.getElementById('email-id').value
+    let telefono = document.getElementById('telefono-id').value
+    let direccion = document.getElementById('direccion-id').value
+    let password = document.getElementById('password-id').value
+
+    let resultados = await crearUsuarios(nombre, email, telefono, direccion, password)
+
+    return resultados
+}
 
 async function crearUsuarios(nombre, email, telefono, direccion, password) {
     let data = {

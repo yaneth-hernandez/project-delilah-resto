@@ -1,11 +1,10 @@
 //mostrar productos obtenidos
 async function obtenerProductos() {
-    let respuestaBusqueda = await fetch(backendEndpoints + '/delilah-resto/productos');
-    let resultadoDatos = await respuestaBusqueda.json();
+    let respuestaBusqueda = await fetch(backendEndpoints + '/productos')
+    let resultadoDatos = await respuestaBusqueda.json()
 
     resultadoDatos.forEach(result => {
-        var objectResult = new ProductosClass(result);
-
+        var objectResult = new ProductosClass(result)
         mostrarProductosHtml(objectResult)
     })
 }
