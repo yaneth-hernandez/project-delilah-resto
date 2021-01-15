@@ -10,7 +10,8 @@ function eventBtnCrearCtaAdmin() {
         let password = document.getElementById('admin-password-id').value
 
         if (validarRegistros(nombre, email, password)) {
-            var resultado = await enviarUsuarios(nombre, email, password)
+            var resultado = await datosObtenidosUsuAdmin()
+                //var resultado = await enviarUsuarios(nombre, email, password)
             console.log('result de fetch: ' + JSON.stringify(resultado));
 
             if (resultado.Code == 100) {
@@ -23,6 +24,16 @@ function eventBtnCrearCtaAdmin() {
     })
 }
 window.addEventListener('load', eventBtnCrearCtaAdmin)
+
+async function datosObtenidosUsuAdmin() {
+    let nombre = document.getElementById('admin-nombre-apellido-id').value
+    let email = document.getElementById('admin-email-id').value
+    let password = document.getElementById('admin-password-id').value
+
+    let resultadoDatosRecibidos = await enviarUsuarios(nombre, email, password)
+
+    return resultadoDatosRecibidos
+}
 
 async function enviarUsuarios(nombre, email, password) {
     let datos = {

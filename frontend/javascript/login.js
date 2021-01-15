@@ -37,6 +37,7 @@ async function logueoUsuarios(email, password) {
     }
     let reqInit = {
         method: 'POST',
+
         headers: {
             "Content-Type": "application/json",
             "Access-Control-Request-Method": "POST",
