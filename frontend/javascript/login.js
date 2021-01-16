@@ -33,7 +33,7 @@ async function datosInicioSeseion() {
 async function logueoUsuarios(email, password) {
     let data = {
         usuario: email,
-        password: password
+        serial: password
     }
     let reqInit = {
         method: 'POST',

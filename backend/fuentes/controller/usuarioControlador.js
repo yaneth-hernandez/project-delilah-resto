@@ -109,8 +109,7 @@ function loginUsuarios(req, res) {
     const body = req.body
     console.log(req)
     console.log(body.usuario)
-    console.log(body.password)
-    let sentenceSelectSql = `SELECT id_usuario,usuario_alias,id_rol FROM usuarios WHERE usuario_alias = '${body.usuario}' AND  passw = ${body.password}`
+    let sentenceSelectSql = `SELECT id_usuario,usuario_alias,id_rol FROM usuarios WHERE usuario_alias = '${body.usuario}' AND  passw = ${body.serial}`
 
     mysqlConnection.query(sentenceSelectSql, function(errSelect, rows, fields) {
         if (rows == null) {

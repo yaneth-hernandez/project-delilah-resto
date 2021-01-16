@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 require('dotenv').config({ path: './variables_entorno/archivo.env' })
 const port = process.env.PORT || 3000
+const fs = require('fs')
+const https = require('https')
 const morgan = require('morgan')
 const verificarToken = require('./middleware/auth')
 const mysqlConnection = require('./database')
@@ -9,7 +11,7 @@ const controlUsuario = require('./rutas/usuarioRutas')
 const controlProductos = require('./rutas/productosRutas')
 const controlPedidos = require('./rutas/pedidosRutas')
 
-const productosController = require('./controller/productosControlador')
+//const productosController = require('./controller/productosControlador')
 const cors = require('cors')
 const { v4: uuidv4 } = require('uuid');
 //const { parse } = require('dotenv/types')
@@ -31,7 +33,7 @@ let options = {
             title: 'Delilah-Resto-API',
             version: '2.0',
         },
-        host: 'localhost:3020',
+        host: 'localhost:443',
         basePath: '/',
         produces: [
             "application/json",
@@ -153,9 +155,16 @@ app.use('/delilah-resto/pedidos/', controlPedidos)
 
 
 //INI-SERVIDOR
-app.listen(port, () => {
-    console.log(`Iniciado http://localhost:${port}`)
+https.createServer({
+    key: fs.readFileSync('delilah.key'),
+    cert: fs.readFileSync('delilah.crt')
+}, app).listen(port, () => {
+    console.log(`Iniciado https://localhost:${port}`)
 })
 
+/* app.listen(port, () => {
+    console.log(`Iniciado http://localhost:${port}`)
+})
+ */
 //EXPORT-SERVIDOS
 module.exports = app //REQUERIR EN RUTAS!!!!
