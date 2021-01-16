@@ -71,7 +71,6 @@ let storage = multer.diskStorage({
     }
 })
 
-
 /*******************************
  *      CREAR PRODUCTOS        *
  *******************************/
