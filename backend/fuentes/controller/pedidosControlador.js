@@ -45,7 +45,7 @@ function estadoPedidoId(req, res) {
             res.status(500).json('Error en obtención de pedido')
             console.log(err)
         } else {
-            let sentenceSqlVerDetallePedido = `SELECT detalle.id_producto, producto.nombre, producto.imagen,detalle.precio_producto FROM detalle_pedido AS detalle, productos AS producto WHERE producto.id_productos = detalle.id_producto AND id_pedido = ${id}`
+            let sentenceSqlVerDetallePedido = `SELECT detalle.id_producto, detalle.cantidad_producto, producto.nombre, producto.imagen,detalle.precio_producto FROM detalle_pedido AS detalle, productos AS producto WHERE producto.id_productos = detalle.id_producto AND id_pedido = ${id}`
             mysqlConnection.query(sentenceSqlVerDetallePedido, body, function(errDetalle, rowsDetalle, fieldsDetalle) {
                 if (errDetalle) {
                     res.status(500).json('Error en obtención de detalle de pedido')
@@ -111,9 +111,10 @@ function crearDetallePedidos(idPedido, body) {
     var detalle = body.detalle_pedido
     if (detalle != null) {
         for (let i = 0; i < detalle.length; i++) {
-            let sentenceSqlPostPedido = `INSERT INTO  detalle_pedido (id_pedido, id_producto, precio_producto) VALUES (` +
+            let sentenceSqlPostPedido = `INSERT INTO  detalle_pedido (id_pedido, id_producto, cantidad_producto, precio_producto ) VALUES (` +
                 idPedido + "," +
                 detalle[i].id_producto + "," +
+                detalle[i].cantidad_producto + "," +
                 detalle[i].precio_producto + ")"
             mysqlConnection.query(sentenceSqlPostPedido, body, function(err, result) {
                 if (err) throw err;

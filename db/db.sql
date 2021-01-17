@@ -27,12 +27,14 @@ CREATE TABLE `detalle_pedido` (
   `id_pedido` int NOT NULL,
   `id_producto` int NOT NULL,
   `precio_producto` double NOT NULL,
+  `cantidad_producto` int DEFAULT NULL,
   PRIMARY KEY (`id_detalle_pedido`),
   KEY `detalle_pedido_pedido_idx` (`id_pedido`),
   KEY `detalle_pedido_producto_idx` (`id_producto`),
   CONSTRAINT `detalle_pedido_pedido` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`),
   CONSTRAINT `detalle_pedido_producto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_productos`)
-) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

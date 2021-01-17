@@ -10,8 +10,8 @@ function verUsuarios(req, res) {
     mysqlConnection.query('SELECT * from usuarios', function(err, rows, fields) {
         if (err) throw err
         return res.json(rows);
-    });
-    mysqlConnection.end();
+    })
+
 }
 
 //GET X USUARIO EN SESIÓN
@@ -119,7 +119,7 @@ function loginUsuarios(req, res) {
             })
         } else {
             const { usuario, password, id } = req.body
-            jwt.sign({ usuario_alias: usuario, passw: password, id_usuario: id }, process.env.SECRETKEY, { expiresIn: process.env.TIMETOKEN }, (err, token) => {
+            jwt.sign({ usuario_alias: usuario, passw: password, id_rol: rows[0].id_rol }, process.env.SECRETKEY, { expiresIn: process.env.TIMETOKEN }, (err, token) => {
                 if (!err) {
                     return res.status(200).json({
                         Mensaje: "Usuario autenticado con exito",

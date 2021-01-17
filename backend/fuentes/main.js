@@ -103,7 +103,7 @@ let storage = multer.diskStorage({
  * @security JWT
  */
 const upload = multer({ storage })
-app.post('/delilah-resto/productos/upload', verificarToken.verificarToken, upload.single('file'), (req, res) => {
+app.post('/delilah-resto/productos/upload', verificarToken.verificarTokenUsuAdmin, upload.single('file'), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 

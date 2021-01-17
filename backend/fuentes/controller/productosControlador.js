@@ -1,7 +1,5 @@
 const mysqlConnection = require('../database')
 
-
-
 //GET LISTAR TODOS
 function verProductos(req, res) {
     mysqlConnection.query('SELECT * FROM productos WHERE estado = 1', (err, rows, fields) => {

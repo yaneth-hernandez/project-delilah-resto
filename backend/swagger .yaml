@@ -372,11 +372,15 @@ definitions:
   DetallePedidoModelo:
     required:
       - id_producto
+      - cantidad_producto
       - precio_producto
     properties:
       id_producto:
         type: string
         description: '-Identificador producto'
+      cantidad_producto:
+        type: integer
+        description: '-Cantidad producto'
       precio_producto:
         type: string
         description: '-Valor por unidad'

@@ -12,8 +12,9 @@ const mdwVerificarToken = require('../middleware/auth')
  * @group Pedido
  * @returns {object} 200 - Información de todos los pedidos
  * @returns {Error}  500 -Error al listar pedidos
+ * @security JWT
  */
-controlPedidos.get('/', pedidosControlador.verPedidos)
+controlPedidos.get('/', mdwVerificarToken.verificarTokenUsuAdmin, pedidosControlador.verPedidos)
 
 
 /*******************************
@@ -26,8 +27,9 @@ controlPedidos.get('/', pedidosControlador.verPedidos)
  * @param {integer} id.path.required -Id del pedido a obtener
  * @returns {object} 200 - Información de todos los pedidos
  * @returns {Error}  500 -Error al listar pedidos
+ * @security JWT
  */
-controlPedidos.get('/:id', pedidosControlador.pedidosId)
+controlPedidos.get('/:id', mdwVerificarToken.verificarTokenUsuAdmin, pedidosControlador.pedidosId)
 
 
 /*******************************
@@ -49,6 +51,7 @@ controlPedidos.get('/:id/status', pedidosControlador.estadoPedidoId)
 /**
  * @typedef DetallePedidoModelo
  * @property {string} id_producto.required -Identificador producto
+ * @property {integer} cantidad_producto.required -Cantidad producto
  * @property {string} precio_producto.required -Valor por unidad
  */
 
@@ -117,7 +120,7 @@ controlPedidos.post('/', mdwVerificarToken.verificarToken, pedidosControlador.cr
  * @returns {Error}  500 - {Mensaje: "Error al actualizar el pedido"}
  * @security JWT
  */
-controlPedidos.put('/:id', mdwVerificarToken.verificarToken, pedidosControlador.actualizarPedido) //ok
+controlPedidos.put('/:id', mdwVerificarToken.verificarTokenUsuAdmin, pedidosControlador.actualizarPedido) //ok
 
 
 /*******************************
@@ -137,7 +140,7 @@ controlPedidos.put('/:id', mdwVerificarToken.verificarToken, pedidosControlador.
  * @returns {Error}  500 - {Mensaje: "Error al borrar el pedido"}
  * @security JWT
  */
-controlPedidos.delete('/:id', mdwVerificarToken.verificarToken, pedidosControlador.borrarPedidos) //ok
+controlPedidos.delete('/:id', mdwVerificarToken.verificarTokenUsuAdmin, pedidosControlador.borrarPedidos) //ok
 
 
 module.exports = controlPedidos

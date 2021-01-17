@@ -14,7 +14,7 @@ const mdwVerificarToken = require('../middleware/auth')
  * @returns {Error}  500 -Error al listar usuarios
  * @security JWT
  */
-controlUsuario.get('/', mdwVerificarToken.verificarToken, verUsuarios)
+controlUsuario.get('/', mdwVerificarToken.verificarTokenUsuAdmin, verUsuarios)
 
 
 /*******************************
@@ -157,7 +157,7 @@ controlUsuario.post('/login', loginUsuarios)
  * @returns {Error}  500 - {Mensaje: "Error al actualizar el usuario"}
  * @security JWT
  */
-controlUsuario.put('/:id', mdwVerificarToken.verificarToken, actualizarUsuario)
+controlUsuario.put('/:id', mdwVerificarToken.verificarTokenUsuAdmin, actualizarUsuario)
 
 
 /*******************************
@@ -178,6 +178,6 @@ controlUsuario.put('/:id', mdwVerificarToken.verificarToken, actualizarUsuario)
  * @returns {Error}  500 - {Mensaje: "Error al borrar el Usuario"}
  * @security JWT
  */
-controlUsuario.delete('/:id', mdwVerificarToken.verificarToken, borraUsuario)
+controlUsuario.delete('/:id', mdwVerificarToken.verificarTokenUsuAdmin, borraUsuario)
 
 module.exports = controlUsuario

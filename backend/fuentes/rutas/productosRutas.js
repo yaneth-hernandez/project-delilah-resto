@@ -64,7 +64,7 @@ controlProductos.get('/:id', productosControlador.productoId)
  * @returns {Error}  400 - {Mensaje: "Error actualizando productos"}
  * @security JWT
  */
-controlProductos.put('/:id', mdwVerificarToken.verificarToken, productosControlador.actualizarProducto) //ok
+controlProductos.put('/:id', mdwVerificarToken.verificarTokenUsuAdmin, productosControlador.actualizarProducto) //ok
 
 
 /*******************************
@@ -84,7 +84,7 @@ controlProductos.put('/:id', mdwVerificarToken.verificarToken, productosControla
  * @returns {Error}  500 - {Mensaje: "Error borrando el producto"}
  * @security JWT
  */
-controlProductos.delete('/:id', mdwVerificarToken.verificarToken, productosControlador.borraProducto) //ok
+controlProductos.delete('/:id', mdwVerificarToken.verificarTokenUsuAdmin, productosControlador.borraProducto) //ok
 
 
 
